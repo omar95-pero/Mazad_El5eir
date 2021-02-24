@@ -74,7 +74,8 @@
   <!--============= Upcoming Auction Section Starts Here =============-->
   <section class="upcoming-auction padding-bottom padding-top">
 
-
+@foreach ($auctionDetailes as $auction)
+    
     <div class="container">
       <div class="auction-wrapper-7  m--15">
         <div class="auction-item-7 time">
@@ -89,8 +90,7 @@
             <div class="auction-content">
               <div class="title-area">
                 <h6 class="title">
-                  <a href="./product-details.html">سيارة أثرية موديل 1930</a>
-                </h6>
+                  <a href="./product-details.html">{{ $auction->item_name }}         </h6>
                 <!-- <div class="list-area">
                   <span class="list-item">
                     <span class="list-id">Listing ID</span>14033488
@@ -105,9 +105,7 @@
                   <span>1,215 Sq. Ft.</span>
                 </div> -->
 
-                <p>سيارة من فولكس فاجن موديل 1930 كانت ملك الملك أحمد
-
-                </p>
+                <p>{{ $auction->item_detailes }}</p>
               </div>
               <div class="bid-area">
                 <div class="bid-inner row">
@@ -117,7 +115,7 @@
                     </div>
                     <div class="amount-content">
                       <div class="current">سعر البدأ</div>
-                      <div class="amount">$876.00</div>
+                      <div class="amount">{{ $auction->start_price }}</div>
                     </div>
                   </div>
                   <div class="bid-amount">
@@ -126,7 +124,7 @@
                     </div>
                     <div class="amount-content">
                       <div class="current">السعر الحالي</div>
-                      <div class="amount">$5,00.00</div>
+                      <div class="amount">{{ $maxPrice }}</div>
                     </div>
                   </div>
                 </div>
@@ -156,6 +154,8 @@
 
       </div>
     </div>
+@endforeach
+
   </section>
   <!--============= Upcoming Auction Section Ends Here =============-->
 

@@ -323,6 +323,14 @@
     });
   </script>
 
+  <script>
+    $(Document).ready(function(){
+      // dropify
+
+  $('.dropify').dropify();
+    })
+  </script>
+
 
 <script>
   // Set the date we're counting down to

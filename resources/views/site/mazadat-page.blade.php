@@ -37,7 +37,7 @@
   <!-- fonts  -->
   <link href="https://fonts.تصفحogleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
 </head>
-
+@toastr_css
 <body>
 
   <!-- ================ spinner ================= -->
@@ -100,10 +100,10 @@
       <div class="row">
         @foreach ($auctions as $auction)
             
-        <div class="col-sm-6 col-lg-4">
+        <div style=" width:340px; " class="col-sm-6 col-lg-4 ">
           <div class="donation-item">
             <div class="img">
-              <img src="{{ get_file($auction->image) }}" alt="Donation">
+              <img style="height: 200px; width:340px;" src="{{ get_file($auction->image) }}" alt="Donation">
              
                   
               <a class="common-btn" href="{{ route('auction.details',$auction->id) }}">تفاصيل المزاد</a>
@@ -112,9 +112,11 @@
             <div class="inner">
               <div class="top">
                 <a class="tags" href="#"> {{ $auction->charity->name }}</a>
-                <h3>
-                  <a href="#">{{ $auction->item_detailes }}</a>
-                </h3>
+                <div  style="width:300px; height: 100px">
+                  <h3>
+                    <a href="#">{{ $auction->item_detailes }}</a>
+                  </h3>
+                </div>
                 <p>{{ $auction ->item_name }}   </p>
               </div>
               <div class="bottom">
@@ -584,3 +586,6 @@
 </body>
 
 </html>
+@jquery
+@toastr_js
+@toastr_render

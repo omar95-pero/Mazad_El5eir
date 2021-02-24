@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Site\AuctionRequest;
+use Illuminate\Support\Carbon;
+use App\Models\User;
 use App\Models\Auction;
 use App\Models\Charity;
 use App\Models\Bid;
@@ -25,7 +27,7 @@ class AuctionController extends Controller
         if ($request->image != '') {
             $data['image'] = store_file($request, 'image', "mazad");
         }
-
+        $data['user_id'] = request()->user()->id;
         Auction::create($data);
 
         return redirect()->route('index');
@@ -38,12 +40,14 @@ class AuctionController extends Controller
     }
     public function auctionDetails($id)
     {
-        $auctionDetailes = Auction::with('charity', 'user', 'bid')->findOrFail($id);
-        $maxPrice = Bid::get('bid_price')->max();
-        // $auctio = Auction::findOrFail($id);
+        $auctionDetailes = Auction::with('user')->findOrFail($id);
+        $maxPrice = Bid::where('auction_id', $id)->max('bid_price');
 
-
-
-        return view('site.auction-details', compact('auctionDetailes', 'maxPrice'));
+        $bids = Bid::where('auction_id', $id)
+            ->orderBy('bid_price', 'desc')
+            ->take(4)
+            ->get();
+        // dd([$auctionDetailes, $maxPrice, $bids]);
+        return view('site.auction-details', compact('auctionDetailes', 'maxPrice', 'bids'));
     }
 }

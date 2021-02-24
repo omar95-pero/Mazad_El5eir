@@ -135,7 +135,7 @@
 
     <div class="title-top margin-top  d-flex align-items-center justify-content-start">
         <div class="contents d-flex align-items-center mr-4 justify-content-center">
-            <a href="index.blade.php"> <i class="fad fa-home pl-2"></i> الرئيسية </a>
+            <a href="{{ route('index') }}"> <i class="fad fa-home pl-2"></i> الرئيسية </a>
             <span> \ </span>
             <h3 class="font-weight-bold"> تفاصيل المزاد </h3>
 
@@ -177,10 +177,18 @@
 
                                     <div class="top-entry my-4">
                                         <div class="date">
-                                            <i class="fad fa-tags pl-2"></i>أخر سعر :<strong
+                                            <i class="fad fa-tags pl-2"></i> أعلى سعر للمزاد :<strong
                                                 class="last-price font-weight-bold px-2"> 
                                                
-                                                  {{  $maxPrice->bid_price}}
+                                                  {{  $maxPrice}}
+                                               
+                                            </strong> جنية
+                                        </div>
+                                        <div class="date">
+                                            <i class="fad fa-tags pl-2"></i> سعر بداية المزاد :<strong
+                                                class="last-price font-weight-bold px-2"> 
+                                               
+                                                  {{  $auctionDetailes->start_price}}
                                                
                                             </strong> جنية
                                         </div>
@@ -189,79 +197,38 @@
                                                 href="profile.html"> {{ $auctionDetailes->user->name }}                                            </a>
                                         </div>
                                     </div>
-
-                                    <div class="auction-people">
+                           <div  class="auction-people">
                                         <div class="row">
-                                            <div class="col-md-6 row my-2">
+                            @foreach ($bids as $bid)                       
+                                                
+                                            <div  class="col-md-6 row my-2">
 
                                                 <div class="col-3 d-flex align-items-center">
                                                     <img src="{{ asset('assets/img/300_9.jpg') }}" alt="">
                                                 </div>
                                                 <div class="col-9 d-flex align-items-center">
                                                     <div>
-                                                        <a class="font-weight-bold">أحمد محمد النمر</a>
-                                                        <small class="d-block"> 12 دقيقة <span
-                                                                class="mr-2 font-weight-bold">4200 جنية</span></small>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6 row my-2">
-
-                                                <div class="col-3 d-flex align-items-center">
-                                                    <img src="{{ asset('assets/img/300_9.jpg') }}" alt="">
-                                                </div>
-                                                <div class="col-9 d-flex align-items-center">
-                                                    <div>
-                                                        <a class="font-weight-bold">أحمد محمد النمر</a>
-                                                        <small class="d-block"> 12 دقيقة <span
-                                                                class="mr-2 font-weight-bold">4200 جنية</span></small>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6 row my-2">
-
-                                                <div class="col-3 d-flex align-items-center">
-                                                    <img src="{{ asset('assets/img/300_9.jpg') }}" alt="">
-                                                </div>
-                                                <div class="col-9 d-flex align-items-center">
-                                                    <div>
-                                                        <a class="font-weight-bold">أحمد محمد النمر</a>
-                                                        <small class="d-block"> 12 دقيقة <span
-                                                                class="mr-2 font-weight-bold">4200 جنية</span></small>
+                                                        <a class="font-weight-bold">{{ $bid->user->name }}</a>
+                                                        <h6 class="font-weight-bold">{{ $bid->bid_price }}جنية</h6>
+                                                        <small class="d-block"> {{  $bid->created_at }} <span
+                                                                class="mr-2 font-weight-bold"></span></small>
                                                     </div>
                                                 </div>
                                             </div>
 
 
-
-
-
-                                            <div class="col-md-6 row my-2">
-
-                                                <div class="col-3 d-flex align-items-center">
-                                                    <img src="{{ asset('assetsimg/300_9.jpg') }}" alt="">
-                                                </div>
-                                                <div class="col-9 d-flex align-items-center">
-                                                    <div>
-                                                        <a class="font-weight-bold">أحمد محمد النمر</a>
-                                                        <small class="d-block"> 12 دقيقة <span
-                                                                class="mr-2 font-weight-bold">4200 جنية</span></small>
-                                                    </div>
-                                                </div>
-                                            </div>
+                             @endforeach
 
                                         </div>
                                     </div>
 
                                 </div>
 
-                                <div class="thumb col-lg-5 rounded" data-fancybox="gallery" href="img/TopSales/car.jpg"
-                                    style="background-image: url(img/TopSales/car.jpg);">
-                                    <span class="cats">لصالح {{ $auctionDetailes->charity->name }}</span>
-                                </div>
 
+                                                <div class="thumb col-lg-5 rounded" data-fancybox="gallery" href="img/TopSales/car.jpg"
+                  style="background-image: url({{ get_file($auctionDetailes->image) }});">
+                  <span class="cats">لصالح جمعية رسالة</span>
+                </div>
                                 <div class="col-lg-7">
                                     <div class="progress-box">
                                         <div class="progress">
@@ -279,18 +246,22 @@
                                         <p id="count-down" class="mt-2 "></p>
                                     </div>
                                     <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-8">
+                                        @auth
+                                            
                                         <form action="{{ route('bid',$auctionDetailes->id) }}" method="POST">
                                             @csrf
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-12">
                                             <div class="form-group">
-                                            <input type="number" class="form-control" name="bid_price" placeholder="ضع سعرك">
+                                            <input type="number" class="form-control" name="bid_price" placeholder="ادخل سعر المزايدة" required>
                                             <input type="hidden" class="form-control" name="Auction_id" value="{{ $auctionDetailes->id }}">
                                             </div>
                                            </div>
                                             <button id="price-input-show" class="btn btn-theme border" href="#">زايد
                                             الان</button>
                                          </form>
+                                        @endauth
+
                                     </div>
                                     </div>
                                     <div class="w-100 py-3 d-flex justify-content-center align-items-center">
@@ -300,13 +271,60 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-5 px-0">
+                                 <div class="col-lg-5 px-0">
+                  <div class="gallery my-4 px-0">
+                    <!-- Swiper -->
+                    <div class="swiper-container">
+                      <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                          <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">
+                            <img src="{{ get_file($auctionDetailes->image) }}">
+                          </a>
+                        </div>
+                        <div class="swiper-slide">
+                          <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">
+                            <img src="{{ get_file($auctionDetailes->image) }}">
+                          </a>
+                        </div>
+                        <div class="swiper-slide">
+                          <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">
+                            <img src="{{ get_file($auctionDetailes->image) }}">
+                          </a>
+                        </div>
+                        <div class="swiper-slide">
+                          <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">
+                            <img src="{{ get_file($auctionDetailes->image) }}">
+                          </a>
+                        </div>
+                        <div class="swiper-slide">
+                          <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">
+                            <img src="{{ get_file($auctionDetailes->image) }}">
+                          </a>
+                        </div>
+                        <div class="swiper-slide">
+                          <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">
+                            <img src="{{ get_file($auctionDetailes->image) }}">
+                          </a>
+                        </div>
+                        <!-- <div class="swiper-slide" style="background-image: url(img/cairo.jpg);"></div>
+                        <div class="swiper-slide" style="background-image: url(img/cairopage.jpg);"></div>
+                        <div class="swiper-slide" style="background-image: url(img/hurgada.jpg);"></div>
+                        <div class="swiper-slide" style="background-image: url(img/aswanpage.jpg);"></div>
+                        <div class="swiper-slide" style="background-image: url(img/luxor.jpg);"></div>
+                        <div class="swiper-slide" style="background-image: url(img/makadipage.jpeg);"></div>
+                        <div class="swiper-slide" style="background-image: url(img/hurgadapage.jpg);"></div>
+                      </div> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                                {{-- <div class="col-lg-5 px-0">
                                     <div class="gallery my-4 px-0">
                                         <!-- Swiper -->
                                         <div class="swiper-container">
                                             <div class="swiper-wrapper">
                                                 <div class="swiper-slide">
-                                                    <a data-fancybox="gallery" href="img/car.jpg">
+                                                    <a data-fancybox="gallery" href="{{ asset('assets/img/car.jpg') }}">
                                                         <img src="{{ get_file($auctionDetailes->image) }}">
                                                     </a>
                                                 {{-- </div>
@@ -343,7 +361,7 @@
                         <div class="swiper-slide" style="background-image: url(img/makadipage.jpeg);"></div>
                         <div class="swiper-slide" style="background-image: url(img/hurgadapage.jpg);"></div>
                       </div> -->
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -389,99 +407,81 @@
   <script src="{{ asset('assets/js/fontawesome-pro.js') }}"></script>
   <script src="{{ asset('assets/js/stars.js') }}"></script>
   <script src="{{ asset('assets/js/main.js') }}"></script>
-  <script>
-    $('#Header').load("Header.html");
-    $('#footer').load("Footer.html");
-  </script>
-  <script>
-    var galleryThumbs = new Swiper('.gallery-thumbs', {
-      slidesPerView: 'auto',
-      // spaceBetween: 10,
-      speed: 1500,
-      loop: true,
-      freeMode: true,
-      loopedSlides: 5, //looped slides should be the same
-      watchSlidesVisibility: true,
-      watchSlidesProgress: true,
 
-    });
-    var galleryTop = new Swiper('.gallery-top', {
-      loop: true,
-      effect: 'fade',
-      keyboard: {
-        enabled: true,
-      },
-      speed: 1500,
+  <script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("Feb 1, 2022 15:10:00").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+
+      // Get todays date and time
+      var now = new Date().getTime();
+
+      // Find the distance between now an the count down date
+      var distance = countDownDate - now;
+
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display the result in the element with id="cont-down"
+      document.getElementById("count-down").innerHTML = days + "d " + hours + "h " +
+        minutes + "m " + seconds + "s ";
+
+      // If the count down is finished, write some text 
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("count-down").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+  </script>
+
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper('.swiper-container', {
       autoplay: {
-        delay: 5000,
+        delay: 2500,
         disableOnInteraction: false,
       },
-      loopedSlides: 5, //looped slides should be the same
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      thumbs: {
-        swiper: galleryThumbs,
-      },
+
+      spaceBetween: 10,
+      freeMode: true,
       pagination: {
         el: '.swiper-pagination',
-        type: 'progressbar',
+        clickable: true,
       },
+      breakpoints: {
+        0: {
+          slidesPerView: 2,
+        },
+        640: {
+          slidesPerView: 3,
+        },
+        768: {
+          slidesPerView: 4,
+        },
+        1024: {
+          slidesPerView: 5,
+        },
+      }
     });
   </script>
-
   <script>
-    var swiper = new Swiper('.cars', {
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      slidesPerView: 'auto',
-      spaceBetween: 10,
-      speed: 1000,
-      loop: true,
-      autoplay: {
-        delay: 1500,
-        disableOnInteraction: false,
-      },
+    $(document).ready(function () {
+      $("#price-input-show").click(function () {
+        $("#mazad-input").toggle();
+      });
     });
   </script>
-
-
-<script>
-  // Set the date we're counting down to
-  var countDownDate = new Date("Feb 1, 2022 15:10:00").getTime();
-
-  // Update the count down every 1 second
-  var x = setInterval(function () {
-
-    // Get todays date and time
-    var now = new Date().getTime();
-
-    // Find the distance between now an the count down date
-    var distance = countDownDate - now;
-
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // Display the result in the element with id="cont-down"
-    document.getElementById("count-down").innerHTML = days + "d " + hours + "h " +
-      minutes + "m " + seconds + "s ";
-
-    // If the count down is finished, write some text 
-    if (distance < 0) {
-      clearInterval(x);
-      document.getElementById("count-down").innerHTML = "EXPIRED";
-    }
-  }, 1000);
-</script>
 
 
 </body>
+
+</html>
 @jquery
 @toastr_js
 @toastr_render

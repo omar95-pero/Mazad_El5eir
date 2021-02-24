@@ -13,23 +13,11 @@ use Illuminate\Support\Facades\Route;
 */
 ########################Site Pages##############################
 ################################################################
-Route::get('/', function () {
-    return view('site/index');
-})->name('index');
-
-Route::get(
-    '/ShowAuctions',
-    'Site\AuctionController@getAllAuctions'
-)->name('auctions.detailes');
-
-Route::get('/AddAuction', function () {
-    return view('front-end.auction-add');
-})->name('auction.add');
+Route::get('/', 'Site\IndexController@getIndex')->name('index');
+Route::get('/ShowAuctions', 'Site\AuctionController@getAllAuctions')->name('auctions.detailes');
+Route::get('/AddAuction', 'Site\IndexController@getAuctionAdd')->name('auction.add');
 Route::get('AuctionDetails/{id}', 'Site\AuctionController@auctionDetails')->name('auction.details');
-
-Route::get('/AboutUs', function () {
-    return view('site.About');
-})->name('aboutus');
+Route::get('/AboutUs', 'Site\IndexController@getAbout')->name('aboutus');
 Route::get('/ContactUs', 'Site\ContactController@getContact')->name('site.Contact');
 Route::post('/ContactUs', 'Site\ContactController@saveContact')->name('save.contact');
 ##########################End Route Pages############################
