@@ -2,11 +2,11 @@
     <nav class="navbar navbar-expand-lg navbar-light  fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{{ route('index') }}">
-                <img src="{{ url('site') }}/img/Logo.png">
+                <img src="{{asset('site')}}/img/logo.png">
                 <!-- <h1>ZELZ</h1> -->
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse " id="navbarTogglerDemo01">
@@ -34,33 +34,33 @@
                             <a class="nav-link " href="{{ route('register') }}">التسجيل بالموقع </a>
                         </li>
                     @endguest
-@auth
-                    <li class=" nav-item">
-                        <div class="dropdown">
+                    @auth
+                        <li class=" nav-item">
+                            <div class="dropdown">
 
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="{{ url('site') }}/img/300_9.jpg" class=" useImg">
-                            </a>
-
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="profile.html"> <i
-                                        class="fad fa-user mx-2"></i>{{ auth()->user()->name }}</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('تسجيل الخروج') }}
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="{{ url('site') }}/img/300_9.jpg" class=" useImg">
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="profile.html"> <i
+                                            class="fad fa-user mx-2"></i>{{ auth()->user()->name }}</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('تسجيل الخروج') }}
+                                    </a>
 
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
 
                 </ul>
 
-    
+
                 <div class=" d-flex justify-content-center align-items-center">
 
 
@@ -100,7 +100,7 @@
 
 
                 </div>
-@endauth
+                @endauth
 
             </div>
         </div>
@@ -120,19 +120,6 @@
     $(".nav-link.notificationsIcon").click(function(event) {
         event.stopPropagation();
         $('.notifications').slideToggle();
-    });
-
-</script>
-
-
-<script>
-    $(document).ready(function() {
-        // SideNav Default Options
-        $('.button-collapse').sideNav({
-            edge: 'right',
-            breakpoint: 992,
-            menuWidth: 240,
-        });
     });
 
 </script>

@@ -2,45 +2,108 @@
 <html lang="ar">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-    @include('layouts.site.css')
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>مزاد الخير</title>
+    <!-- icon -->
+    <link rel="icon" type="image/x-icon" href="#">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-rtl.css') }}">
+    <!-- MDBootstrap -->
+    <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}">
+    <!-- Font Awesome Stars-->
+    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-stars.css') }}">
+    <!-- odometer -->
+    <link rel="stylesheet" href="{{ asset('assets/css/odometer.min.css') }}">
+    <!-- flatIcon -->
+    <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
+    <!-- dropify -->
+    <link rel="stylesheet" href="{{ asset('assets/css/dropify.min.css') }}">
+    <!-- swiper -->
+    <link rel="stylesheet" href="{{ asset('assets/css/swiper.css') }}">
+    <!-- select2 -->
+    <link rel="stylesheet" href="">
+    <!-- animate -->
+    <link rel="stylesheet" href="{{ asset('assets/css/aos.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/normalize.css') }}">
+    <!-- img gallery -->
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery.fancybox.min.css') }}">
+    <!-- Custom style  -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <!-- fonts  -->
+    <link href="https://fonts.تصفحogleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+    @toastr_css
+    <script>
+        @if(Session::has('message'))
+            toastr.options =
+            {
+                "closeButton" : true,
+                "progressBar" : true
+            }
+        toastr.success("{{ session('message') }}");
+        @endif
+
+            @if(Session::has('error'))
+            toastr.options =
+            {
+                "closeButton" : true,
+                "progressBar" : true
+            }
+        toastr.error("{{ session('error') }}");
+        @endif
+
+            @if(Session::has('info'))
+            toastr.options =
+            {
+                "closeButton" : true,
+                "progressBar" : true
+            }
+        toastr.info("{{ session('info') }}");
+        @endif
+
+            @if(Session::has('warning'))
+            toastr.options =
+            {
+                "closeButton" : true,
+                "progressBar" : true
+            }
+        toastr.warning("{{ session('warning') }}");
+        @endif
+    </script>
 </head>
 
 <body>
-
-  <!-- ================ spinner ================= -->
-  <div class="spinner">
+<!-- ================ spinner ================= -->
+ <div class="spinner">
     <div class="loader">
-      <div class="rect1"></div>
-      <div class="rect2"></div>
-      <div class="rect3"></div>
-      <div class="rect4"></div>
-      <div class="rect5"></div>
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
     </div>
-  </div>
-  <!-- ================ spinner ================= -->
+</div>
+<!-- ================ spinner ================= -->
 
 
 
-  <!--////////////////////////////////////////////////////////////////////////////////-->
-  <!--////////////////////////////////////////////////////////////////////////////////-->
-  <!--////////////////////////////////////////////////////////////////////////////////-->
-  <!--////////////////////////   nav-bar     //////////////////////////////////-->
-  <!--////////////////////////////////////////////////////////////////////////////////-->
-  <!--////////////////////////////////////////////////////////////////////////////////-->
-  <!--////////////////////////////////////////////////////////////////////////////////-->
-@if (auth()->user())
-    
+<!--////////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////////////   nav-bar     //////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////-->
 
- @include('layouts.site.Header')
+<div id="Header" class="main-header">
+    @include('layouts.site.Header')
+</div>
 
-@endif
-
-
-  <!--////////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////          //////////////////////////////////-->
@@ -74,87 +137,7 @@
   <!--============= Upcoming Auction Section Starts Here =============-->
   <section class="upcoming-auction padding-bottom padding-top">
 
-@foreach ($auctionDetailes as $auction)
-    
-    <div class="container">
-      <div class="auction-wrapper-7  m--15">
-        <div class="auction-item-7 time">
-          <div class="auction-inner row">
-            <a href="#0" class="upcoming-badge-2" title="Upcoming Auction">
-              <i class="fad fa-gavel"></i>
-            </a>
-            <div class="auction-thumb bg_img" style="background-image: url(img/TopSales/car.jpg); background-size: cover;" data-background="img/TopSales/car.jpg" >
-              <img class="d-lg-none" src="{{ asset('') }}"img/TopSales/upcoming-9.png" alt="upcoming">
-              <a href="#0" class="rating"><i class="far fa-star"></i></a>
-            </div>
-            <div class="auction-content">
-              <div class="title-area">
-                <h6 class="title">
-                  <a href="./product-details.html">{{ $auction->item_name }}         </h6>
-                <!-- <div class="list-area">
-                  <span class="list-item">
-                    <span class="list-id">Listing ID</span>14033488
-                  </span>
-                  <span class="list-item">
-                    <span class="list-id">Item #</span>0900-027867
-                  </span>
-                </div> -->
-                <!-- <div class="item-feature">
-                  <span>2 Beds</span>
-                  <span>2 Baths</span>
-                  <span>1,215 Sq. Ft.</span>
-                </div> -->
-
-                <p>{{ $auction->item_detailes }}</p>
-              </div>
-              <div class="bid-area">
-                <div class="bid-inner row">
-                  <div class="bid-amount">
-                    <div class="icon">
-                      <i class="fad fa-gavel"></i>
-                    </div>
-                    <div class="amount-content">
-                      <div class="current">سعر البدأ</div>
-                      <div class="amount">{{ $auction->start_price }}</div>
-                    </div>
-                  </div>
-                  <div class="bid-amount">
-                    <div class="icon">
-                      <i class="fas fa-sack-dollar"></i>
-                    </div>
-                    <div class="amount-content">
-                      <div class="current">السعر الحالي</div>
-                      <div class="amount">{{ $maxPrice }}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="bid-count-area">
-                <span class="item">
-                  <span class="left">عدد المزايدين</span>97 شخص
-                </span>
-                <!-- <span class="item">
-                  <span class="left">Last Bid </span>7 mins ago
-                </span> -->
-              </div>
-            </div>
-            <div class="auction-bidding">
-              <span class="bid-title"> باق من الزمن</span>
-              <p id="count-down" class="mt-2  "></p>
-
-              <div class="bid-incr">
-                <span class="title">أخر زيادة</span>
-                <h4>$400</h4>
-              </div>
-              <a href="aucation-details.blade.php" class="custom-button">تفاصيل المزاد</a>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-    </div>
-@endforeach
+@yield('index')
 
   </section>
   <!--============= Upcoming Auction Section Ends Here =============-->
@@ -387,7 +370,7 @@
         <div class="col-lg-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1100">
           <div class="single-counter">
             <h2>
-              <span class="odometer" data-count="420">00</span>
+              <span class="odometer" data-count="{{$charities}}">00</span>
             </h2>
 
             <p>جمعية خيرية</p>
@@ -416,7 +399,7 @@
         <div class="col-lg-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1100">
           <div class="single-counter">
             <h2>
-              <span class="odometer" data-count="654">00</span>
+              <span class="odometer" data-count="{{$user_bids}}">-1000</span>
             </h2>
 
             <p>مزايد </p>
@@ -430,7 +413,7 @@
         <div class="col-lg-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1100">
           <div class="single-counter">
             <h2>
-              <span class="odometer" data-count="22">00</span>
+              <span class="odometer" data-count="{{count($auctions)}}">00</span>
               <!-- <span class="target">%</span> -->
             </h2>
 
@@ -476,13 +459,14 @@
           <h2>أخر الأخبار</h2>
         </div>
         <div class="row">
+            @foreach($auctions as $auction)
           <div class="col-lg-6">
             <div class="event-item">
-              <img src="{{ asset('assets/img/watch.jpg') }}" alt="Event">
+              <img src="{{ $auction->image }}" alt="Event">
               <div class="inner">
-                <h4>04 <span>مارس</span></h4>
+                <h4>{{Carbon\Carbon::parse($auction->start_at)->toFormattedDateString()}}<span></span></h4>
                 <h3>
-                  <a href="aucation-details.blade.php">مزاد على ساعة رولكس </a>
+                  <a href="aucation-details.blade.php">مزاد على {{$auction->item_name}} </a>
                 </h3>
                 <ul>
                   <li>
@@ -497,100 +481,101 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-6">
-            <div class="event-item">
-              <img src="{{ asset('assets/img/ring.jpg') }}" alt="Event">
-              <div class="inner">
-                <h4>05 <span>مارس</span></h4>
-                <h3>
-                  <a href="aucation-details.blade.php">مزاد على ساعة رولكس </a>
-                </h3>
-                <ul>
-                  <li>
-                    <i class="fal fa-stopwatch"></i>
-                    <span>1.00pm - 2.00pm</span>
-                  </li>
-                  <!-- <li>
-                    <i class="fal fa-map-marker-check"></i>
-                    <span>Canada</span>
-                  </li> -->
-                </ul>
-              </div>
-            </div>
-          </div>
+            @endforeach
+{{--          <div class="col-lg-6">--}}
+{{--            <div class="event-item">--}}
+{{--              <img src="{{ asset('assets/img/ring.jpg') }}" alt="Event">--}}
+{{--              <div class="inner">--}}
+{{--                <h4>05 <span>مارس</span></h4>--}}
+{{--                <h3>--}}
+{{--                  <a href="aucation-details.blade.php">مزاد على ساعة رولكس </a>--}}
+{{--                </h3>--}}
+{{--                <ul>--}}
+{{--                  <li>--}}
+{{--                    <i class="fal fa-stopwatch"></i>--}}
+{{--                    <span>1.00pm - 2.00pm</span>--}}
+{{--                  </li>--}}
+{{--                  <!-- <li>--}}
+{{--                    <i class="fal fa-map-marker-check"></i>--}}
+{{--                    <span>Canada</span>--}}
+{{--                  </li> -->--}}
+{{--                </ul>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--          </div>--}}
 
-          <div class="col-lg-6">
-            <div class="event-item-right">
-              <h4>06 <span>مارس</span></h4>
-              <h3>
-                <a href="aucation-details.blade.php">مزاد على سيف الملك سمير  </a>
-              </h3>
-              <ul>
-                <li>
-                  <i class="fal fa-stopwatch"></i>
-                  <span>10.00am - 11.00am</span>
-                </li>
-                <!-- <li>
-                  <i class="fal fa-map-marker-check"></i>
-                  <span>UK</span>
-                </li> -->
-              </ul>
-            </div>
-            <div class="event-item-right">
-              <h4>07 <span>مارس</span></h4>
-              <h3>
-                <a href="aucation-details.blade.php">مزاد على خاتم أثري  </a>
-              </h3>
-              <ul>
-                <li>
-                  <i class="fal fa-stopwatch"></i>
-                  <span> 05 / 12   -   05 / 3</span>
-                </li>
-                <!-- <li>
-                  <i class="fal fa-map-marker-check"></i>
-                  <span>مصر</span>
-                </li> -->
-              </ul>
-            </div>
-            <div class="event-item-right">
-              <h4>08 <span>مارس</span></h4>
-              <h3>
-                <a href="aucation-details.blade.php">مزاد على سيارة فولفو 1950</a>
-              </h3>
-              <ul>
-                <li>
-                  <i class="fal fa-stopwatch"></i>
-                  <span> 05 / 12   -   05 / 3</span>
-                </li>
-                <!-- <li>
-                  <i class="fal fa-map-marker-check"></i>
-                  <span>مصر</span>
-                </li> -->
-              </ul>
-            </div>
-          </div>
+{{--          <div class="col-lg-6">--}}
+{{--            <div class="event-item-right">--}}
+{{--              <h4>06 <span>مارس</span></h4>--}}
+{{--              <h3>--}}
+{{--                <a href="aucation-details.blade.php">مزاد على سيف الملك سمير  </a>--}}
+{{--              </h3>--}}
+{{--              <ul>--}}
+{{--                <li>--}}
+{{--                  <i class="fal fa-stopwatch"></i>--}}
+{{--                  <span>10.00am - 11.00am</span>--}}
+{{--                </li>--}}
+{{--                <!-- <li>--}}
+{{--                  <i class="fal fa-map-marker-check"></i>--}}
+{{--                  <span>UK</span>--}}
+{{--                </li> -->--}}
+{{--              </ul>--}}
+{{--            </div>--}}
+{{--            <div class="event-item-right">--}}
+{{--              <h4>07 <span>مارس</span></h4>--}}
+{{--              <h3>--}}
+{{--                <a href="aucation-details.blade.php">مزاد على خاتم أثري  </a>--}}
+{{--              </h3>--}}
+{{--              <ul>--}}
+{{--                <li>--}}
+{{--                  <i class="fal fa-stopwatch"></i>--}}
+{{--                  <span> 05 / 12   -   05 / 3</span>--}}
+{{--                </li>--}}
+{{--                <!-- <li>--}}
+{{--                  <i class="fal fa-map-marker-check"></i>--}}
+{{--                  <span>مصر</span>--}}
+{{--                </li> -->--}}
+{{--              </ul>--}}
+{{--            </div>--}}
+{{--            <div class="event-item-right">--}}
+{{--              <h4>08 <span>مارس</span></h4>--}}
+{{--              <h3>--}}
+{{--                <a href="aucation-details.blade.php">مزاد على سيارة فولفو 1950</a>--}}
+{{--              </h3>--}}
+{{--              <ul>--}}
+{{--                <li>--}}
+{{--                  <i class="fal fa-stopwatch"></i>--}}
+{{--                  <span> 05 / 12   -   05 / 3</span>--}}
+{{--                </li>--}}
+{{--                <!-- <li>--}}
+{{--                  <i class="fal fa-map-marker-check"></i>--}}
+{{--                  <span>مصر</span>--}}
+{{--                </li> -->--}}
+{{--              </ul>--}}
+{{--            </div>--}}
+{{--          </div>--}}
 
-          <div class="col-lg-6">
-            <div class="event-item">
-              <img src="{{ asset('assets/img/car.jpg') }}" alt="Event">
-              <div class="inner">
-                <h4>10 <span>مارس</span></h4>
-                <h3>
-                  <a href="aucation-details.blade.php">مزاد على سيف الملك سمير  </a>
-                </h3>
-                <ul>
-                  <li>
-                    <i class="fal fa-stopwatch"></i>
-                    <span>05 / 12 &nbsp; - &nbsp 05 / 3</span>
-                  </li>
-                  <!-- <li>
-                    <i class="fal fa-map-marker-check"></i>
-                    <span>Egypt</span>
-                  </li> -->
-                </ul>
-              </div>
-            </div>
-          </div>
+{{--          <div class="col-lg-6">--}}
+{{--            <div class="event-item">--}}
+{{--              <img src="{{ asset('assets/img/car.jpg') }}" alt="Event">--}}
+{{--              <div class="inner">--}}
+{{--                <h4>10 <span>مارس</span></h4>--}}
+{{--                <h3>--}}
+{{--                  <a href="aucation-details.blade.php">مزاد على سيف الملك سمير  </a>--}}
+{{--                </h3>--}}
+{{--                <ul>--}}
+{{--                  <li>--}}
+{{--                    <i class="fal fa-stopwatch"></i>--}}
+{{--                    <span>05 / 12 &nbsp; - &nbsp 05 / 3</span>--}}
+{{--                  </li>--}}
+{{--                  <!-- <li>--}}
+{{--                    <i class="fal fa-map-marker-check"></i>--}}
+{{--                    <span>Egypt</span>--}}
+{{--                  </li> -->--}}
+{{--                </ul>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--          </div>--}}
         </div>
       </div>
     </div>

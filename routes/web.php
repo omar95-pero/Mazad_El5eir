@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 ################################################################
 Route::get('/', 'Site\IndexController@getIndex')->name('index');
 Route::get('/ShowAuctions', 'Site\AuctionController@getAllAuctions')->name('auctions.detailes');
-Route::get('/AddAuction', 'Site\IndexController@getAuctionAdd')->name('auction.add');
+Route::get('/AddAuction', 'Site\IndexController@getAuctionAdd')->middleware('auth')->name('auction.add');
 Route::get('AuctionDetails/{id}', 'Site\AuctionController@auctionDetails')->name('auction.details');
 Route::get('/AboutUs', 'Site\IndexController@getAbout')->name('aboutus');
 Route::get('/ContactUs', 'Site\ContactController@getContact')->name('site.Contact');
@@ -25,7 +25,8 @@ Route::post('/ContactUs', 'Site\ContactController@saveContact')->name('save.cont
 
 #############################Bid Process#############################
 #####################################################################
-Route::post('/AuctionProcess', 'Site\BidController@Bid')->name('bid');
+#####################################################################
+Route::post('AuctionProcess/{id}', 'Site\BidController@bidProcess')->name('AuctionProcess');
 
 
 
@@ -39,3 +40,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/AddAuction', 'Site\AuctionController@create')->name('create.auction');
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+
+Route::get('/artisan/{order}', function ($order) {
+
+   \Illuminate\Support\Facades\Artisan::call($order) ;
+});

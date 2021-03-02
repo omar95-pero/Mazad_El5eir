@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Admin\AdminRequest;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
+use Yoeunes\Toastr\Toastr;
 
 class AdminController extends Controller
 {
@@ -41,16 +43,10 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminRequest  $request)
     {
 
-            $valedator =Validator::make($request->all(),[
-                'email'=> [ 'unique:admins'],
-            ]);
-            if ($valedator->fails()) {
-                $notification=error_tostar("هذا البريد الإلكترونى موجود مسبقاً");
-                return back()->with($notification);
-            }
+
             $new=new Admin();
             $new->email=$request->email;
             $new->password=Hash::make($request->password);
@@ -61,7 +57,7 @@ class AdminController extends Controller
                 $new->image=$fileName;
             }
             $new->save();
-            $notification=store_tostar('تم الحفظ');
+            $notification=toastr()->success('تم الحفظ');
             return  redirect(aroute('ShowAdmins'))->with($notification);
     }
 

@@ -41,7 +41,7 @@
 <body>
 
   <!-- ================ spinner ================= -->
-  <div class="spinner">
+  {{-- <div class="spinner">
     <div class="loader">
       <div class="rect1"></div>
       <div class="rect2"></div>
@@ -49,7 +49,7 @@
       <div class="rect4"></div>
       <div class="rect5"></div>
     </div>
-  </div>
+  </div> --}}
   <!-- ================ spinner ================= -->
 
 
@@ -62,8 +62,9 @@
   <!--////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////-->
 
-@include('layouts.site.Header')
-  <div id="Header" class="main-header"></div>
+  <div id="Header" class="main-header">
+      @include('layouts.site.Header')
+  </div>
 
 
   <!--////////////////////////////////////////////////////////////////////////////////-->
@@ -99,13 +100,13 @@
 
       <div class="row">
         @foreach ($auctions as $auction)
-            
+
         <div style=" width:340px; " class="col-sm-6 col-lg-4 ">
           <div class="donation-item">
             <div class="img">
               <img style="height: 200px; width:340px;" src="{{ get_file($auction->image) }}" alt="Donation">
-             
-                  
+
+
               <a class="common-btn" href="{{ route('auction.details',$auction->id) }}">تفاصيل المزاد</a>
 
             </div>
@@ -126,8 +127,8 @@
                   </div>
                 </div>
                 <ul>
-                  <li> {{ $auction->start_price }} </li>
-                  <li>الهدف : $ 7,000.00</li>
+                  <li> {{ $auction->start_price }} LE</li>
+                  <li>  الهدف : LE 7,000.00</li>
                 </ul>
                 <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
               </div>

@@ -74,6 +74,7 @@
   		toastr.warning("{{ session('warning') }}");
   @endif
 </script>
+    @toastr_css
 </head>
 
 <body>
@@ -167,9 +168,9 @@
                                 <div class="info col-lg-7">
 
                                     <h3 class="mb-4">
-                                        <a href="#"> المزاد عن {{ $auctionDetailes->item_name }} 
+                                        <a href="#"> المزاد عن {{ $auctionDetailes->item_name }}
                                             <span class="float-left"><i class="fad fa-star"></i></span>
-                                        </a>                                    
+                                        </a>
                                     </h3>
                                     <p>
                                        {{ $auctionDetailes->item_detailes }}
@@ -178,18 +179,18 @@
                                     <div class="top-entry my-4">
                                         <div class="date">
                                             <i class="fad fa-tags pl-2"></i> أعلى سعر للمزاد :<strong
-                                                class="last-price font-weight-bold px-2"> 
-                                               
+                                                class="last-price font-weight-bold px-2">
+
                                                   {{  $maxPrice}}
-                                               
+
                                             </strong> جنية
                                         </div>
                                         <div class="date">
                                             <i class="fad fa-tags pl-2"></i> سعر بداية المزاد :<strong
-                                                class="last-price font-weight-bold px-2"> 
-                                               
+                                                class="last-price font-weight-bold px-2">
+
                                                   {{  $auctionDetailes->start_price}}
-                                               
+
                                             </strong> جنية
                                         </div>
                                         <div class="location">
@@ -199,8 +200,8 @@
                                     </div>
                            <div  class="auction-people">
                                         <div class="row">
-                            @foreach ($bids as $bid)                       
-                                                
+                            @foreach ($bids as $bid)
+
                                             <div  class="col-md-6 row my-2">
 
                                                 <div class="col-3 d-flex align-items-center">
@@ -242,14 +243,14 @@
                                     <div
                                         class="mt-4 d-flex justify-content-between align-items-center position-relative">
 
-                                        
+
                                         <p id="count-down" class="mt-2 "></p>
                                     </div>
                                     <div class="row">
                                     <div class="col-lg-8">
                                         @auth
-                                            
-                                        <form action="{{ route('bid',$auctionDetailes->id) }}" method="POST">
+
+                                        <form action="{{ route('AuctionProcess',$auctionDetailes->id) }}" method="POST">
                                             @csrf
                                             <div class="col-lg-12">
                                             <div class="form-group">
@@ -361,7 +362,7 @@
                         <div class="swiper-slide" style="background-image: url(img/makadipage.jpeg);"></div>
                         <div class="swiper-slide" style="background-image: url(img/hurgadapage.jpg);"></div>
                       </div> -->
-                                            </div> --}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -384,7 +385,9 @@
     <!--////////////////////////////////////////////////////////////////////////////////-->
     <!--////////////////////////////////////////////////////////////////////////////////-->
     <!--////////////////////////////////////////////////////////////////////////////////-->
-    <div id="footer"></div>
+    <div id="footer">
+        @include('layouts.site.Footer')
+    </div>
     <!--////////////////////////////////////////////////////////////////////////////////-->
     <!--////////////////////////////////////////////////////////////////////////////////-->
     <!--////////////////////////////////////////////////////////////////////////////////-->
@@ -431,7 +434,7 @@
       document.getElementById("count-down").innerHTML = days + "d " + hours + "h " +
         minutes + "m " + seconds + "s ";
 
-      // If the count down is finished, write some text 
+      // If the count down is finished, write some text
       if (distance < 0) {
         clearInterval(x);
         document.getElementById("count-down").innerHTML = "EXPIRED";
@@ -480,8 +483,6 @@
 
 
 </body>
-
-</html>
 @jquery
 @toastr_js
 @toastr_render

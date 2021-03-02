@@ -41,13 +41,14 @@ class AuctionController extends Controller
     public function auctionDetails($id)
     {
         $auctionDetailes = Auction::with('user')->findOrFail($id);
-        $maxPrice = Bid::where('auction_id', $id)->max('bid_price');
+        $maxPrice = Bid::where('auction_id', $id)->groupBy('auction_id')->max('bid_price');
 
         $bids = Bid::where('auction_id', $id)
+            ->with('user')
             ->orderBy('bid_price', 'desc')
             ->take(4)
             ->get();
-        // dd([$auctionDetailes, $maxPrice, $bids]);
+//         return $bids ;
         return view('site.auction-details', compact('auctionDetailes', 'maxPrice', 'bids'));
     }
 }

@@ -124,7 +124,7 @@
               <ul class="sidepages pt-3">
                 <li><a href="{{ route('index') }}">الرئيسية</a></li>
                 <li><a href="{{ route('auctions.detailes') }}">المزادات</a></li>
-                <li><a href="{{ route('contactus') }}">تواصل معنا</a></li>
+                  <li class="nav-item"><a class="nav-link " href="{{ route('site.Contact') }}">تواصل معنا </a></li>
                 @guest
                 <li><a href="{{ route('login') }}">تسجيل الدخول</a></li>
                 @endguest

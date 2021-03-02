@@ -9,12 +9,13 @@ class Bid extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'id');
     }
     public function auction()
     {
-        return $this->belongsTo(Auction::class, 'Auction_id');
+        return $this->hasOne(Auction::class, 'id','Auction_id');
     }
 }

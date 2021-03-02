@@ -18,6 +18,7 @@ class CreateCharitiesTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('email');
+            $table->string('image')->nullable();
             $table->bigInteger('phone_number');
             $table->timestamps();
         });

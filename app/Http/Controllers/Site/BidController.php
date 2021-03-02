@@ -5,27 +5,28 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Site\BidRequest;
 use App\Models\Bid;
+use App\Models\Auction;
 use Brian2694\Toastr\Toastr;
 use Illuminate\Http\Request;
 
 class BidController extends Controller
 {
-    public function Bid(BidRequest $request)
+    public function bidProcess(BidRequest $request,$id)
     {
-        // $data = request()->all();
-        $maxPrice = Bid::max('bid_price');
-        if ($request->bid_price  >  $maxPrice) {
-            $bid = Bid::create([
-                'user_id' => request()->user()->id,
-                'bid_price' => request('bid_price'),
-                'Auction_id' => request('Auction_id'),
-            ]);
-            $bid->save();
+        $maxPrice = Bid::where('Auction_id', request('id'))->with('auction')->orderBy('bid_price','DESC')->first();
+//        dd($maxPrice);
+        $data = request([
+            'user_id' => request()->user()->id,
+            'bid_price' ,
+            'Auction_id',
+        ]);
+        if ($data['bid_price'] > $maxPrice->auction->start_price & $data['bid_price'] > $maxPrice->bid_price){
+            $bid = Bid::create($data)->save();
             toastr()->success('تم اضافة القيمة بنجاح ');
-            return back();
-        } else {
-            toastr()->error('هذه القيمة غير صالحة ');
-            return back();
-        }
+                 return back();
+             } else {
+            toastr()->error('هذه القيمة غير صالح ');
+                 return back();
+          }
     }
 }

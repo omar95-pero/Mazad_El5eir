@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+$(".spinner").fadeOut(300);
   // var swiper = new Swiper('.MainSlider-container', {
   //   // spaceBetween: 0,
   //   // loop: true,
@@ -86,7 +86,7 @@ $(document).ready(function () {
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
-  
+
 $(document).ready(function () {
 
   new WOW().init();
@@ -168,6 +168,6 @@ $(function () {
 
 
 
-  
+
 
 });

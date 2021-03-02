@@ -1,7 +1,57 @@
-@extends('layouts.site.index')
+<!doctype html>
+<html lang="ar">
 
-@section('content')
- 
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>مزاد الخير</title>
+    <!-- icon -->
+    <link rel="icon" type="image/x-icon" href="#">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-rtl.css') }}">
+    <!-- MDBootstrap -->
+    <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}">
+    <!-- Font Awesome Stars-->
+    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-stars.css') }}">
+    <!-- odometer -->
+    <link rel="stylesheet" href="{{ asset('assets/css/odometer.min.css') }}">
+    <!-- flatIcon -->
+    <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
+    <!-- dropify -->
+    <link rel="stylesheet" href="{{ asset('assets/css/dropify.min.css') }}">
+    <!-- swiper -->
+    <link rel="stylesheet" href="{{ asset('assets/css/swiper.css') }}">
+    <!-- select2 -->
+    <link rel="stylesheet" href="">
+    <!-- animate -->
+    <link rel="stylesheet" href="{{ asset('assets/css/aos.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/normalize.css') }}">
+    <!-- img gallery -->
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery.fancybox.min.css') }}">
+    <!-- Custom style  -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <!-- fonts  -->
+{{--    <link href="https://fonts.تصفحogleapis.com/css?family=Cairo&display=swap" rel="stylesheet">--}}
+    @toastr_css
+</head>
+
+<body>
+<!-- ================ spinner ================= -->
+<div class="spinner">
+    <div class="loader">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+</div>
+
+
   <div class="user-form-area">
     <div class="container-fluid p-0">
       <div class="row m-0">
@@ -14,14 +64,14 @@
             <img src="{{ asset('assets/img/login.jpg') }}" alt="User">
           </div>
         </div>
- 
+
         <div class="col-lg-7 p-0">
-          <div class="user-content">
+          <div class="user-content" style="height: auto">
             <div class="d-table">
               <div class="d-table-cell">
                 <div class="user-content-inner">
                   <div class="top">
-                    <a href="index.html">
+                    <a href="{{route('index')}}">
                       <img src="{{ asset('assets/img/logo.png') }}" alt="Logo">
                     </a>
                     <h2>تسجيل الدخول</h2>
@@ -66,12 +116,13 @@
                                     <label class="form-check-label" for="remember">
                                         {{ __('تذكرني') }}
                                     </label>
+
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-6">
+                            <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('دخول') }}
                                 </button>
@@ -108,8 +159,16 @@
           </div>
         </div>
 
-        
+
       </div>
     </div>
   </div>
-@endsection
+  </div>
+
+
+
+@include('layouts.site.js')
+
+</body>
+
+</html>

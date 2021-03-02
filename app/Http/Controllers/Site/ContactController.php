@@ -11,7 +11,7 @@ class ContactController extends Controller
 {
     public function getContact()
     {
-        return view('site.Contact');
+        return view('site.contact');
     }
     public function saveContact(ContactRequest $request)
     {

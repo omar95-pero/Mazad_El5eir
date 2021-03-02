@@ -24,7 +24,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <!--------------------------CSS------------------------------->
     @include('layouts.Admin.css')
-
+@toastr_css
 </head>
 <style>
     .btn-group{
@@ -600,6 +600,8 @@ License: You must have a valid license purchased only from themeforest(the above
 
 @stack('js')
 </body>
-
+@jquery
+@toastr_js
+@toastr_render
 <!-- end::Body -->
 </html>
