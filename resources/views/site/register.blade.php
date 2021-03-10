@@ -77,8 +77,9 @@
           <div class="over-lay d-flex align-items-center justify-content-center">
             <h3>إنشاء حساب</h3>
           </div>
-          <div class="user-img" style="background-image: url(img/register.jpg);">
-            <img src="img/register.jpg" alt="User">
+            <div class="user-img" style="background-image: url({{ URL:: asset('assets/img/login.jpg') }});">
+                <img src="{{ asset('assets/img/login.jpg') }}" alt="User">
+
           </div>
         </div>
 

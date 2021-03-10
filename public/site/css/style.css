@@ -894,7 +894,7 @@ span.swiper-pagination-current {
   background-color: #fff;
   border-radius: 5px;
   text-align: center;
-  height: 75px;
+  height: 95px;
 }
 
 .events-sec .event-item .inner h4 span {
@@ -2399,8 +2399,8 @@ span.swiper-pagination-current {
   color: #555;
 }
 
-/* ============================================================== 
-     # Causes Area 
+/* ==============================================================
+     # Causes Area
 =================================================================== */
 .causes-area {
   background-color: #107b501a;
@@ -2668,8 +2668,8 @@ span.swiper-pagination-current {
   background: #bf3654;
 }
 
-/* ============================================================== 
-       # Causes grid 
+/* ==============================================================
+       # Causes grid
   =================================================================== */
 .causes-area .grid-item {
   margin-bottom: 30px;

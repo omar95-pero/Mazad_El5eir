@@ -92,11 +92,23 @@
         // Display the result in the element with id="cont-down"
         document.getElementById("count-down").innerHTML = days + "d " + hours + "h " +
             minutes + "m " + seconds + "s ";
-
+        document.getElementById("count-down-1").innerHTML = days + "d " + hours + "h " +
+            minutes + "m " + seconds + "s ";
+        document.getElementById("count-down-2").innerHTML = days + "d " + hours + "h " +
+            minutes + "m " + seconds + "s ";
+        document.getElementById("count-down-3").innerHTML = days + "d " + hours + "h " +
+            minutes + "m " + seconds + "s ";
+        document.getElementById("count-down-4").innerHTML = days + "d " + hours + "h " +
+            minutes + "m " + seconds + "s ";
+        document.getElementById("count-down-5").innerHTML = days + "d " + hours + "h " +
+            minutes + "m " + seconds + "s ";
+        document.getElementById("count-down-6").innerHTML = days + "d " + hours + "h " +
+            minutes + "m " + seconds + "s ";
         // If the count down is finished, write some text
         if (distance < 0) {
             clearInterval(x);
             document.getElementById("count-down").innerHTML = "EXPIRED";
+            document.getElementById("count-down-1").innerHTML = "EXPIRED";
         }
     }, 1000);
 </script>

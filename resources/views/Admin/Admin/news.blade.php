@@ -8,7 +8,7 @@
     <li class="m-nav__separator">-</li>
     <li class="m-nav__item">
         <a href="{{route('ShowAdmins.create')}}" class="m-nav__link">
-            <span class="m-nav__link-text">اضافة مشرف جديد</span>
+            <span class="m-nav__link-text">اضافة خبر جديد</span>
         </a>
     </li>
 
@@ -83,12 +83,17 @@
                                 <td>{{$new->body}}</td>
                                 <td><img style="width: 70px;height: 70px" src="{{get_file($new->image)}}" alt="user" onclick="window.open(this.src)"/></td>
                                 <td >
-{{--                                    <a href="{{route('ShowAdmins.edit')}}">--}}
-{{--                                        <button type="submit" class="btn btn-info btn-sm"   ><i class="fa fa-edit" style="margin-left: 1px"></i></button>--}}
-{{--                                    </a>--}}
+                                    <a href="{{ url('admin/news',$new->id)}}">
+                                        <button type="submit" class="btn btn-info btn-sm"   ><i class="fa fa-edit" style="margin-left: 1px"></i></button>
+                                    </a>
                                 </td>
                                 <td >
-{{--                                    <button type="button" class="btn btn-danger btn-sm"  id="submit_delete"  attr_route="{{route('ShowAdmins.destroy')}}" ><i class="fa fa-trash" style="margin-left: 1px"></i></button>--}}
+                                    <form action="{{route('destroy.news',$new->id)}}" method="POST" m>
+                                        @csrf
+                                        <button type="submit" class="btn btn-info btn-sm" >
+                                        <i class="fa fa-trash" style="margin-left: 1px"></i>
+                                        </button>
+                                    </form>
                                 </td>
                                 @endforeach
                             </tr>

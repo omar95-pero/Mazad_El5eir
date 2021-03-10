@@ -21,13 +21,16 @@ class CreateAuctionsTable extends Migration
             $table->string('item_name');
             $table->string('address');
             $table->string('item_detailes');
-            $table->string('start_price');
+            $table->bigInteger('start_price');
+            $table->bigInteger('bid_limit');
+            $table->enum('status',array('cancel','done'));
             $table->dateTime('start_at', $precision = 0);
             $table->dateTime('end_at', $precision = 0);
             $table->unsignedBigInteger('charity_id');
             $table->foreign('charity_id')->references('id')->on('charities')->onDelete("cascade");
             $table->string('_token');
             $table->timestamps();
+
         });
     }
 

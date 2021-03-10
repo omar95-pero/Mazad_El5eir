@@ -45,9 +45,16 @@ Route::group(['prefix' => 'admin'], function () {
         //   \Artisan::call('dump-autoload');
         //   echo 'dump-autoload complete';
     });
-//    =======================================News Routes=======================================
+// ===========================================News Routes=======================================
 
     Route::get('/news/index','NewsController@index')->name('show.news');
     Route::get('/news/create','NewsController@create')->name('create.news');
     Route::post('/news/save','NewsController@store')->name('store.news');
+    Route::get('/news/{id}','NewsController@edit')->name('edit.news');
+    Route::post('/news/update/{id}','NewsController@update')->name('update.news');
+    Route::post('/news/delete/{id}','NewsController@destroy')->name('destroy.news');
+
+//=============================================Auctions Routes===================================
+
+    Route::get('/auctions/index','AuctionsController@index')->name('ShowAuctions.index');
 });

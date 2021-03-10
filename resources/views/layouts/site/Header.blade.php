@@ -24,26 +24,31 @@
                     <li class="nav-item">
                         <a class="nav-link " href="{{ route('site.Contact') }}">تواصل معنا </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{ route('store') }}">المتجر </a>
+                    </li>
                     @guest
 
 
                         <li class="nav-item">
                             <a class="nav-link " href="{{ route('login') }}">تسجيل الدخول </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{ route('register') }}">التسجيل بالموقع </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link " href="{{ route('register') }}">التسجيل بالموقع </a>--}}
+{{--                        </li>--}}
+
                     @endguest
                     @auth
                         <li class=" nav-item">
                             <div class="dropdown">
 
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="{{ url('site') }}/img/300_9.jpg" class=" useImg">
+                                    <img src="{{asset('assets/img/users-photo/03.png')}}" class=" useImg">
                                 </a>
 
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="profile.html"> <i
+                                    <a class="dropdown-item" href="{{route('user.profile',auth()->user()->id)}}"> <i
                                             class="fad fa-user mx-2"></i>{{ auth()->user()->name }}</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

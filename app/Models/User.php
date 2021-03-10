@@ -47,6 +47,9 @@ class User extends Authenticatable
 
     function bid()
     {
-        return $this->hasMany(Bid::class, 'user_id');
+        return $this->hasMany(Bid::class, 'id');
+    }
+    function favorite(){
+        return $this->hasMany(Favorite::class,'user_id');
     }
 }

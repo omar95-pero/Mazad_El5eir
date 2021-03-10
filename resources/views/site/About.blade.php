@@ -76,12 +76,12 @@
   <!--////////////////////////////////////////////////////////////////////////////////-->
   <section class="contact-sec">
     <div class="title-top mb-5 mt-5 d-flex align-items-center justify-content-start">
-      <div class="contents d-flex align-items-center mr-4 justify-content-center">
-        <a href="index.blade.php"> <i class="fad fa-home pl-2"></i> الرئيسية </a>
-        <span> \ </span>
-        <h3 class="font-weight-bold"> من نحن </h3>
+{{--      <div class="contents d-flex align-items-center mr-4 justify-content-center">--}}
+{{--        <a href="index.blade.php"> <i class="fad fa-home pl-2"></i> الرئيسية </a>--}}
+{{--        <span> \ </span>--}}
+{{--        <h3 class="font-weight-bold"> من نحن </h3>--}}
 
-      </div>
+{{--      </div>--}}
 
     </div>
 
@@ -102,7 +102,7 @@
 
       <div class="row pb-5">
 
-        <div class="col-md-9 mt-3">
+        <div class="col-md-8 mt-3">
           <h3 class="font-weight-bold title text-center pb-4">
             عن مزادات الخير
           </h3>
@@ -116,20 +116,21 @@
         </div>
 
 
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="col-3-contents p-2">
-            <h4 class="right-title py-2">روابط مختصرة</h4>
+              <img src="{{asset('assets/img/about.jpeg')}}" style="width: 100%">
+{{--            <h4 class="right-title py-2">روابط مختصرة</h4>--}}
 
-            <div class="textwidget">
-              <ul class="sidepages pt-3">
-                <li><a href="{{ route('index') }}">الرئيسية</a></li>
-                <li><a href="{{ route('auctions.detailes') }}">المزادات</a></li>
-                  <li class="nav-item"><a class="nav-link " href="{{ route('site.Contact') }}">تواصل معنا </a></li>
-                @guest
-                <li><a href="{{ route('login') }}">تسجيل الدخول</a></li>
-                @endguest
-              </ul>
-            </div>
+{{--            <div class="textwidget">--}}
+{{--              <ul class="sidepages pt-3">--}}
+{{--                <li><a href="{{ route('index') }}">الرئيسية</a></li>--}}
+{{--                <li><a href="{{ route('auctions.detailes') }}">المزادات</a></li>--}}
+{{--                  <li class="nav-item"><a class="nav-link " href="{{ route('site.Contact') }}">تواصل معنا </a></li>--}}
+{{--                @guest--}}
+{{--                <li><a href="{{ route('login') }}">تسجيل الدخول</a></li>--}}
+{{--                @endguest--}}
+{{--              </ul>--}}
+{{--            </div>--}}
           </div>
         </div>
 

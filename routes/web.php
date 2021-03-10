@@ -20,8 +20,19 @@ Route::get('AuctionDetails/{id}', 'Site\AuctionController@auctionDetails')->name
 Route::get('/AboutUs', 'Site\IndexController@getAbout')->name('aboutus');
 Route::get('/ContactUs', 'Site\ContactController@getContact')->name('site.Contact');
 Route::post('/ContactUs', 'Site\ContactController@saveContact')->name('save.contact');
+Route::get('/Store', 'Site\IndexController@Store')->name('store');
+Route::get('mail','Site\MailController@send_Email');
+Route::get('test','Site\AuctionController@checkTimeAuction');
 ##########################End Route Pages############################
 #####################################################################
+#####################################################################
+########################User Profile Routes##########################
+Route::get('/profile/{id}','Site\IndexController@getProfile')->name('user.profile');
+
+
+
+
+
 
 #############################Bid Process#############################
 #####################################################################
@@ -38,6 +49,8 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/AddAuction', 'Site\AuctionController@index');
     Route::post('/AddAuction', 'Site\AuctionController@create')->name('create.auction');
+    Route::get('favorite-actione/{id}','Site\BidController@favoriteAuctions')
+        ->name('favorite-action');
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -48,3 +61,8 @@ Route::get('/artisan/{order}', function ($order) {
 
    \Illuminate\Support\Facades\Artisan::call($order) ;
 });
+
+
+
+
+

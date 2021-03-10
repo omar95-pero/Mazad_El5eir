@@ -505,6 +505,7 @@ p {
 }
 
 .gallery-top .swiper-slide::before {
+  display: none !important;
   content: '';
   background: -webkit-gradient(linear, left top, left bottom, from(#02b66256), color-stop(#1b1b1b8c), to(#333333));
   background: linear-gradient(#02b66256, #1b1b1b8c, #333333);
@@ -555,6 +556,7 @@ p {
 }
 
 .gallery-thumbs {
+  display: none !important;
   width: 40%;
   position: absolute;
   z-index: 3;
@@ -881,20 +883,21 @@ span.swiper-pagination-current {
 }
 
 .events-sec .event-item .inner h4 {
-  max-width: 65px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  color: #ff6015;
-  margin-bottom: 0;
-  font-size: 30px;
-  font-weight: bold;
-  background-color: #fff;
-  border-radius: 5px;
-  text-align: center;
-  height: 75px;
+    max-width: 65px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #ff6015;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 25px ;
+    height: 64px;
 }
 
 .events-sec .event-item .inner h4 span {
@@ -1163,7 +1166,7 @@ span.swiper-pagination-current {
 
 .donation-item .img img {
   width: 100%;
-  border-radius: 30px 30px 0 30px;
+  border-radius: 30px 30px 30px  30px;
   -webkit-transition: .5s all ease;
   transition: .5s all ease;
 }
@@ -1198,7 +1201,7 @@ span.swiper-pagination-current {
 }
 
 .donation-item .inner {
-  padding: 26px 30px 30px;
+  padding: 20px 15px ;
 }
 
 .donation-item .top .tags {
@@ -2399,8 +2402,8 @@ span.swiper-pagination-current {
   color: #555;
 }
 
-/* ============================================================== 
-     # Causes Area 
+/* ==============================================================
+     # Causes Area
 =================================================================== */
 .causes-area {
   background-color: #107b501a;
@@ -2668,8 +2671,8 @@ span.swiper-pagination-current {
   background: #bf3654;
 }
 
-/* ============================================================== 
-       # Causes grid 
+/* ==============================================================
+       # Causes grid
   =================================================================== */
 .causes-area .grid-item {
   margin-bottom: 30px;
@@ -2723,11 +2726,11 @@ span.swiper-pagination-current {
 .causes-area a span:hover {
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
-  color: #FFD700;
+  color: #da1019;
 }
 
 .causes-area .info .auction-people {
-  height: 210px;
+  height: 190px;
   overflow: scroll;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2762,7 +2765,7 @@ span.swiper-pagination-current {
 }
 
 .causes-area .info .top-entry .last-price {
-  font-size: 25px;
+  font-size: 20px;
   color: #107b50;
 }
 
@@ -3443,5 +3446,87 @@ span.swiper-pagination-current {
   footer .ft-bottom-right {
     padding-top: 15px;
   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.client-edits #container .buttons {
+    text-align: right;
+    padding-right: 60px;
+}
+
+.client-edits #container .buttons button {
+    border: 0;
+    background-color: #dddddd;
+    border-radius: 5px;
+}
+
+.client-edits #container span.glyphicon {
+    font-size: 2em;
+    color: #FF4444;
+}
+
+.client-edits #container ul, .client-edits table {
+    list-style: none;
+    margin-top: 50px;
+}
+
+.client-edits #container .buttons {
+    margin-bottom: 20px;
+}
+
+.client-edits #container .table-hover img {
+    height: 50px;
+}
+
+.client-edits #container .grid li {
+    float: left;
+    width: 33%;
+    height: 250px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.client-edits table .img-circle {
+    height: 40px;
+    width: 30px;
+}
+
+.client-edits ul .img-circle {
+    width: 150px;
+    height: 150px;
+    background-color: #ff4444;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .client-edits .head-tab-text {
+        font-size: 12px;
+        margin-right: 2px !important;
+    }
+    .client-edits .head-tab-img {
+        display: none;
+    }
 }
 /*# sourceMappingURL=style.css.map */

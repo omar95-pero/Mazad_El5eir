@@ -19,49 +19,7 @@
                         </a>
                     </div>
                 </div>
-{{--                <div class="swiper-slide" style="background-image:url({{ asset('assets/img/p2.jpg') }})">--}}
-{{--                    <div class="galleryContent">--}}
-{{--                        <!-- <h6> egypt - cairo </h6> -->--}}
-{{--                        <h1> مزادات خيرية لصالح الخير </h1>--}}
-{{--                        <p>اختتمت في نهاية الأسبوع الماضي فعاليات المزاد الخيري السنوي</p>--}}
-{{--                        <a href="{{route('auctions.detailes')}}">--}}
-{{--                            <button class=" btn"> تصفح </button>--}}
-{{--                        </a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="swiper-slide" style="background-image:url({{ asset('assets/img/p3.jpg') }})">--}}
-{{--                    <div class="galleryContent">--}}
-{{--                        <!-- <h6> egypt - cairo </h6> -->--}}
-{{--                        <h1> مزادات خيرية لصالح الخير </h1>--}}
-{{--                        <p>اختتمت في نهاية الأسبوع الماضي فعاليات المزاد الخيري السنوي--}}
-{{--                        </p>--}}
-{{--                        <a href="{{route('auctions.detailes')}}">--}}
-{{--                            <button class=" btn"> تصفح </button>--}}
-{{--                        </a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="swiper-slide" style="background-image:url({{ asset('assets/img/p4.jpg') }})">--}}
-{{--                    <div class="galleryContent">--}}
-{{--                        <!-- <h6> egypt - cairo </h6> -->--}}
-{{--                        <h1>مزادات خيرية لصالح الخير </h1>--}}
-{{--                        <p>اختتمت في نهاية الأسبوع الماضي فعاليات المزاد الخيري السنوي--}}
-{{--                        </p>--}}
-{{--                        <a href="{{route('auctions.detailes')}}">--}}
-{{--                            <button class=" btn"> تصفح </button>--}}
-{{--                        </a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="swiper-slide" style="background-image:url({{ asset('assets/img/p5.jpg') }})">--}}
-{{--                    <div class="galleryContent">--}}
-{{--                        <!-- <h6> egypt - cairo </h6> -->--}}
-{{--                        <h1>مزادات خيرية لصالح الخير </h1>--}}
-{{--                        <p>اختتمت في نهاية الأسبوع الماضي فعاليات المزاد الخيري السنوي--}}
-{{--                        </p>--}}
-{{--                        <a href="{{route('auctions.detailes')}}">--}}
-{{--                            <button class=" btn"> تصفح </button>--}}
-{{--                        </a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+
                 @endforeach
             </div>
             <!-- Add Pagination -->
@@ -77,20 +35,6 @@
                     <div class="thumbsImg"><img src="{{ get_file($new2->image) }}"></div>
                 </div>
         @endforeach
-
-{{--                <div class="swiper-slide">--}}
-{{--                    <div class="thumbsImg"><img src="{{ asset('assets/img/p2.jpg') }}"></div>--}}
-{{--                </div>--}}
-{{--                <div class="swiper-slide">--}}
-{{--                    <div class="thumbsImg"><img src="{{ asset('assets/img/p3.jpg') }}"></div>--}}
-{{--                </div>--}}
-{{--                <div class="swiper-slide">--}}
-{{--                    <div class="thumbsImg"><img src="{{ asset('assets/img/p4.jpg') }}"></div>--}}
-{{--                </div>--}}
-{{--                <div class="swiper-slide">--}}
-{{--                    <div class="thumbsImg"><img src="{{ asset('assets/img/p5.jpg') }}"></div>--}}
-{{--                </div>--}}
-
 
             </div>
         </div>
@@ -170,7 +114,7 @@
 
               <div class="bid-incr">
                 <span class="title">أخر زيادة</span>
-                <h4>$400</h4>
+                <h4>400ج.م</h4>
               </div>
               <a href="{{ route('auction.details',$bestAuction->auction->id) }}" class="custom-button">تفاصيل المزاد</a>
             </div>

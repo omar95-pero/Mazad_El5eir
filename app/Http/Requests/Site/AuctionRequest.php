@@ -25,7 +25,8 @@ class AuctionRequest extends FormRequest
     {
         return [
             'address' => 'required|max:300',
-            'start_price' => 'required',
+            'start_price' => 'required|number',
+            'target_price' => 'required|number',
             'start_at' => 'required',
             'end_at' => 'required'
         ];

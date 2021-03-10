@@ -93,12 +93,12 @@
   <section class="donations-area addauction-page margin-top">
 
     <div class="title-top mb-5 d-flex align-items-center justify-content-start">
-      <div class="contents d-flex align-items-center mr-4 justify-content-center">
-        <a href="{{ route('index') }}"> <i class="fad fa-home pl-2"></i> الرئيسية </a>
-        <span> \ </span>
-        <h3 class="font-weight-bold"> إضافة مزاد </h3>
+{{--      <div class="contents d-flex align-items-center mr-4 justify-content-center">--}}
+{{--        <a href="{{ route('index') }}"> <i class="fad fa-home pl-2"></i> الرئيسية </a>--}}
+{{--        <span> \ </span>--}}
+{{--        <h3 class="font-weight-bold"> إضافة مزاد </h3>--}}
 
-      </div>
+{{--      </div>--}}
 
     </div>
     <div class="container">
@@ -109,7 +109,7 @@
         <div class="col-md-6  mb-3">
           <h5 class="font-weight-bold py-4">الصور </h5>
           <div class="d-flex justify-content-between">
-            <input type="file" name="image"  />
+            <input type="file" name="image"  class="dropify"  />
             {{-- <input type="file" class="dropify" />
             <input type="file" class="dropify" />
             <input type="file" class="dropify" /> --}}
@@ -119,28 +119,34 @@
         <div class="col-md-6  mb-3 d-flex align-items-end">
           <div class="inputs w-100">
             <div class="inpu-i  ">
-              <input class="form-control position-relative pr-4" name="item_name" type="text" placeholder="اسم المنتج">
+              <input class="form-control position-relative pr-4" name="item_name" type="text" placeholder="اسم المنتج" required>
               <i class="far fa-cart-plus position-relative" style="    top: -30px;
               right: 7px; color:#107b50;"></i>
             </div>
             <div class="inpu-i  ">
-              <input class="form-control position-relative pr-4" name="address" type="text" placeholder="العنوان">
+              <input class="form-control position-relative pr-4" name="address" type="text" placeholder="العنوان" required>
               <i class="far fa-map-marker-alt position-relative" style="    top: -30px;
               right: 7px; color:#107b50;"></i>
             </div>
 
             <div class="inpu-i  ">
-              <input class="form-control position-relative pr-4" name="start_price"  type="text" placeholder="سعر البدأ">
+              <input class="form-control position-relative pr-4" name="start_price"  type="number" placeholder="سعر البدأ" required>
               <i class="fad fa-dollar-sign position-relative" style="    top: -30px;
               right: 10px; color:#107b50;"></i>
             </div>
             <div class="inpu-i  ">
-              <input class="form-control position-relative pr-4" name="start_at" type="datetime-local" placeholder="توقيت البدأ">
+                  <input class="form-control position-relative pr-4" name="bid_limit"  type="number" placeholder="حد المزايدة" required>
+                  <i class="fad fa-dollar-sign position-relative" style="    top: -30px;
+              right: 10px; color:#107b50;"></i>
+              </div>
+
+              <div class="inpu-i  ">
+              <input class="form-control position-relative pr-4" name="start_at" type="datetime-local" placeholder="توقيت البدأ" required>
               <i class="fad fa-calender position-relative" style="    top: -30px;
               right: 10px; color:#107b50;"></i>
             </div>
             <div class="inpu-i  ">
-              <input class="form-control position-relative pr-4" name="end_at" type="datetime-local" placeholder="توقيت الانتهاء">
+              <input class="form-control position-relative pr-4" name="end_at" type="datetime-local" placeholder="توقيت الانتهاء" required>
               <i class="fad fa-calender position-relative" style="    top: -30px;
               right: 10px; color:#107b50;"></i>
             </div>
@@ -273,6 +279,12 @@
             disableOnInteraction: false,
         },
     });
+</script>
+
+<script>
+    // dropify
+
+    $('.dropify').dropify();
 </script>
 
 </body>

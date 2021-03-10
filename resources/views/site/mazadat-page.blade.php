@@ -87,20 +87,34 @@
 
   <section class="donations-area margin-top">
 
-    <div class="title-top mb-5 d-flex align-items-center justify-content-start">
-     <div class="contents d-flex align-items-center mr-4 justify-content-center">
-        <a href="{{ route('index') }}"> <i class="fad fa-home pl-2"></i> الرئيسية </a>
-      <span> \ </span>
-      <h3 class="font-weight-bold"> جميع المزادات  </h3>
+      <div class="title-top mb-5 d-flex align-items-center justify-content-center">
 
-     </div>
+          <!-- <a href="index.html"> <i class="fad fa-home pl-2"></i> الرئيسية </a>
+        <span> \ </span>
+        <h3 class="font-weight-bold"> جميع المزادات  </h3> -->
+          <!-- Search form -->
+          <div class="row w-100">
 
-    </div>
+              <div class="col-lg-7 mx-auto col-md-8 ">
+                  <form class=" d-flex align-items-center justify-content-center" action="">
+                      <input class="form-control z-depth-1" type="text" placeholder="إبحث عن مزاد ..." aria-label="Search" style="height: 50px;">
+                      <button type="submit" class="btn" style="    padding: 10px 15px;
+            border-radius: 4px;
+            font-size: 20px;
+            background: #107b50;
+            color: white;"><i class="fad fa-search"></i></button>
+                  </form>
+              </div>
+          </div>
+
+
+
+      </div>
     <div class="container">
 
       <div class="row">
         @foreach ($auctions as $auction)
-
+     @if($auction->status == 'done' )
         <div style=" width:340px; " class="col-sm-6 col-lg-4 ">
           <div class="donation-item">
             <div class="img">
@@ -113,7 +127,7 @@
             <div class="inner">
               <div class="top">
                 <a class="tags" href="#"> {{ $auction->charity->name }}</a>
-                <div  style="width:300px; height: 100px">
+                <div  >
                   <h3>
                     <a href="#">{{ $auction->item_detailes }}</a>
                   </h3>
@@ -123,361 +137,27 @@
               <div class="bottom">
                 <div class="skill">
                   <div class="skill-bar skill1 wow fadeInRightBig">
-                    <span class="skill-count1">85%</span>
+                    <span class="skill-count2">
+                        @if($auction->target_price != 0)
+                        {{round(($auction->start_price/$auction->target_price)*100,2)}}%
+                        @endif
+                    </span>
                   </div>
                 </div>
                 <ul>
-                  <li> {{ $auction->start_price }} LE</li>
-                  <li>  الهدف : LE 7,000.00</li>
+                  <li> {{number_format($auction->start_price) }} LE</li>
+                  <li>  حد المزايدة : LE {{ number_format($auction->bid_limit)}}</li>
                 </ul>
                 <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
+
               </div>
             </div>
           </div>
         </div>
+              @endif
         @endforeach
 
-        {{-- <div class="col-sm-6 col-lg-4">
-          <div class="donation-item">
-            <div class="img">
-              <img src="{{ asset('assets/img/donation2.jpg') }}" alt="Donation">
-              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
-            </div>
-            <div class="inner">
-              <div class="top">
-                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
-                <h3>
-                  <a href="#">مزاد لصالح أطفال الصعيد</a>
-                </h3>
-                <p>مزاد على ساعة رولكس قديمة موديل 1960
-                  بالفاتورة
-                </p>
-              </div>
-              <div class="bottom">
-                <div class="skill">
-                  <div class="skill-bar skill2 wow fadeInRightBig">
-                    <span class="skill-count2">95%</span>
-                  </div>
-                </div>
-                <ul>
-                  <li> أقل مبلغ : $ 5,500 </li>
-                  <li>الهدف : $ 7,000.00</li>
-                </ul>
-                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="donation-item">
-            <div class="img">
-              <img src="{{ asset('assets/img/donation3.jpg') }}" alt="Donation">
-              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
-            </div>
-            <div class="inner">
-              <div class="top">
-                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
-                <h3>
-                  <a href="#">مزاد لصالح أطفال الصعيد</a>
-                </h3>
-                <p>مزاد على ساعة رولكس قديمة موديل 1960
-                  بالفاتورة
-                </p>
-              </div>
-              <div class="bottom">
-                <div class="skill">
-                  <div class="skill-bar skill3 wow fadeInRightBig">
-                    <span class="skill-count3">90%</span>
-                  </div>
-                </div>
-                <ul>
-                  <li> أقل مبلغ : $ 5,500 </li>
-                  <li>الهدف : $ 7,000.00</li>
-                </ul>
-                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="donation-item">
-            <div class="img">
-              <img src="{{ asset('assets/img/donation4.jpg') }}" alt="Donation">
-              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
-            </div>
-            <div class="inner">
-              <div class="top">
-                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
-                <h3>
-                  <a href="#">مزاد لصالح أطفال الصعيد</a>
-                </h3>
-                <p>مزاد على ساعة رولكس قديمة موديل 1960
-                  بالفاتورة
-                </p>
-              </div>
-              <div class="bottom">
-                <div class="skill">
-                  <div class="skill-bar skill4 wow fadeInRightBig">
-                    <span class="skill-count4">80%</span>
-                  </div>
-                </div>
-                <ul>
-                  <li> أقل مبلغ : $ 5,500 </li>
-                  <li>الهدف : $ 7,000.00</li>
-                </ul>
-                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="donation-item">
-            <div class="img">
-              <img src="{{ asset('assets/img/donation5.jpg') }}" alt="Donation">
-              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
-            </div>
-            <div class="inner">
-              <div class="top">
-                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
-                <h3>
-                  <a href="#">مزاد لصالح أطفال الصعيد</a>
-                </h3>
-                <p>مزاد على ساعة رولكس قديمة موديل 1960
-                  بالفاتورة
-                </p>
-              </div>
-              <div class="bottom">
-                <div class="skill">
-                  <div class="skill-bar skill5 wow fadeInRightBig">
-                    <span class="skill-count5">75%</span>
-                  </div>
-                </div>
-                <ul>
-                  <li> أقل مبلغ : $ 5,500 </li>
-                  <li>الهدف : $ 7,000.00</li>
-                </ul>
-                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="donation-item">
-            <div class="img">
-              <img src="{{ asset('assets/img/donation6.jpg') }}" alt="Donation">
-              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
-            </div>
-            <div class="inner">
-              <div class="top">
-                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
-                <h3>
-                  <a href="#">مزاد لصالح أطفال الصعيد</a>
-                </h3>
-                <p>مزاد على ساعة رولكس قديمة موديل 1960
-                  بالفاتورة
-                </p>
-              </div>
-              <div class="bottom">
-                <div class="skill">
-                  <div class="skill-bar skill6 wow fadeInRightBig">
-                    <span class="skill-count6">70%</span>
-                  </div>
-                </div>
-                <ul>
-                  <li> أقل مبلغ : $ 5,500 </li>
-                  <li>الهدف : $ 7,000.00</li>
-                </ul>
-                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="donation-item">
-            <div class="img">
-              <img src="{{ asset('assets/img/donation4.jpg') }}" alt="Donation">
-              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
-            </div>
-            <div class="inner">
-              <div class="top">
-                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
-                <h3>
-                  <a href="#">مزاد لصالح أطفال الصعيد</a>
-                </h3>
-                <p>مزاد على ساعة رولكس قديمة موديل 1960
-                  بالفاتورة
-                </p>
-              </div>
-              <div class="bottom">
-                <div class="skill">
-                  <div class="skill-bar skill4 wow fadeInRightBig">
-                    <span class="skill-count4">80%</span>
-                  </div>
-                </div>
-                <ul>
-                  <li> أقل مبلغ : $ 5,500 </li>
-                  <li>الهدف : $ 7,000.00</li>
-                </ul>
-                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="donation-item">
-            <div class="img">
-              <img src="{{ asset('assets/img/donation5.jpg') }}" alt="Donation">
-              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
-            </div>
-            <div class="inner">
-              <div class="top">
-                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
-                <h3>
-                  <a href="#">مزاد لصالح أطفال الصعيد</a>
-                </h3>
-                <p>مزاد على ساعة رولكس قديمة موديل 1960
-                  بالفاتورة
-                </p>
-              </div>
-              <div class="bottom">
-                <div class="skill">
-                  <div class="skill-bar skill5 wow fadeInRightBig">
-                    <span class="skill-count5">75%</span>
-                  </div>
-                </div>
-                <ul>
-                  <li> أقل مبلغ : $ 5,500 </li>
-                  <li>الهدف : $ 7,000.00</li>
-                </ul>
-                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="donation-item">
-            <div class="img">
-              <img src="{{ asset('assets/img/donation6.jpg') }}" alt="Donation">
-              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
-            </div>
-            <div class="inner">
-              <div class="top">
-                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
-                <h3>
-                  <a href="#">مزاد لصالح أطفال الصعيد</a>
-                </h3>
-                <p>مزاد على ساعة رولكس قديمة موديل 1960
-                  بالفاتورة
-                </p>
-              </div>
-              <div class="bottom">
-                <div class="skill">
-                  <div class="skill-bar skill6 wow fadeInRightBig">
-                    <span class="skill-count6">70%</span>
-                  </div>
-                </div>
-                <ul>
-                  <li> أقل مبلغ : $ 5,500 </li>
-                  <li>الهدف : $ 7,000.00</li>
-                </ul>
-                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="donation-item">
-            <div class="img">
-              <img src="{{ asset('assets/img/donation4.jpg') }}" alt="Donation">
-              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
-            </div>
-            <div class="inner">
-              <div class="top">
-                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
-                <h3>
-                  <a href="#">مزاد لصالح أطفال الصعيد</a>
-                </h3>
-                <p>مزاد على ساعة رولكس قديمة موديل 1960
-                  بالفاتورة
-                </p>
-              </div>
-              <div class="bottom">
-                <div class="skill">
-                  <div class="skill-bar skill4 wow fadeInRightBig">
-                    <span class="skill-count4">80%</span>
-                  </div>
-                </div>
-                <ul>
-                  <li> أقل مبلغ : $ 5,500 </li>
-                  <li>الهدف : $ 7,000.00</li>
-                </ul>
-                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="donation-item">
-            <div class="img">
-              <img src="{{ asset('assets/img/donation5.jpg') }}" alt="Donation">
-              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
-            </div>
-            <div class="inner">
-              <div class="top">
-                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
-                <h3>
-                  <a href="#">مزاد لصالح أطفال الصعيد</a>
-                </h3>
-                <p>مزاد على ساعة رولكس قديمة موديل 1960
-                  بالفاتورة
-                </p>
-              </div>
-              <div class="bottom">
-                <div class="skill">
-                  <div class="skill-bar skill5 wow fadeInRightBig">
-                    <span class="skill-count5">75%</span>
-                  </div>
-                </div>
-                <ul>
-                  <li> أقل مبلغ : $ 5,500 </li>
-                  <li>الهدف : $ 7,000.00</li>
-                </ul>
-                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="donation-item">
-            <div class="img">
-              <img src="{{ asset('assets/img/donation6.jpg') }}" alt="Donation">
-              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
-            </div>
-            <div class="inner">
-              <div class="top">
-                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
-                <h3>
-                  <a href="#">مزاد لصالح أطفال الصعيد</a>
-                </h3>
-                <p>مزاد على ساعة رولكس قديمة موديل 1960
-                  بالفاتورة
-                </p>
-              </div>
-              <div class="bottom">
-                <div class="skill">
-                  <div class="skill-bar skill6 wow fadeInRightBig">
-                    <span class="skill-count6">70%</span>
-                  </div>
-                </div>
-                <ul>
-                  <li> أقل مبلغ : $ 5,500 </li>
-                  <li>الهدف : $ 7,000.00</li>
-                </ul>
-                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
-              </div>
-            </div>
-          </div>
-        </div> --}}
+
       </div>
 
     </div>

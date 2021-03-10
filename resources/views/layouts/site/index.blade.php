@@ -181,8 +181,8 @@
                   </div>
                 </div>
                 <ul>
-                  <li> أقل مبلغ : $ 5,500 </li>
-                  <li>الهدف : $ 7,000.00</li>
+                  <li> سعر البدأ :  5,500ج.م</li>
+                    <li> <p id="count-down-1" class="count-down" style="color: #e67412; font-size: 18px;"></p></li>
                 </ul>
                 <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
               </div>
@@ -212,8 +212,8 @@
                   </div>
                 </div>
                 <ul>
-                  <li> أقل مبلغ : $ 5,500 </li>
-                  <li>الهدف : $ 7,000.00</li>
+                  <li> سعر البدأ :5,500ج.م</li>
+                    <li> <p id="count-down-2" class="count-down" style="color: #e67412; font-size: 18px;"></p></li>
                 </ul>
                 <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
               </div>
@@ -243,107 +243,107 @@
                   </div>
                 </div>
                 <ul>
-                  <li> أقل مبلغ : $ 5,500 </li>
-                  <li>الهدف : $ 7,000.00</li>
+                  <li> سعر البدأ :  5,500ج.م</li>
+                    <li> <p id="count-down-3" class="count-down" style="color: #e67412; font-size: 18px;"></p></li>
                 </ul>
                 <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="donation-item">
-            <div class="img">
-              <img src="{{ asset('assets/img/donation4.jpg') }}" alt="Donation">
-              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
-            </div>
-            <div class="inner">
-              <div class="top">
-                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
-                <h3>
-                  <a href="#">مزاد لصالح أطفال الصعيد</a>
-                </h3>
-                <p>مزاد على ساعة رولكس قديمة موديل 1960
-                  بالفاتورة
-                </p>
-              </div>
-              <div class="bottom">
-                <div class="skill">
-                  <div class="skill-bar skill4 wow fadeInRightBig">
-                    <span class="skill-count4">80%</span>
-                  </div>
-                </div>
-                <ul>
-                  <li> أقل مبلغ : $ 5,500 </li>
-                  <li>الهدف : $ 7,000.00</li>
-                </ul>
-                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="donation-item">
-            <div class="img">
-              <img src="{{ asset('assets/img/donation4.jpg') }}" alt="Donation">
-              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
-            </div>
-            <div class="inner">
-              <div class="top">
-                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
-                <h3>
-                  <a href="#">مزاد لصالح أطفال الصعيد</a>
-                </h3>
-                <p>مزاد على ساعة رولكس قديمة موديل 1960
-                  بالفاتورة
-                </p>
-              </div>
-              <div class="bottom">
-                <div class="skill">
-                  <div class="skill-bar skill5 wow fadeInRightBig">
-                    <span class="skill-count5">75%</span>
-                  </div>
-                </div>
-                <ul>
-                  <li> أقل مبلغ : $ 5,500 </li>
-                  <li>الهدف : $ 7,000.00</li>
-                </ul>
-                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="donation-item">
-            <div class="img">
-              <img src="{{ asset('assets/img/donation6.jpg') }}" alt="Donation">
-              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
-            </div>
-            <div class="inner">
-              <div class="top">
-                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
-                <h3>
-                  <a href="#">مزاد لصالح أطفال الصعيد</a>
-                </h3>
-                <p>مزاد على ساعة رولكس قديمة موديل 1960
-                  بالفاتورة
-                </p>
-              </div>
-              <div class="bottom">
-                <div class="skill">
-                  <div class="skill-bar skill6 wow fadeInRightBig">
-                    <span class="skill-count6">70%</span>
-                  </div>
-                </div>
-                <ul>
-                  <li> أقل مبلغ : $ 5,500 </li>
-                  <li>الهدف : $ 7,000.00</li>
-                </ul>
-                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
-              </div>
-            </div>
-          </div>
-        </div>
+{{--        <div class="col-sm-6 col-lg-4">--}}
+{{--          <div class="donation-item">--}}
+{{--            <div class="img">--}}
+{{--              <img src="{{ asset('assets/img/donation4.jpg') }}" alt="Donation">--}}
+{{--              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>--}}
+{{--            </div>--}}
+{{--            <div class="inner">--}}
+{{--              <div class="top">--}}
+{{--                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>--}}
+{{--                <h3>--}}
+{{--                  <a href="#">مزاد لصالح أطفال الصعيد</a>--}}
+{{--                </h3>--}}
+{{--                <p>مزاد على ساعة رولكس قديمة موديل 1960--}}
+{{--                  بالفاتورة--}}
+{{--                </p>--}}
+{{--              </div>--}}
+{{--              <div class="bottom">--}}
+{{--                <div class="skill">--}}
+{{--                  <div class="skill-bar skill4 wow fadeInRightBig">--}}
+{{--                    <span class="skill-count4">80%</span>--}}
+{{--                  </div>--}}
+{{--                </div>--}}
+{{--                <ul>--}}
+{{--                  <li> سعر البدأ : 5,500ج.م</li>--}}
+{{--                    <li> <p id="count-down-4" class="count-down" style="color: #e67412; font-size: 18px;"></p></li>--}}
+{{--                </ul>--}}
+{{--                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--          </div>--}}
+{{--        </div>--}}
+{{--        <div class="col-sm-6 col-lg-4">--}}
+{{--          <div class="donation-item">--}}
+{{--            <div class="img">--}}
+{{--              <img src="{{ asset('assets/img/donation4.jpg') }}" alt="Donation">--}}
+{{--              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>--}}
+{{--            </div>--}}
+{{--            <div class="inner">--}}
+{{--              <div class="top">--}}
+{{--                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>--}}
+{{--                <h3>--}}
+{{--                  <a href="#">مزاد لصالح أطفال الصعيد</a>--}}
+{{--                </h3>--}}
+{{--                <p>مزاد على ساعة رولكس قديمة موديل 1960--}}
+{{--                  بالفاتورة--}}
+{{--                </p>--}}
+{{--              </div>--}}
+{{--              <div class="bottom">--}}
+{{--                <div class="skill">--}}
+{{--                  <div class="skill-bar skill5 wow fadeInRightBig">--}}
+{{--                    <span class="skill-count5">75%</span>--}}
+{{--                  </div>--}}
+{{--                </div>--}}
+{{--                <ul>--}}
+{{--                  <li> سعر البدأ :  5,500ج.م</li>--}}
+{{--                    <li> <p id="count-down-5" class="count-down" style="color: #e67412; font-size: 18px;"></p></li>--}}
+{{--                </ul>--}}
+{{--                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--          </div>--}}
+{{--        </div>--}}
+{{--        <div class="col-sm-6 col-lg-4">--}}
+{{--          <div class="donation-item">--}}
+{{--            <div class="img">--}}
+{{--              <img src="{{ asset('assets/img/donation6.jpg') }}" alt="Donation">--}}
+{{--              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>--}}
+{{--            </div>--}}
+{{--            <div class="inner">--}}
+{{--              <div class="top">--}}
+{{--                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>--}}
+{{--                <h3>--}}
+{{--                  <a href="#">مزاد لصالح أطفال الصعيد</a>--}}
+{{--                </h3>--}}
+{{--                <p>مزاد على ساعة رولكس قديمة موديل 1960--}}
+{{--                  بالفاتورة--}}
+{{--                </p>--}}
+{{--              </div>--}}
+{{--              <div class="bottom">--}}
+{{--                <div class="skill">--}}
+{{--                  <div class="skill-bar skill6 wow fadeInRightBig">--}}
+{{--                    <span class="skill-count6">70%</span>--}}
+{{--                  </div>--}}
+{{--                </div>--}}
+{{--                <ul>--}}
+{{--                  <li> سعر البدأ :  5,500ج.م</li>--}}
+{{--                    <li> <p id="count-down-6" class="count-down" style="color: #e67412; font-size: 18px;"></p></li>--}}
+{{--                </ul>--}}
+{{--                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--          </div>--}}
+{{--        </div>--}}
       </div>
 
       <div class="w-100 py-3 d-flex align-items-center justify-content-center">
@@ -363,13 +363,14 @@
   <!--////////////////////////////////////////////////////////////////////////////////-->
 
   <!-- Start Counter Area -->
-  <section class="counter-area py-5" style="direction: ltr;">
+  <section class="counter-area py-3" style="direction: ltr;">
 
     <div class="container">
       <div class="row">
         <div class="col-lg-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1100">
           <div class="single-counter">
             <h2>
+                <i class="fad fa-hand-holding-heart mr-1"></i>
               <span class="odometer" data-count="{{$charities}}">00</span>
             </h2>
 
@@ -384,8 +385,9 @@
         <div class="col-lg-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1100">
           <div class="single-counter">
             <h2>
+                <i class="fad fa-sack-dollar"></i>
               <span class="odometer" data-count="1000">00</span>
-              <span class="target">+</span>
+{{--              <span class="target">+</span>--}}
             </h2>
 
             <p>أشياء ثمينة</p>
@@ -399,7 +401,8 @@
         <div class="col-lg-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1100">
           <div class="single-counter">
             <h2>
-              <span class="odometer" data-count="{{$user_bids}}">-1000</span>
+                <i class="fad fa-user-crown mr-1"></i>
+              <span class="odometer" data-count="{{$count_bids}}">-1000</span>
             </h2>
 
             <p>مزايد </p>
@@ -413,6 +416,7 @@
         <div class="col-lg-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1100">
           <div class="single-counter">
             <h2>
+                <i class="fad fa-gavel mr-1"></i>
               <span class="odometer" data-count="{{count($auctions)}}">00</span>
               <!-- <span class="target">%</span> -->
             </h2>
@@ -466,7 +470,7 @@
               <div class="inner">
                 <h4>{{Carbon\Carbon::parse($auction->start_at)->toFormattedDateString()}}<span></span></h4>
                 <h3>
-                  <a href="aucation-details.blade.php">مزاد على {{$auction->item_name}} </a>
+                  <a href="{{ route('auction.details',$auction->id) }}">مزاد على {{$auction->item_name}} </a>
                 </h3>
                 <ul>
                   <li>
@@ -482,105 +486,10 @@
             </div>
           </div>
             @endforeach
-{{--          <div class="col-lg-6">--}}
-{{--            <div class="event-item">--}}
-{{--              <img src="{{ asset('assets/img/ring.jpg') }}" alt="Event">--}}
-{{--              <div class="inner">--}}
-{{--                <h4>05 <span>مارس</span></h4>--}}
-{{--                <h3>--}}
-{{--                  <a href="aucation-details.blade.php">مزاد على ساعة رولكس </a>--}}
-{{--                </h3>--}}
-{{--                <ul>--}}
-{{--                  <li>--}}
-{{--                    <i class="fal fa-stopwatch"></i>--}}
-{{--                    <span>1.00pm - 2.00pm</span>--}}
-{{--                  </li>--}}
-{{--                  <!-- <li>--}}
-{{--                    <i class="fal fa-map-marker-check"></i>--}}
-{{--                    <span>Canada</span>--}}
-{{--                  </li> -->--}}
-{{--                </ul>--}}
-{{--              </div>--}}
-{{--            </div>--}}
-{{--          </div>--}}
-
-{{--          <div class="col-lg-6">--}}
-{{--            <div class="event-item-right">--}}
-{{--              <h4>06 <span>مارس</span></h4>--}}
-{{--              <h3>--}}
-{{--                <a href="aucation-details.blade.php">مزاد على سيف الملك سمير  </a>--}}
-{{--              </h3>--}}
-{{--              <ul>--}}
-{{--                <li>--}}
-{{--                  <i class="fal fa-stopwatch"></i>--}}
-{{--                  <span>10.00am - 11.00am</span>--}}
-{{--                </li>--}}
-{{--                <!-- <li>--}}
-{{--                  <i class="fal fa-map-marker-check"></i>--}}
-{{--                  <span>UK</span>--}}
-{{--                </li> -->--}}
-{{--              </ul>--}}
-{{--            </div>--}}
-{{--            <div class="event-item-right">--}}
-{{--              <h4>07 <span>مارس</span></h4>--}}
-{{--              <h3>--}}
-{{--                <a href="aucation-details.blade.php">مزاد على خاتم أثري  </a>--}}
-{{--              </h3>--}}
-{{--              <ul>--}}
-{{--                <li>--}}
-{{--                  <i class="fal fa-stopwatch"></i>--}}
-{{--                  <span> 05 / 12   -   05 / 3</span>--}}
-{{--                </li>--}}
-{{--                <!-- <li>--}}
-{{--                  <i class="fal fa-map-marker-check"></i>--}}
-{{--                  <span>مصر</span>--}}
-{{--                </li> -->--}}
-{{--              </ul>--}}
-{{--            </div>--}}
-{{--            <div class="event-item-right">--}}
-{{--              <h4>08 <span>مارس</span></h4>--}}
-{{--              <h3>--}}
-{{--                <a href="aucation-details.blade.php">مزاد على سيارة فولفو 1950</a>--}}
-{{--              </h3>--}}
-{{--              <ul>--}}
-{{--                <li>--}}
-{{--                  <i class="fal fa-stopwatch"></i>--}}
-{{--                  <span> 05 / 12   -   05 / 3</span>--}}
-{{--                </li>--}}
-{{--                <!-- <li>--}}
-{{--                  <i class="fal fa-map-marker-check"></i>--}}
-{{--                  <span>مصر</span>--}}
-{{--                </li> -->--}}
-{{--              </ul>--}}
-{{--            </div>--}}
-{{--          </div>--}}
-
-{{--          <div class="col-lg-6">--}}
-{{--            <div class="event-item">--}}
-{{--              <img src="{{ asset('assets/img/car.jpg') }}" alt="Event">--}}
-{{--              <div class="inner">--}}
-{{--                <h4>10 <span>مارس</span></h4>--}}
-{{--                <h3>--}}
-{{--                  <a href="aucation-details.blade.php">مزاد على سيف الملك سمير  </a>--}}
-{{--                </h3>--}}
-{{--                <ul>--}}
-{{--                  <li>--}}
-{{--                    <i class="fal fa-stopwatch"></i>--}}
-{{--                    <span>05 / 12 &nbsp; - &nbsp 05 / 3</span>--}}
-{{--                  </li>--}}
-{{--                  <!-- <li>--}}
-{{--                    <i class="fal fa-map-marker-check"></i>--}}
-{{--                    <span>Egypt</span>--}}
-{{--                  </li> -->--}}
-{{--                </ul>--}}
-{{--              </div>--}}
-{{--            </div>--}}
-{{--          </div>--}}
         </div>
       </div>
     </div>
   </section>
-
   <!--////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////-->
@@ -647,7 +556,9 @@
   <!--////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////-->
-  @include('layouts.site.Footer')
+   <div id="footer">
+     @include('layouts.site.Footer')
+   </div>
   <!--////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////-->

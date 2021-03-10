@@ -8,5 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Favorite extends Model
 {
     use HasFactory;
-    protected $guard = [];
+    protected $guarded = [];
+    function user(){
+        return $this->belongsTo(User::class,'user_id');
+    }
 }

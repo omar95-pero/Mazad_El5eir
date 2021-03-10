@@ -78,8 +78,8 @@
           <div class="over-lay d-flex align-items-center justify-content-center">
             <h3>إنشاء حساب</h3>
           </div>
-          <div class="user-img" style="background-image: url(img/register.jpg);">
-            <img src="img/register.jpg" alt="User">
+          <div class="user-img" style="background-image: url({{asset('assets/img/register.jpg')}});">
+            <img src=" {{asset('assets/img/register.jpg')}} " alt="User">
           </div>
         </div>
 
@@ -90,81 +90,53 @@
                 <div class="user-content-inner">
                   <div class="top">
                     <a href="index.blade.php">
-                      <img src="img/logo.png" alt="Logo">
+                      <img src="{{asset('assets/img/logo.png')}}" alt="Logo">
                     </a>
                     <h2>إنشاء حساب</h2>
                   </div>
-                                     <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}">
                         @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('اسم المستخدم') }}</label>
-
-                            <div class="col-md-8">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="اسم المستخدم">
+                                    @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __(' صورة') }}</label>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="الايميل">
 
-                            <div class="col-md-8">
-                                <input id="name" type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}" autofocus>
-
-                                @error('image')
+                                    @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="كلمة المرور">
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('البريد الاليكتروني') }}</label>
-
-                            <div class="col-md-8">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
+                                    @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('كلمة المرور') }}</label>
-
-                            <div class="col-md-8">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="تأكيد كلمة المرور">
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('تأكيد كلمة المرور') }}</label>
-
-                            <div class="col-md-8">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('تسجيل الحساب') }}
-                                </button>
+                            <div class="col-lg-12 d-flex align-items-center justify-content-center">
+                                <button type="submit" class="btn common-btn waves-effect waves-light">تسجيل</button>
                             </div>
                         </div>
                     </form>
@@ -323,6 +295,11 @@
         type: 'progressbar',
       },
     });
+  </script>
+  <script>
+      // dropify
+
+      $('.dropify').dropify();
   </script>
 
   <script>

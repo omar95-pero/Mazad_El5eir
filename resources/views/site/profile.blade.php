@@ -31,7 +31,9 @@
   <!--////////////////////////////////////////////////////////////////////////////////-->
 
 
-  <div id="Header" class="main-header"></div>
+  <div id="Header" class="main-header">
+      @include('layouts.site.Header')
+  </div>
 
 
   <!--////////////////////////////////////////////////////////////////////////////////-->
@@ -52,14 +54,14 @@
         <div class="container-fluid row">
           <div class="col-md-2 img-col">
             <!-- <input type="file" class="dropify" /> -->
-            <img class="user z-depth-2 " src="img/user.jpg" alt="">
+            <img class="user z-depth-2 " src="{{get_file(auth()->user()->image)}}" alt="">
           </div>
           <div class="col-md-4 d-flex align-items-center">
             <div class="content">
-              <h3 class="font-weight-bold text-white">السيد محمد أحمد</h3>
+              <h3 class="font-weight-bold text-white">{{ auth()->user()->name }}</h3>
               <ul class="list-meta mt-3">
                 <li class="profile-type">
-                  <i class="fad fa-phone mx-1"></i> 0123456789
+                  <i class="fad fa-phone mx-1"></i> {{ auth()->user()->phone_number }}
                 </li>
 
 
@@ -112,21 +114,21 @@
               <div class="row  my-2">
 
                 <div class="col-sm-6 mb-3 font-weight-bold">
-                  <p> الإسم : السيد محمد أحمد </p>
+                  <p> الإسم : {{ auth()->user()->name }} </p>
                 </div>
 
 
                 <div class="col-sm-6 mb-3 font-weight-bold">
-                  <p> العنوان : شبرا الخيمة - القاهرة</p>
+                  <p> العنوان : {{auth()->user()->address}}</p>
                 </div>
 
 
                 <div class="col-sm-6 mb-3 font-weight-bold">
-                  <p> رقم التليفون : 01012345678</p>
+                  <p> رقم التليفون : {{ auth()->user()->phone_number}}</p>
                 </div>
 
                 <div class="col-sm-6 mb-3 font-weight-bold">
-                  <p> البريد الإلكتروني : mostafa@m.com</p>
+                  <p> البريد الإلكتروني : {{ auth()->user()->email }}</p>
                 </div>
 
 
@@ -162,20 +164,22 @@
                         <form action="">
                           <div class="row">
                             <div class="col-6 mb-3 d-flex">
-                              <input type="text" class="form-control" placeholder="الإسم">
+
+                              <input type="text" class="form-control" placeholder="الإسم" value="{{auth()->user()->name}}">
+
                             </div>
 
                             <div class="col-6 mb-3 d-flex">
-                              <input type="text" class="form-control" placeholder="العنوان ">
+                              <input type="text" class="form-control" placeholder="العنوان " value="{{auth()->user()->address}}">
                             </div>
 
                             <div class="col-6 mb-3 d-flex">
-                              <input type="number" class="form-control" placeholder="رقم التليفون">
+                              <input type="number" class="form-control" placeholder="رقم التليفون"value="{{auth()->user()->phone_number}}">
                             </div>
 
 
                             <div class="col-6 mb-3 d-flex">
-                              <input type="email" class="form-control" placeholder="البريد الإلكتروني">
+                              <input type="email" class="form-control" placeholder="البريد الإلكتروني" value="{{auth()->user()->email}}">
                             </div>
 
                           </div>
@@ -198,11 +202,48 @@
             </div>
 
 
-
+                                         {{--favorite--}}
             <div class="tab-pane fade" id="profile-just" role="tabpanel" aria-labelledby="profile-tab-just">
               <div class="container  ">
 
+                  <section class="donations-area pt-5 pb-4">
 
+
+                      <div class="row">
+                          @foreach($myFavorite as $favorite)
+                              <div class="col-sm-6 col-lg-6">
+                                  <div class="donation-item">
+                                      <div class="img">
+                                          <img src="{{get_file($favorite->image)}}" alt="Donation">
+                                          <a class="common-btn" href="{{ route('auction.details',$favorite->id) }}">تفاصيل المزاد</a>
+                                      </div>
+                                      <div class="inner">
+                                          <div class="top">
+                                              <h3>
+                                                  <a href="#">مزاد على {{$favorite->item_name}}</a>
+                                              </h3>
+                                              <p>{{$favorite->item_detailes}}
+                                              </p>
+                                          </div>
+                                          <div class="bottom">
+                                              <div class="skill">
+                                                  <div class="skill-bar skill1 wow fadeInRightBig">
+                                                      <span class="skill-count1">85%</span>
+                                                  </div>
+                                              </div>
+                                              <ul>
+                                                  <li> أخر سعر : <strong> 5,500 $ </strong> </li>
+                                                  <li> سعر مزادي : <strong>{{$favorite->start_price}}<i class="fad fa-arrow-down px-2"></i></strong> </li>
+                                              </ul>
+                                              <!-- <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4> -->
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          @endforeach
+                      </div>
+
+                  </section>
 
 
               </div>
@@ -218,20 +259,20 @@
 
 
                 <div class="row">
+                    @foreach($myAuctions as $auction)
                   <div class="col-sm-6 col-lg-6">
                     <div class="donation-item">
                       <div class="img">
-                        <img src="img/donation1.jpg" alt="Donation">
-                        <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
+                        <img src="{{get_file($auction->image)}}" alt="Donation">
+                        <a class="common-btn" href="{{ route('auction.details',$auction->id) }}">تفاصيل المزاد</a>
                       </div>
                       <div class="inner">
                         <div class="top">
-                          <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
+                          <a class="tags" href="#">#{{$auction->charity->name}}</a>
                           <h3>
-                            <a href="#">مزاد لصالح أطفال الصعيد</a>
+                            <a href="#">مزاد على {{$auction->item_name}}</a>
                           </h3>
-                          <p>مزاد على ساعة رولكس قديمة موديل 1960
-                            بالفاتورة
+                          <p>{{$auction->item_detailes}}
                           </p>
                         </div>
                         <div class="bottom">
@@ -242,49 +283,15 @@
                           </div>
                           <ul>
                             <li> أخر سعر : <strong> 5,500 $ </strong> </li>
-                            <li> سعر مزادي : <strong> 4000 $ <i class="fad fa-arrow-down px-2"></i></strong> </li>
+                            <li> سعر مزادي : <strong>{{$auction->start_price}}<i class="fad fa-arrow-down px-2"></i></strong> </li>
                           </ul>
                           <!-- <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4> -->
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-sm-6 col-lg-6">
-                    <div class="donation-item">
-                      <div class="img">
-                        <img src="img/donation2.jpg" alt="Donation">
-                        <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
-                      </div>
-                      <div class="inner">
-                        <div class="top">
-                          <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
-                          <h3>
-                            <a href="#">مزاد لصالح أطفال الصعيد</a>
-                          </h3>
-                          <p>مزاد على ساعة رولكس قديمة موديل 1960
-                            بالفاتورة
-                          </p>
-                        </div>
-                        <div class="bottom">
-                          <div class="skill">
-                            <div class="skill-bar skill2 wow fadeInRightBig">
-                              <span class="skill-count2">95%</span>
-                            </div>
-                          </div>
-                          <ul>
-                            <li> أخر سعر : <strong> 5,500 $ </strong> </li>
-                            <li> سعر مزادي : <strong> 4000 $ <i class="fad fa-arrow-down px-2"></i></strong> </li>
-                          </ul>
-                          <!-- <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4> -->
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
+                    @endforeach
                 </div>
-
-
-
 
               </section>
 
@@ -299,6 +306,7 @@
         </div>
 
         <div class="col-lg-3 my-2">
+          <div class="info p-3">
           <div class="info p-3">
             <h4 class="pb-2">الاحصائيات</h4>
             <!-- <div class="row my-2">
@@ -360,7 +368,7 @@
     </div>
 
 
-    <a href="AuctionAdd.blade.php" class="AuctionAdd"><i class="far fa-plus"></i></a>
+    <a href="{{url('AddAuction')}}" class="AuctionAdd"><i class="far fa-plus"></i></a>
 
 
 

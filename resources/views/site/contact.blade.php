@@ -50,14 +50,14 @@
   <!--////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////-->
-  <section class="contact-sec">
-    <div class="title-top mb-5 mt-5 d-flex align-items-center justify-content-start">
-      <div class="contents d-flex align-items-center mr-4 justify-content-center">
-        <a href="{{ route('index') }}"> <i class="fad fa-home pl-2"></i> الرئيسية </a>
-        <span> \ </span>
-        <h3 class="font-weight-bold"> تواصل معنا </h3>
+  <section class="contact-sec" >
+    <div class="title-top mb-5 mt-5 d-flex align-items-center justify-content-start" style=" background-position: center ; background-image: url({{asset('assets/img/contact.jpg')}});">
+{{--      <div class="contents d-flex align-items-center mr-4 justify-content-center">--}}
+{{--        <a href="{{ route('index') }}"> <i class="fad fa-home pl-2"></i> الرئيسية </a>--}}
+{{--        <span> \ </span>--}}
+{{--        <h3 class="font-weight-bold"> تواصل معنا </h3>--}}
 
-      </div>
+{{--      </div>--}}
 
     </div>
 
@@ -130,13 +130,20 @@
                   </div>
 
                   <div class="row">
-                     <div class="col-lg-12 col-md-6">
-                    <div class="form-group">
-                      <input type="email" name="email" id="email" class="form-control" required
-                        data-error="Please enter your email" placeholder="البريد اللإلكتروني">
-                      <div class="help-block with-errors"></div>
-                    </div>
-                  </div>
+                      <div class="col-lg-6 col-md-6">
+                          <div class="form-group">
+                              <input type="email" name="email" id="email" class="form-control" required
+                                     data-error="Please enter your email" placeholder="البريد اللإلكتروني">
+                              <div class="help-block with-errors"></div>
+                          </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                          <div class="form-group">
+                              <input type="text" name="" id="email" class="form-control" required
+                                     data-error="Please enter your email" placeholder="عنوان الرسالة">
+                              <div class="help-block with-errors"></div>
+                          </div>
+                      </div>
 
                   <!-- <div class="col-lg-6 col-md-6">
                     <div class="form-group">
