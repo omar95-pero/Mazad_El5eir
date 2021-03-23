@@ -158,20 +158,21 @@
         <p>مزادات خيرية لصالح الخير , ساهم بأشيائك القيمة في الخير</p>
       </div>
       <div class="row">
+      @foreach($showAuctions as $auction)
+
         <div class="col-sm-6 col-lg-4">
           <div class="donation-item">
             <div class="img">
-              <img src="{{ asset('assets/img/donation1.jpg') }}" alt="Donation">
-              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
+              <img src="{{ get_file($auction->image) }}" alt="Donation">
+              <a class="common-btn" href="{{ route('auction.details',$auction->id) }}">تفاصيل المزاد</a>
             </div>
             <div class="inner">
               <div class="top">
-                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
+                <a class="tags" href="#">{{$auction->charity->name}}</a>
                 <h3>
-                  <a href="#">مزاد لصالح أطفال الصعيد</a>
+                  <a href="#">{{$auction->item_name}}</a>
                 </h3>
-                <p>مزاد على ساعة رولكس قديمة موديل 1960
-                  بالفاتورة
+                <p>{{$out = strlen($auction->item_detailes)> 50 ?substr($auction->item_detailes ,0,50)."..." : $auction->item_detailes }}
                 </p>
               </div>
               <div class="bottom">
@@ -181,76 +182,77 @@
                   </div>
                 </div>
                 <ul>
-                  <li> سعر البدأ :  5,500ج.م</li>
-                    <li> <p id="count-down-1" class="count-down" style="color: #e67412; font-size: 18px;"></p></li>
+                  <li> سعر البدأ : {{number_format($auction->start_price)}}ج.م</li>
+{{--                    <li> <p id="" class="count-down" style="color: #e67412; font-size: 18px;"></p></li>--}}
                 </ul>
-                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
+                <h4> <span>{{$auction->count_users }} شخص </span> قاموا بالمزايدة </h4>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="donation-item">
-            <div class="img">
-              <img src="{{ asset('assets/img/donation2.jpg') }}" alt="Donation">
-              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
-            </div>
-            <div class="inner">
-              <div class="top">
-                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
-                <h3>
-                  <a href="#">مزاد لصالح أطفال الصعيد</a>
-                </h3>
-                <p>مزاد على ساعة رولكس قديمة موديل 1960
-                  بالفاتورة
-                </p>
-              </div>
-              <div class="bottom">
-                <div class="skill">
-                  <div class="skill-bar skill2 wow fadeInRightBig">
-                    <span class="skill-count2">95%</span>
-                  </div>
-                </div>
-                <ul>
-                  <li> سعر البدأ :5,500ج.م</li>
-                    <li> <p id="count-down-2" class="count-down" style="color: #e67412; font-size: 18px;"></p></li>
-                </ul>
-                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="donation-item">
-            <div class="img">
-              <img src="{{ asset('assets/img/donation3.jpg') }}" alt="Donation">
-              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>
-            </div>
-            <div class="inner">
-              <div class="top">
-                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>
-                <h3>
-                  <a href="#">مزاد لصالح أطفال الصعيد</a>
-                </h3>
-                <p>مزاد على ساعة رولكس قديمة موديل 1960
-                  بالفاتورة
-                </p>
-              </div>
-              <div class="bottom">
-                <div class="skill">
-                  <div class="skill-bar skill3 wow fadeInRightBig">
-                    <span class="skill-count3">90%</span>
-                  </div>
-                </div>
-                <ul>
-                  <li> سعر البدأ :  5,500ج.م</li>
-                    <li> <p id="count-down-3" class="count-down" style="color: #e67412; font-size: 18px;"></p></li>
-                </ul>
-                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
-              </div>
-            </div>
-          </div>
-        </div>
+          @endforeach
+{{--        <div class="col-sm-6 col-lg-4">--}}
+{{--          <div class="donation-item">--}}
+{{--            <div class="img">--}}
+{{--              <img src="{{ asset('assets/img/donation2.jpg') }}" alt="Donation">--}}
+{{--              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>--}}
+{{--            </div>--}}
+{{--            <div class="inner">--}}
+{{--              <div class="top">--}}
+{{--                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>--}}
+{{--                <h3>--}}
+{{--                  <a href="#">مزاد لصالح أطفال الصعيد</a>--}}
+{{--                </h3>--}}
+{{--                <p>مزاد على ساعة رولكس قديمة موديل 1960--}}
+{{--                  بالفاتورة--}}
+{{--                </p>--}}
+{{--              </div>--}}
+{{--              <div class="bottom">--}}
+{{--                <div class="skill">--}}
+{{--                  <div class="skill-bar skill2 wow fadeInRightBig">--}}
+{{--                    <span class="skill-count2">95%</span>--}}
+{{--                  </div>--}}
+{{--                </div>--}}
+{{--                <ul>--}}
+{{--                  <li> سعر البدأ :5,500ج.م</li>--}}
+{{--                    <li> <p id="count-down-2" class="count-down" style="color: #e67412; font-size: 18px;"></p></li>--}}
+{{--                </ul>--}}
+{{--                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--          </div>--}}
+{{--        </div>--}}
+{{--        <div class="col-sm-6 col-lg-4">--}}
+{{--          <div class="donation-item">--}}
+{{--            <div class="img">--}}
+{{--              <img src="{{ asset('assets/img/donation3.jpg') }}" alt="Donation">--}}
+{{--              <a class="common-btn" href="aucation-details.blade.php">تفاصيل المزاد</a>--}}
+{{--            </div>--}}
+{{--            <div class="inner">--}}
+{{--              <div class="top">--}}
+{{--                <a class="tags" href="#"># مؤسسة مجدي يعقوب</a>--}}
+{{--                <h3>--}}
+{{--                  <a href="#">مزاد لصالح أطفال الصعيد</a>--}}
+{{--                </h3>--}}
+{{--                <p>مزاد على ساعة رولكس قديمة موديل 1960--}}
+{{--                  بالفاتورة--}}
+{{--                </p>--}}
+{{--              </div>--}}
+{{--              <div class="bottom">--}}
+{{--                <div class="skill">--}}
+{{--                  <div class="skill-bar skill3 wow fadeInRightBig">--}}
+{{--                    <span class="skill-count3">90%</span>--}}
+{{--                  </div>--}}
+{{--                </div>--}}
+{{--                <ul>--}}
+{{--                  <li> سعر البدأ :  5,500ج.م</li>--}}
+{{--                    <li> <p id="count-down-3" class="count-down" style="color: #e67412; font-size: 18px;"></p></li>--}}
+{{--                </ul>--}}
+{{--                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--          </div>--}}
+{{--        </div>--}}
 {{--        <div class="col-sm-6 col-lg-4">--}}
 {{--          <div class="donation-item">--}}
 {{--            <div class="img">--}}
@@ -522,23 +524,28 @@
       </div>
       <div class="swiper-container cars">
         <div class="swiper-wrapper">
-          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/1.png') }}"></a>
-          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/2.png') }}"></a>
-          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/3.png') }}"></a>
-          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/4.png') }}"></a>
-          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/5.png') }}"></a>
-          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/1.png') }}"></a>
-          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/2.png') }}"></a>
-          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/3.png') }}"></a>
-          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/4.png') }}"></a>
-          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/5.png') }}"></a>
-          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/1.png') }}"></a>
-          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/2.png') }}"></a>
-          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/3.png') }}"></a>
-          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/4.png') }}"></a>
-          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/5.png') }}"></a>
-          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/1.png') }}"></a>
-          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/1.png') }}"></a>
+          @foreach($charitiesImages as $charity)
+          <a href="#!" class="swiper-slide "><img src="{{ get_file($charity->image) }}"></a>
+          @endforeach
+          @foreach($charitiesImages as $charity)
+                 <a href="#!" class="swiper-slide "><img src="{{ get_file($charity->image) }}"></a>
+          @endforeach
+{{--          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/2.png') }}"></a>--}}
+{{--          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/3.png') }}"></a>--}}
+{{--          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/4.png') }}"></a>--}}
+{{--          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/5.png') }}"></a>--}}
+{{--          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/1.png') }}"></a>--}}
+{{--          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/2.png') }}"></a>--}}
+{{--          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/3.png') }}"></a>--}}
+{{--          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/4.png') }}"></a>--}}
+{{--          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/5.png') }}"></a>--}}
+{{--          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/1.png') }}"></a>--}}
+{{--          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/2.png') }}"></a>--}}
+{{--          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/3.png') }}"></a>--}}
+{{--          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/4.png') }}"></a>--}}
+{{--          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/5.png') }}"></a>--}}
+{{--          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/1.png') }}"></a>--}}
+{{--          <a href="#!" class="swiper-slide "><img src="{{ asset('assets/img/charity-logos/1.png') }}"></a>--}}
 
           <!-- <a href="#!" class="swiper-slide "><img src="img/cars/dodge-icon.jpg"></a> -->
         </div>

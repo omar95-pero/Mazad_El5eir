@@ -8,9 +8,11 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Traits\SendEmail;
 
 class RegisterController extends Controller
 {
+    use SendEmail;
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -64,10 +66,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $email =$data['email'];
+        $title = 'مزاد الخير ';
+        $text = ' تم التسجيل بنجاح نتمنى لكم الخير دوماً';
+        $this->send_EmailFun($email,$text,$title);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
     }
 }

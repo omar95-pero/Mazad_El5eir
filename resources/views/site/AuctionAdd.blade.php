@@ -110,9 +110,12 @@
           <h5 class="font-weight-bold py-4">الصور </h5>
           <div class="d-flex justify-content-between">
             <input type="file" name="image"  class="dropify"  />
-            {{-- <input type="file" class="dropify" />
-            <input type="file" class="dropify" />
-            <input type="file" class="dropify" /> --}}
+{{--              <div class="d-flex justify-content-between">--}}
+                 <input type="file" name="imag" class="dropify" />
+                 <input type="file" name="img" class="dropify" />
+                 <input type="file" name="imge" class="dropify" />
+{{--              </div>--}}
+
           </div>
         </div>
 
@@ -163,7 +166,19 @@
             right: 10px;     color: #107b50;"></i>
             </div>
           </div>
+
+            <div class="inputs w-100">
+                <div class="inpu-i   ">
+
+              <textarea rows="4" class="form-control position-relative  pr-4" name="delivery_details" type="text"
+                        placeholder="تفاصيل التوصيل"></textarea>
+                    <i class="fad fa-info " style="    bottom: 102px;
+            right: 10px;     color: #107b50;"></i>
+                </div>
+            </div>
+
         </div>
+
 
         <div class="col-md-6  mb-3 d-flex align-items-top">
           <div class="inputs w-100">

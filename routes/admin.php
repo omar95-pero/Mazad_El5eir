@@ -33,10 +33,22 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('log-out', 'AuthController@logout')->name('log-out');
         //
         //
-        ////        ======================================== Admin ====================================
+ //============================================= Admin ====================================
         Route::resource('ShowAdmins', 'AdminController');
         Route::get('ShowAdminsCheckDelete', 'AdminController@ShowAdminsCheckDelete')->name('ShowAdminsCheckDelete');
-        Route::get('ShowUsers', 'UserController@show')->name('UsesIndex');
+//==============================================Users=======================================
+        Route::get('ShowUsers', 'UserController@show')->name('UsersIndex');
+        Route::get('AddUser', 'UserController@create')->name('UserCreate');
+        Route::post('ShowUsers', 'UserController@store')->name('UserStore');
+        Route::get('edit/{id}', 'UserController@edit')->name('UserEdit');
+        Route::put('update/{id}', 'UserController@update')->name('UserUpdate');
+        Route::post('delete/{id}', 'UserController@destroy')->name('UserDestroy');
+//===============================================Messages=====================================
+        Route::get('ShowMessages','MessageController@index')->name('MessagesIndex');
+        Route::get('ShowMessage/{id}','MessageController@ShowMessage')->name('ShowMessage');
+        Route::get('Reply/{id}','MessageController@ShowReplyForm')->name('ReplyForm');
+        Route::post('replyMessage/{id}','MessageController@replyMessage')->name('ReplyMessage');
+        Route::get('delete/{id}','MessageController@destroy')->name('destroyMessage');
     });
     Route::get('/php/{order}', function ($order) {
         $bath = base_path();
@@ -57,4 +69,17 @@ Route::group(['prefix' => 'admin'], function () {
 //=============================================Auctions Routes===================================
 
     Route::get('/auctions/index','AuctionsController@index')->name('ShowAuctions.index');
+    Route::get('/auction/state/{id}','AuctionsController@AuctionStatus')->name('updateState.Auction');
+    Route::get('/auction/delete/{id}','AuctionsController@destroyAuction')->name('delete.Auction');
+//============================================Charities Routes====================================
+    Route::get('/charities/index','CharityController@show')->name('ShowCharities.index');
+    Route::get('/charities/insert','CharityController@insert')->name('insert.charity');
+    Route::post('/charities/save','CharityController@store')->name('store.charity');
+    Route::get('/charities/{id}','CharityController@edit')->name('edit.charity');
+    Route::post('/charity/update/{id}','CharityController@update')->name('update.charity');
+    Route::post('/charity/delete/{id}','CharityController@destroy')->name('destroy.charity');
+    //---------------------------------Settings Routes-----------------------
+    Route::get('/Settings','SettingController@index')->name('settings');
+    Route::get('/Create/settings/{id}','SettingController@edit')->name('edit.settings');
+    Route::post('/Create/settings/update/{id}','SettingController@update')->name('update.settings');
 });

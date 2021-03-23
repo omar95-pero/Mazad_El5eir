@@ -22,7 +22,7 @@ class NewsController extends Controller
 
     }
     public function store(Request $request)
-{
+    {
         $data = $request->all();
 
         if ($request->image != '') {
@@ -42,18 +42,24 @@ class NewsController extends Controller
     public function update($id ,Request $request)
     {
 
-        $row = News::find($id);
-        $newData = request([
-            'title' => request('title'),
-            'slug' => request('slug'),
-            'body' => request('body'),
-            'image' => request('image'),
-        ]);
 
+        $row = News::find($id);
+
+
+        $newData = request()->all();
+        if ($request->image != '') {
+            delete_file($row->image);
+            $newData['image'] = store_file($request, 'image', "mazad");
+
+        }
+//        dd($newData);
         $row->update($newData);
         toastr()->success('تم تعديل البيانات بنجاح');
         return redirect('admin/news/index');
     }
+
+
+
     public function destroy($id)
     {
         $row =News::find($id)->delete();

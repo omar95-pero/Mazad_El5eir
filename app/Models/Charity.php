@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Charity extends Model
 {
     use HasFactory;
-    protected $guard = [];
+    protected $guarded = [];
     public function auctions()
     {
         return $this->hasMany(Auction::class, 'charity_id');

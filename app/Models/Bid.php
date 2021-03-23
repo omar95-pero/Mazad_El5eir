@@ -18,4 +18,5 @@ class Bid extends Model
     {
         return $this->hasOne(Auction::class, 'id','Auction_id');
     }
+
 }

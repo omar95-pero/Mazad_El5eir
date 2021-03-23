@@ -11,7 +11,7 @@
             <span class="m-nav__link-text">اضافة مشرف جديد</span>
         </a>
     </li>
-    
+
 @endsection
 @section('content')
 
@@ -63,7 +63,7 @@
                         <th>#</th>
                         <th>الإسم</th>
                         <th>البريد الإلكترونى</th>
-                        <th>الصلاحية</th>
+                        <th>رقم التليفون</th>
                         <th class="not-exported">الصوره</th>
                         <th class="not-exported">تعديل</th>
                         <th class="not-exported">حذف</th>
@@ -81,7 +81,7 @@
 
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-                            <td>{{$user->role}}</td>
+                            <td>{{$user->phone}}</td>
                             <td><img style="width: 70px;height: 70px" src="{{get_file($user->image)}}" alt="user" onclick="window.open(this.src)"/></td>
                             <td >
                                   <a href="{{route('ShowAdmins.edit',$user->id)}}">

@@ -7,12 +7,15 @@
 <script src="{{url('site')}}/js/aos.js"></script>
 <script src="{{url('site')}}/js/dropify.min.js"></script>
 <script src="{{url('site')}}/js/jquery.appear.min.js"></script>
+<script src="{{url('site')}}/js/grade.js"></script>
 <script src="{{url('site')}}/js/odometer.min.js"></script>
 <script src="{{url('site')}}/js/jquery.fancybox.min.js"></script>
 <script src="{{url('site')}}/js/select2.js"></script>
+<script src="{{url('site')}}/js/progress.js"></script>
 <script src="{{url('site')}}/js/fontawesome-pro.js"></script>
 <script src="{{url('site')}}/js/stars.js"></script>
 <script src="{{url('site')}}/js/main.js"></script>
+
 
 <script>
     var galleryThumbs = new Swiper('.gallery-thumbs', {
@@ -70,45 +73,39 @@
 </script>
 
 
+{{--<script>--}}
+{{--    $(document).ready(function () {--}}
+
+{{--        // Hide sideNav--}}
+{{--        $('.button-collapse').sideNav('hide');--}}
+{{--        // Show sideNav--}}
+{{--        $('.button-collapse').sideNav('show');--}}
+{{--    });--}}
+{{--</script>--}}
+
+
 <script>
-    // Set the date we're counting down to
-    var countDownDate = new Date("Feb 1, 2022 15:10:00").getTime();
+    $("body").click(function(event) {
+        $('.notifications').slideUp();
+    });
 
-    // Update the count down every 1 second
-    var x = setInterval(function () {
+    $(".notifications").click(function(event) {
+        event.stopPropagation();
+    });
 
-        // Get todays date and time
-        var now = new Date().getTime();
+    $(".nav-link.notificationsIcon").click(function(event) {
+        event.stopPropagation();
+        $('.notifications').slideToggle();
+    });
 
-        // Find the distance between now an the count down date
-        var distance = countDownDate - now;
-
-        // Time calculations for days, hours, minutes and seconds
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Display the result in the element with id="cont-down"
-        document.getElementById("count-down").innerHTML = days + "d " + hours + "h " +
-            minutes + "m " + seconds + "s ";
-        document.getElementById("count-down-1").innerHTML = days + "d " + hours + "h " +
-            minutes + "m " + seconds + "s ";
-        document.getElementById("count-down-2").innerHTML = days + "d " + hours + "h " +
-            minutes + "m " + seconds + "s ";
-        document.getElementById("count-down-3").innerHTML = days + "d " + hours + "h " +
-            minutes + "m " + seconds + "s ";
-        document.getElementById("count-down-4").innerHTML = days + "d " + hours + "h " +
-            minutes + "m " + seconds + "s ";
-        document.getElementById("count-down-5").innerHTML = days + "d " + hours + "h " +
-            minutes + "m " + seconds + "s ";
-        document.getElementById("count-down-6").innerHTML = days + "d " + hours + "h " +
-            minutes + "m " + seconds + "s ";
-        // If the count down is finished, write some text
-        if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("count-down").innerHTML = "EXPIRED";
-            document.getElementById("count-down-1").innerHTML = "EXPIRED";
-        }
-    }, 1000);
+</script>
+<script>
+    $(document).ready(function () {
+        // SideNav Default Options
+        $('.button-collapse').sideNav({
+            edge: 'right',
+            breakpoint: 992,
+            menuWidth: 240,
+        });
+    });
 </script>

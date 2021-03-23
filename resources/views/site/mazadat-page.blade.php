@@ -96,9 +96,10 @@
           <div class="row w-100">
 
               <div class="col-lg-7 mx-auto col-md-8 ">
-                  <form class=" d-flex align-items-center justify-content-center" action="">
-                      <input class="form-control z-depth-1" type="text" placeholder="إبحث عن مزاد ..." aria-label="Search" style="height: 50px;">
-                      <button type="submit" class="btn" style="    padding: 10px 15px;
+                  <form class=" d-flex align-items-center justify-content-center"  action="{{route('search')}}" method="GET">
+                      @csrf
+                      <input class="form-control z-depth-1" name="search" type="text" placeholder="إبحث عن مزاد ..." aria-label="Search" style="height: 50px;">
+                      <button type="submit" class="btn" style="padding: 10px 15px;
             border-radius: 4px;
             font-size: 20px;
             background: #107b50;
@@ -126,10 +127,10 @@
             </div>
             <div class="inner">
               <div class="top">
-                <a class="tags" href="#"> {{ $auction->charity->name }}</a>
+                <a class="tags" href="{{ route('auction.details',$auction->id) }}"> {{ $auction->charity->name }}</a>
                 <div  >
                   <h3>
-                    <a href="#">{{ $auction->item_detailes }}</a>
+                    <a href="{{ route('auction.details',$auction->id) }}">{{$out = strlen($auction->item_detailes)> 50 ?substr($auction->item_detailes ,0,50)."..." : $auction->item_detailes }}</a>
                   </h3>
                 </div>
                 <p>{{ $auction ->item_name }}   </p>
@@ -148,8 +149,7 @@
                   <li> {{number_format($auction->start_price) }} LE</li>
                   <li>  حد المزايدة : LE {{ number_format($auction->bid_limit)}}</li>
                 </ul>
-                <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4>
-
+                <h4> <span> {{$auction->count_users}} شخص </span> قاموا بالمزايدة </h4>
               </div>
             </div>
           </div>

@@ -41,24 +41,30 @@
                             <input class="form-control" name="email" data-validation="required"  type="email" id="email" placeholder="البريد الإلكترونى..." >
                         </div>
 
-                        <div class="form-group col-sm-6">
-                            <label for="authorization">الصلاحية:</label>
-                            <select class="form-control"  data-validation="required" name="role" id="authorization" >
-                                <option>إختر الصلاحية</option>
-                                {{-- @foreach($get as $role)
-                                    <option value="{{$role->name}}">{{$role->name}}</option>
-                                @endforeach --}}
-                            </select>
-                        </div>
+{{--                        <div class="form-group col-sm-6">--}}
+{{--                            <label for="authorization">الصلاحية:</label>--}}
+{{--                            <select class="form-control"  data-validation="required" name="role" id="authorization" >--}}
+{{--                                <option>إختر الصلاحية</option>--}}
+{{--                                --}}{{-- @foreach($get as $role)--}}
+{{--                                    <option value="{{$role->name}}">{{$role->name}}</option>--}}
+{{--                                @endforeach --}}
+{{--                            </select>--}}
+{{--                        </div>--}}
                         <div class="form-group col-sm-6">
                             <label for="password">كلمة السر:</label>
                             <input class="form-control" name="password" type="password" id="password" placeholder="كلمة السر..."  data-validation="required">
                         </div>
+                        <div class="form-group col-sm-6">
+
+                        <label for="phone">رقم التليفون:</label>
+                        <input class="form-control" name="phone" type="text" id="phone" placeholder="رقم التليفون..."  data-validation="">   </div>
                     </div>
-                            <div class="form-group col-sm-12">
-                                <label for="phone">رقم التليفون:</label>
-                                <input class="form-control" name="phone" type="text" id="phone" placeholder="رقم التليفون..."  data-validation="">
-                            </div>
+            </div>
+
+
+{{--                            <div class="form-group col-sm-12">--}}
+{{--                              --}}
+{{--                            </div>--}}
                     <div class="form-group">
                         <label for="image">الصوره</label>
                         <input type="file" name="image"  id="input-file-now-custom-1"   class="dropify" style="border-radius: 20px"

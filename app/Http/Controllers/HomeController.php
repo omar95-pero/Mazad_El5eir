@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Notification;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,6 +14,10 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+//            $Notifications = Notification::where('to', \auth()->user()->id)->with('user')->get();
+//           return $Notifications;
+
+
     }
 
     /**

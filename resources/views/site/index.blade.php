@@ -14,7 +14,7 @@
                         <p>{{$new->slug}}
 
                         </p>
-                        <a href="{{route('auctions.detailes')}}">
+                        <a href="{{route('auctions')}}">
                         <button class=" btn"> تصفح </button>
                         </a>
                     </div>
@@ -101,7 +101,7 @@
                 </div>
               </div>
               <div class="bid-count-area">
-                <span class="item"><span class="left">عدد المزايدين</span>{{$user_bids}} شخص
+                <span class="item"><span class="left">عدد المزايدين</span> شخص
                 </span>
                 <!-- <span class="item">
                   <span class="left">Last Bid </span>7 mins ago

@@ -39,19 +39,23 @@
                             <label for="name">البريد الإلكترونى:</label>
                             <input class="form-control" name="email" type="email" id="name" placeholder="البريد الإلكترونى..." value="{{$find->email}}">
                         </div>
-                        <div class="form-group col-sm-6">
-                            <label for="name">الصلاحية:</label>
-                            <select class="form-control"  data-validation="required" name="role" >
-                                <option>إختر الصلاحية</option>
-                                @foreach($get as $role)
-                                    <option value="{{$role->name}}" {{$role->name == $find->role?'selected':''}}>{{$role->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
+{{--                        <div class="form-group col-sm-6">--}}
+{{--                            <label for="name">الصلاحية:</label>--}}
+{{--                            <select class="form-control"  data-validation="required" name="role" >--}}
+{{--                                <option>إختر الصلاحية</option>--}}
+{{--                                @foreach($get as $role)--}}
+{{--                                    <option value="{{$role->name}}" {{$role->name == $find->role?'selected':''}}>{{$role->name}}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
                         <input type="hidden" name="status" value="admin">
                         <div class="form-group col-sm-6">
                             <label for="name">كلمة السر:</label>
                             <input class="form-control" name="password" type="password" id="name" placeholder="*******">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="name">رقم التليفون :</label>
+                            <input class="form-control" name="phone" type="number" id="name" placeholder="رقم التليفون..." value="{{$find->phone}}">
                         </div>
 
                     </div>

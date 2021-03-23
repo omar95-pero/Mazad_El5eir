@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Site\ContactRequest;
-use Illuminate\Http\Request;
 use App\Models\ContactUs;
+use App\Http\Traits\SendEmail;
 
 class ContactController extends Controller
 {
+    use SendEmail;
+
+
     public function getContact()
     {
         return view('site.contact');
@@ -28,21 +31,7 @@ class ContactController extends Controller
         $contact->name = $request->name;
         $contact->phone_number = $request->phone_number;
         $contact->message = $request->message;
-
         $contact->save();
-        \Mail::send(
-            'site/contact-email',
-            array(
-                'name' => $request->get('name'),
-                'email' => $request->get('email'),
-                'phone_number' => $request->get('phone_number'),
-                'user_message' => $request->get('message'),
-            ),
-            function ($message) use ($request) {
-                $message->from($request->email);
-                $message->to('omarpero85@gmail.com');
-            }
-        );
 
         return back()->with('success', 'Thank you for contact us!');
     }

@@ -2,12 +2,38 @@
 use Illuminate\Support\Facades\File;
 use App\Models\Token;
 use App\Models\Notification;
+use App\Models\Setting;
 
 use Illuminate\Support\Facades\Storage;
 
 
 
+if (!function_exists('count__')) {
+    function count__()
+    {
+        $Notifications = Notification::where('to', \auth()->user()->id)->with('user')->get();
+        return $Notifications->where('is_read', 'no')->count();
+    }
+}
 
+    if (!function_exists('notificationHelper')){
+        function notificationHelper(){
+
+            $Notifications = Notification::where('to', \auth()->user()->id)->with('user')->get();
+            return $Notifications;
+        }
+
+}
+//    -----------------------------
+if (!function_exists('getSettings')) {
+     function getSettings()
+    {
+        $settings = Setting::first();
+
+        return $settings;
+    }
+}
+//------------------------------
 if (!function_exists('up')) {
     function up() {
         return new \App\Http\Controllers\Upload;
@@ -1419,6 +1445,7 @@ if (!function_exists('alert')) {
 
     }
 }
+
 
 if (!function_exists('notification')) {
     function notification($user_id,$deal_id,$value,$deal,$discribe) {

@@ -1,3 +1,4 @@
+
 <div id="Header" class="main-header ">
     <nav class="navbar navbar-expand-lg navbar-light  fixed-top">
         <div class="container">
@@ -15,7 +16,7 @@
                         <a class="nav-link " href="{{ route('index') }}">الرئيسية </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('auctions.detailes') }}">المزادات </a>
+                        <a class="nav-link " href="{{ route('auctions') }}">المزادات </a>
                     </li>
 
                     <li class="nav-item">
@@ -44,7 +45,7 @@
                             <div class="dropdown">
 
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="{{asset('assets/img/users-photo/03.png')}}" class=" useImg">
+                                    <img src="{{get_file(auth()->user()->image)}}" class=" useImg">
                                 </a>
 
                                 <div class="dropdown-menu">
@@ -70,35 +71,68 @@
 
 
 
+{{--                    <div class="nav-item position-relative">--}}
+{{--                        <div class="nav-link notificationsIcon">--}}
+{{--                            <i class="fad fa-bell"></i>--}}
+{{--                            <span class=" badge">{{count__()}}</span>--}}
+{{--                        </div>--}}
+{{--                        <div class=" notifications ">--}}
+{{--                            <h6 class=" font-weight-bold px-3 pt-21 pb-2 border-bottom"> الاشعارات </h6>--}}
+{{--                            <h5 class=" font-weight-bold"> </h5>--}}
+
+{{--                            <div class="row">--}}
+{{--                                <div class="col-3 p-1 d-flex justify-content-center align-items-center">--}}
+{{--                                    <i class="far fa-bell"></i>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-9 p-1 d-flex justify-content-start align-items-center pl-4">--}}
+{{--                                    <a href="#">--}}
+{{--                                        <h6>إشعار جديد </h6>--}}
+{{--                                        <p> لديك إستشارة </p>--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
+{{--                                <span class="closeIcon"><i class="fas fa-times"></i></span>--}}
+{{--                            </div>--}}
+
+{{--                            <div class="see-all pb-1 pt-2 d-flex  align-items-center justify-content-center">--}}
+{{--                                <a href="notification page.html" class="text-dark">إظهار كل التعليقات</a>--}}
+{{--                            </div>--}}
+
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="nav-item position-relative">
                         <div class="nav-link notificationsIcon">
                             <i class="fad fa-bell"></i>
-                            <span class=" badge"> 3 </span>
+                            <span class=" badge"> {{count__()}} </span>
                         </div>
                         <div class=" notifications ">
                             <h6 class=" font-weight-bold px-3 pt-21 pb-2 border-bottom"> الاشعارات </h6>
                             <h5 class=" font-weight-bold"> </h5>
 
                             <div class="row">
-                                <div class="col-3 p-1 d-flex justify-content-center align-items-center">
-                                    <i class="far fa-bell"></i>
-                                </div>
+{{--                                <div class="col-3 p-1 d-flex justify-content-center align-items-center">--}}
+{{--                                    <i class="far fa-bell"></i>--}}
+{{--                                </div>--}}
+
+                                @foreach(notificationHelper() as $key => $val)
                                 <div class="col-9 p-1 d-flex justify-content-start align-items-center pl-4">
-                                    <a href="#">
-                                        <h6>إشعار جديد </h6>
-                                        <p> لديك إستشارة </p>
+                                    @if($val->is_read == 'no')
+                                    <a href="{{route('readable',$val->id)}}">
+                                        <h6>{{$out =auth()->user() == $val->user->name ?"لقد قمت انت":"قام :".$val->user->name }}  </h6>
+                                        <p> بالمزايدة علي مزادك </p>
+
                                     </a>
                                 </div>
-                                <span class="closeIcon"><i class="fas fa-times"></i></span>
+                                <a href="#"><span class="closeIcon"><i class="fas fa-times"></i></span></a>
+                                    @endif
+                                @endforeach
                             </div>
 
-                            <div class="see-all pb-1 pt-2 d-flex  align-items-center justify-content-center">
-                                <a href="notification page.html" class="text-dark">إظهار كل التعليقات</a>
-                            </div>
+{{--                            <div class="see-all pb-1 pt-2 d-flex  align-items-center justify-content-center">--}}
+{{--                                <a href="notification page.html" class="text-dark">إظهار كل التعليقات</a>--}}
+{{--                            </div>--}}
 
                         </div>
                     </div>
-
 
 
 
@@ -112,19 +146,3 @@
     </nav>
 </div>
 
-
-<script>
-    $("body").click(function(event) {
-        $('.notifications').slideUp();
-    });
-
-    $(".notifications").click(function(event) {
-        event.stopPropagation();
-    });
-
-    $(".nav-link.notificationsIcon").click(function(event) {
-        event.stopPropagation();
-        $('.notifications').slideToggle();
-    });
-
-</script>

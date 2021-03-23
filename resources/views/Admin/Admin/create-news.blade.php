@@ -48,7 +48,7 @@
                                 <textarea class="form-control" name="body" type="text" id="slug" placeholder="الموضوع..."  data-validation="required"></textarea>
                         </div>
 
-                    <div class="form-group">
+                    <div class="form-group  col-sm-6" >
                         <label for="image">الصوره</label>
                         <input type="file" name="image"  id="input-file-now-custom-1"   class="dropify" style="border-radius: 20px"
                                data-default-file="" >

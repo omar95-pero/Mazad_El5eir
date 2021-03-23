@@ -1,7 +1,6 @@
 <!-- Footer Start -->
 <footer id="footer-section" class="footer-section">
     <div class="over-lay"></div>
-
     <div class="footer-top">
         <div class="container">
             <div class="row">
@@ -11,7 +10,7 @@
                          style="border-radius: 6px;">
                         <!-- <p class="logo-p"> الابداع الثالث لتقنية المعلومات توفر عليك عناء ادارة الهوية الرقمية بدون الحاجة لعشرات الموظفين
                         </p> -->
-                        <img src="{{asset('site')}}/img/logo.png" class="footer-logo" alt="">
+                        <img src="{{get_file(getSettings()->image)}}" class="footer-logo" alt="">
                     </div>
                 </div>
 
@@ -19,7 +18,7 @@
                     <h4 class="footer-title">مزاد الخير</h4>
                     <div class="about-widget ">
                         <p class="logo-p">
-                  المزادات الخيرية ثقافة عالمية تهدف الي جمع المال لأجل رعاية ودعم الأعمال والمشاريع الخيرية
+                  {{getSettings()->body}}
                         </p>
                         <!-- <img src="img/logo1.png" class="footer-logo" alt=""> -->
                     </div>
@@ -28,11 +27,11 @@
                 <div class="col-md-3">
                     <h4 class="footer-title">الشركة </h4>
                     <ul class="sitemap-widget">
-                        <li class="active"><a class="d-flex justify-content-between align-items-center" href="">
+                        <li class="active"><a class="d-flex justify-content-between align-items-center" href="{{url('/ShowAuctions')}}">
 
                                 المزادات
                             </a></li>
-                        <li class="active"><a class="d-flex justify-content-between align-items-center" href="">شارك
+                        <li class="active"><a class="d-flex justify-content-between align-items-center" href="{{url('/AddAuction')}}">شارك
                                 بشئ ثمين
                             </a></li>
                         <li class="active"><a class="d-flex justify-content-between align-items-center" href="">رابط
@@ -53,13 +52,13 @@
 
 
 
-                        <li class="active"><a class="d-flex justify-content-between align-items-center" href="#">
+                        <li class="active"><a class="d-flex justify-content-between align-items-center" href="{{getSettings()->google_play}}">
                                 <img src="{{asset('assets/img/google-store-btn.png')}}" alt="">
                             </a>
                         </li>
 
 
-                        <li class="active"><a class="d-flex justify-content-between align-items-center" href="#">
+                        <li class="active"><a class="d-flex justify-content-between align-items-center" href="{{getSettings()->app_store}}">
                                 <img src="{{asset('assets/img/app-store-btn.png')}}" alt="">
                             </a>
                         </li>
@@ -91,19 +90,19 @@
 
                         <div class="buttons ">
                             <!--Twitter-->
-                            <a class="btn-floating m-0 btn-sm mx-1 btn-tw waves-effect waves-light" type="button"
+                            <a href="{{getSettings()->twitter}}" class="btn-floating m-0 btn-sm mx-1 btn-tw waves-effect waves-light" type="button"
                                role="button"><i class="fab fa-twitter"></i></a>
 
                             <!--Instagram-->
-                            <a class="btn-floating m-0 mx-1 btn-sm btn-ins waves-effect waves-light" type="button"
+                            <a href="{{getSettings()->instagram}}" class="btn-floating m-0 mx-1 btn-sm btn-ins waves-effect waves-light" type="button"
                                role="button"><i class="fab fa-instagram"></i></a>
 
                             <!--Google +-->
-                            <a class="btn-floating m-0 mx-1 btn-sm btn-gplus waves-effect waves-light" type="button"
+                            <a href="{{getSettings()->google_plus}}" class="btn-floating m-0 mx-1 btn-sm btn-gplus waves-effect waves-light" type="button"
                                role="button"><i class="fab fa-google-plus-g"></i></a>
 
                             <!--Facebook-->
-                            <a class="btn-floating mx-1 m-0 btn-sm  btn-fb waves-effect waves-light" type="button"
+                            <a href="{{getSettings()->facebook}}" class="btn-floating mx-1 m-0 btn-sm  btn-fb waves-effect waves-light" type="button"
                                role="button"><i class="fab fa-facebook-f"></i></a>
 
 

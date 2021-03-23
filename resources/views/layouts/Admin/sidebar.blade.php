@@ -34,7 +34,7 @@
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
                         <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"><span class="m-menu__link"><span class="m-menu__link-text"></span></span></li>
-                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('UsesIndex')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text">المستخدمين</span></a></li>
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('UsersIndex')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text">المستخدمين</span></a></li>
                         <li class="m-menu__item " aria-haspopup="true"><a href="{{route('ShowAdmins.create')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text">إضافة مستخدم جديد</span></a></li>
 
                     </ul>
@@ -51,7 +51,39 @@
                     </ul>
                 </div>
             </li>
+            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-user"></i><span class="m-menu__link-text text">الجمعيات</span><i
+                        class="m-menu__ver-arrow la la-angle-right"></i></a>
+                <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
+                    <ul class="m-menu__subnav">
+                        <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"><span class="m-menu__link"><span class="m-menu__link-text"></span></span></li>
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{url('admin/charities/index')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text">الجمعيات</span></a></li>
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('insert.charity')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text">أضافة جمعية</span></a></li>
 
+                    </ul>
+                </div>
+            </li>
+            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-user"></i><span class="m-menu__link-text text">الرسائل</span><i
+                        class="m-menu__ver-arrow la la-angle-right"></i></a>
+                <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
+                    <ul class="m-menu__subnav">
+                        <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"><span class="m-menu__link"><span class="m-menu__link-text"></span></span></li>
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('MessagesIndex')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text">الرسائل</span></a></li>
+{{--                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('insert.charity')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text">أضافة جمعية</span></a></li>--}}
+
+                    </ul>
+                </div>
+            </li>
+            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-user"></i><span class="m-menu__link-text text">الاعدادات</span><i
+                        class="m-menu__ver-arrow la la-angle-right"></i></a>
+                <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
+                    <ul class="m-menu__subnav">
+                        <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"><span class="m-menu__link"><span class="m-menu__link-text"></span></span></li>
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('settings')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text">الاعدادات</span></a></li>
+                        {{--                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('insert.charity')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text">أضافة جمعية</span></a></li>--}}
+
+                    </ul>
+                </div>
+            </li>
         </ul>
     </div>
 

@@ -128,7 +128,7 @@
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link" href="{{ route('EmailForm') }}">
                                         {{ __('هل نسيت كلمة المرور؟') }}
                                     </a>
                                 @endif

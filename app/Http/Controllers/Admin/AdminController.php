@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use Yoeunes\Toastr\Toastr;
+use function Couchbase\basicDecoderV1;
 
 class AdminController extends Controller
 {
@@ -20,7 +21,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-            $data = Admin::all();
+            $data = Admin::get();
             $i=1;
             return view('Admin/Admin/index',compact(['data','i']));
     }
@@ -43,7 +44,7 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdminRequest  $request)
+    public function store(Request  $request)
     {
 
 
@@ -58,7 +59,7 @@ class AdminController extends Controller
             }
             $new->save();
             $notification=toastr()->success('تم الحفظ');
-            return  redirect(aroute('ShowAdmins'))->with($notification);
+        return     redirect()->route('ShowAdmins.index');
     }
 
     /**

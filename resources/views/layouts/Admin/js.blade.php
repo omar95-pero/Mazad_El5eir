@@ -3,7 +3,6 @@
 <script src="{{url('admin')}}/assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
 
 <!--end::Global Theme Bundle -->
-
 <!--begin::Page Vendors -->
 <script src="{{url('admin')}}/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
 
@@ -50,6 +49,7 @@
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -821,4 +821,11 @@
         });
         // $('#select1').select2();
     });
+</script>
+<script src="{{url('site')}}/js/dropify.min.js"></script>
+
+<script>
+    // dropify
+
+    $('.dropify').dropify();
 </script>

@@ -7,9 +7,11 @@ use App\Http\Requests\Site\BidRequest;
 use App\Models\Bid;
 use App\Models\Auction;
 use App\Models\Favorite;
+use App\Models\Notification;
 use Brian2694\Toastr\Toastr;
 use Carbon\Doctrine\DateTimeDefaultPrecision;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Auth;
 
 class BidController extends Controller
 {
@@ -17,15 +19,30 @@ class BidController extends Controller
     {
         $maxPrice = Bid::where('Auction_id', request('id'))->with('auction','user')->orderBy('bid_price','DESC')->first();
         $auction = Auction::findOrFail($id);
-        $bidding = request([
+
+        $bidProcess =  request([
             'user_id' => auth()->user()->id,
             'bid_price',
             'Auction_id',
         ]);
-        if ( $bidding['bid_price'] > $auction->start_price && ( $maxPrice == null || $bidding['bid_price'] > $maxPrice->bid_price)){
-             if (($bidding['bid_price'] - $auction -> start_price) % $auction->bid_limit === 0) {
-//            if ($bidding['bid_price'] >= ($maxPrice->bid_price + $auction->bid_limit )){
-                $bid = Bid::create($bidding);
+        $bidProcess['user_id'] = auth()->user()->id;
+//        ---------------------
+        $notifyData = request([
+            'from',
+            'to',
+            'title',
+            'body',
+        ]);
+//        dd($bidProcess);
+        if ( $bidProcess['bid_price'] > $auction->start_price && ( $maxPrice == null || $bidProcess['bid_price'] > $maxPrice->bid_price)){
+             if (($bidProcess['bid_price'] - $auction -> start_price) % $auction->bid_limit === 0) {
+//            if ($bidProcess['bid_price'] >= ($maxPrice->bid_price + $auction->bid_limit )){
+                $bid = Bid::create($bidProcess);
+//                ---------------------------------
+                 $notifyData['from'] = $bid->user_id ;
+                 $notifyData['to'] = $auction->user_id;
+//                 dd($notifyData);
+                $notification = Notification::create($notifyData);
                 toastr()->success('تم اضافة القيمة بنجاح ');
                 return back();
             }else{
@@ -37,6 +54,8 @@ class BidController extends Controller
                  return back();
           }
     }
+
+#========================================Favorite Auction==============================
     public function favoriteAuctions($id){
 
         $count = Favorite::where([['auction_id',$id],

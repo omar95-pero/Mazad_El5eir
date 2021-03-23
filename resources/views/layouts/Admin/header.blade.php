@@ -7,7 +7,7 @@
                 <div class="m-stack m-stack--ver m-stack--general">
                     <div class="m-stack__item m-stack__item--middle m-brand__logo">
                         <a href="{{route('/home')}}" class="m-brand__logo-wrapper">
-                            <img alt="" style="width: 60% !important;height: 55px!important;" src="{{get_file('Admin/img/logo.png')}}"  />
+                            <img alt="" style="width: 60% !important;height: 55px!important;" src="{{asset('assets/img/logo.png')}}"  />
                         </a>
                     </div>
                     <div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -199,7 +199,7 @@
                                 m-dropdown-toggle="click">
                                 <a href="#" class="m-nav__link m-dropdown__toggle">
 												<span class="m-topbar__userpic">
-													<img src="{{get_file(admin()->user()->image)}}" class="m--img-rounded m--marginless" alt="" />
+{{--													<img src="{{get_file(admin()->image)}}" class="m--img-rounded m--marginless" alt="" />--}}
 												</span>
                                     <span class="m-topbar__username m--hide">Nick</span>
                                 </a>
@@ -209,15 +209,15 @@
                                         <div class="m-dropdown__header m--align-center" style="background: url(assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
                                             <div class="m-card-user m-card-user--skin-dark">
                                                 <div class="m-card-user__pic">
-                                                    <img src="{{get_file(admin()->user()->image)}}" class="m--img-rounded m--marginless" alt="" />
+{{--                                                    <img src="{{get_file(admin()->user()->image)}}" class="m--img-rounded m--marginless" alt="" />--}}
 
                                                     <!--
                     <span class="m-type m-type--lg m--bg-danger"><span class="m--font-light">S<span><span>
                     -->
                                                 </div>
                                                 <div class="m-card-user__details">
-                                                    <span class="m-card-user__name m--font-weight-500">{{admin()->user()->name}}</span>
-                                                    <a href="" class="m-card-user__email m--font-weight-300 m-link">{{'...'.substr(admin()->user()->email,0,17)}}</a>
+{{--                                                    <span class="m-card-user__name m--font-weight-500">{{admin()->user()->name}}</span>--}}
+{{--                                                    <a href="" class="m-card-user__email m--font-weight-300 m-link">{{'...'.substr(admin()->user()->email,0,17)}}</a>--}}
                                                 </div>
                                             </div>
                                         </div>
@@ -228,7 +228,7 @@
                                                         <span class="m-nav__section-text"></span>
                                                     </li>
                                                     <li class="m-nav__item">
-                                                        <a href="{{route('ShowAdmins.edit',admin()->user()->id)}}" class="m-nav__link">
+{{--                                                        <a href="{{route('ShowAdmins.edit',admin()->user()->id)}}" class="m-nav__link">--}}
                                                             <i class="m-nav__link-icon flaticon-profile-1"></i>
                                                             <span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">

@@ -1165,6 +1165,7 @@ span.swiper-pagination-current {
 }
 
 .donation-item .img img {
+    height:200px;
   width: 100%;
   border-radius: 30px 30px 30px  30px;
   -webkit-transition: .5s all ease;
@@ -2730,7 +2731,7 @@ span.swiper-pagination-current {
 }
 
 .causes-area .info .auction-people {
-  height: 190px;
+  height: 100px;
   overflow: scroll;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3529,4 +3530,5 @@ span.swiper-pagination-current {
         display: none;
     }
 }
+
 /*# sourceMappingURL=style.css.map */

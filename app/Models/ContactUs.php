@@ -9,4 +9,20 @@ class ContactUs extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    /**
+     * @var mixed
+     */
+    private $email;
+    /**
+     * @var mixed
+     */
+    private $name;
+    /**
+     * @var mixed
+     */
+    private $phone_number;
+    /**
+     * @var mixed
+     */
+    private $message;
 }

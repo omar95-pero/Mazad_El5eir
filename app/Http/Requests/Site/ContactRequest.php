@@ -7,6 +7,23 @@ use Illuminate\Foundation\Http\FormRequest;
 class ContactRequest extends FormRequest
 {
     /**
+     * @var mixed
+     */
+    private $email;
+    /**
+     * @var mixed
+     */
+    private $name;
+    /**
+     * @var mixed
+     */
+    private $phone_number;
+    /**
+     * @var mixed
+     */
+    private $message;
+
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool

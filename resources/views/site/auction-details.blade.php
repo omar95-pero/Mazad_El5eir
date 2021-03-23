@@ -35,9 +35,10 @@
   <!-- Custom style  -->
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
   <!-- fonts  -->
-  <link href="https://fonts.تصفحogleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
     @toastr_css
-    @toastr_css
+  <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+{{--    @toastr_css--}}
+{{--    @toastr_css--}}
 </head>
 
 
@@ -88,24 +89,25 @@
     <!--////////////////////////////////////////////////////////////////////////////////-->
     <!--////////////////////////////////////////////////////////////////////////////////-->
     <!--////////////////////////////////////////////////////////////////////////////////-->
+
     <!-- SideNav slide-out button -->
     <a href="#" data-activates="slide-out" class="btn btn-primary p-3 button-collapse"
        style="position: fixed ; background-color: #107b50 !important ; z-index: 123456;"><i class="fas fa-bars"></i></a>
 
     <!-- Sidebar navigation -->
-    <div id="slide-out" class="side-nav" style="background-color: #fff !important;">
+    <div id="slide-out" class="side-nav    " style="background-color: #fff !important; ">
         <ul class="custom-scrollbar" style="overflow-y: scroll;">
             <!-- Logo -->
             <li>
                 <div class="logo-wrapper waves-light" style="height: 175px;">
-                    <a href="#"><img src="img/logo.png" class="img-fluid flex-center"></a>
+                    <a href="#"><img src="{{asset('assets/img/logo.png')}}" class="img-fluid flex-center"></a>
                 </div>
             </li>
             <!--/. Logo -->
 
             <div class="container">
                 <ul class="side-contents mt-4">
-                    <li> <a href=""
+                    <li> <a href="{{route('bestAuctions')}}"
                             style="height: 45px; color: #107b50; font-weight: bold; line-height: 40px ; font-size: 15px !important;">
                             <i class="fad fa-concierge-bell ml-1"></i> مزادات مميزة </a> </li>
                     <li> <a href=""
@@ -146,7 +148,7 @@
                                                               style="font-size:18px ; color: rgb(38, 51, 167);"> </i></a></li>
                     <li><a href="#" class="icons-sm gplus-ic"><i class="fab fa-google-plus-g"
                                                                  style="font-size:18px ; color: rgb(163, 7, 7);"> </i></a></li>
-                    <li> <a  class="shareLink mx-1" target="_blank" href="https://twitter.com/share?url={{route('auction.details',$auctionDetailes->id)}}"><i class="fab fa-twitter"
+                    <li><a href="#" class="icons-sm tw-ic"><i class="fab fa-twitter"
                                                               style="font-size:18px ; color: rgb(23, 173, 243);"> </i></a></li>
                 </ul>
             </li>
@@ -221,7 +223,7 @@
                                         </a>
                                     </h3>
                                     <p>
-                                        {{ $auctionDetailes->item_detailes }}
+
                                     </p>
                                     <div class="top-entry my-3 row">
                                         <div class="date col-md-6 mb-3">
@@ -253,14 +255,19 @@
                                                     href="profile.html"> {{ $auctionDetailes->user->name }}                                            </a>
                                         </div>
                                     </div>
+
+                                    <h3 class="font-weight-bold mb-3" style="color: #107b50; font-size: 23px "> أعلى المزايدين : </h3>
+
                                     <div  class="auction-people">
                                         <div class="row">
+
                                             @foreach ($bids as $bid)
 
                                                 <div  class="col-md-6 row my-2">
 
                                                     <div class="col-3 d-flex align-items-center">
-                                                        <img src="{{ asset('assets/img/300_9.jpg') }}" alt="">
+
+                                                        <img src="{{ $bid->user->image? get_file($bid->user->image):asset("assets/img/user.jpg")}}" alt="">
                                                     </div>
                                                     <div class="col-9 d-flex align-items-center">
                                                         <div>
@@ -300,36 +307,56 @@
                                         <!-- Swiper -->
                                         <div class="swiper-container">
                                             <div class="swiper-wrapper">
+                                                @foreach($getImages as $image )
                                                 <div class="swiper-slide">
-                                                    <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">
-                                                        <img src="{{ get_file($auctionDetailes->image) }}">
+                                                    <a data-fancybox="gallery" href="{{ get_file($image->imag) }}">
+                                                        <img src="{{ get_file($image->imag) }}">
                                                     </a>
                                                 </div>
                                                 <div class="swiper-slide">
-                                                    <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">
-                                                        <img src="{{ get_file($auctionDetailes->image) }}">
+                                                    <a data-fancybox="gallery" href="{{ get_file($image->img) }}">
+                                                        <img src="{{ get_file($image->img) }}">
                                                     </a>
                                                 </div>
                                                 <div class="swiper-slide">
-                                                    <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">
-                                                        <img src="{{ get_file($auctionDetailes->image) }}">
+                                                    <a data-fancybox="gallery" href="{{ get_file($image->imge) }}">
+                                                        <img src="{{ get_file($image->imge) }}">
                                                     </a>
                                                 </div>
-                                                <div class="swiper-slide">
-                                                    <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">
-                                                        <img src="{{ get_file($auctionDetailes->image) }}">
-                                                    </a>
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">
-                                                        <img src="{{ get_file($auctionDetailes->image) }}">
-                                                    </a>
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">
-                                                        <img src="{{ get_file($auctionDetailes->image) }}">
-                                                    </a>
-                                                </div>
+                                                @endforeach
+                                                    @foreach($getImages as $img )
+                                                        <div class="swiper-slide">
+                                                            <a data-fancybox="gallery" href="{{ get_file($img->imag) }}">
+                                                                                        <img src="{{ get_file($img->imag) }}">
+                                                            </a>
+                                                        </div>
+                                                        <div class="swiper-slide">
+                                                            <a data-fancybox="gallery" href="{{ get_file($img->img) }}">
+                                                                <img src="{{ get_file($img->img) }}">
+                                                            </a>
+                                                        </div>
+                                                        <div class="swiper-slide">
+                                                            <a data-fancybox="gallery" href="{{ get_file($img->imge) }}">
+                                                                <img src="{{ get_file($img->imge) }}">
+                                                            </a>
+                                                        </div>
+                                                    @endforeach
+{{--                                                @endforeach--}}
+{{--                                                <div class="swiper-slide">--}}
+{{--                                                    <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">--}}
+{{--                                                        <img src="{{ get_file($auctionDetailes->image) }}">--}}
+{{--                                                    </a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="swiper-slide">--}}
+{{--                                                    <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">--}}
+{{--                                                        <img src="{{ get_file($auctionDetailes->image) }}">--}}
+{{--                                                    </a>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="swiper-slide">--}}
+{{--                                                    <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">--}}
+{{--                                                        <img src="{{ get_file($auctionDetailes->image) }}">--}}
+{{--                                                    </a>--}}
+{{--                                                </div>--}}
 
                                             </div>
                                             <!-- Add Pagination -->
@@ -365,11 +392,12 @@
                                     <div class="col-lg-8">
                                         @auth
                        @if(\Carbon\Carbon::parse($auctionDetailes->end_at) > \Carbon\Carbon::now())
+
                                         <form action="{{ url('AuctionProcess',$auctionDetailes->id) }}" method="POST">
                                             @csrf
                                             <div class="col-lg-12">
                                             <div class="form-group">
-                                            <input type="number" class="form-control" name="bid_price" placeholder="ادخل سعر المزايدة" required>
+                                            <input type="number" class="form-control" name="bid_price" placeholder=" ادخل سعر المزايدة{{number_format($maxPrice).'+'.number_format($auctionDetailes->bid_limit)}}" required>
                                             <input type="hidden" class="form-control" name="Auction_id" value="{{ $auctionDetailes->id }}">
                                             </div>
                                            </div>
@@ -437,8 +465,7 @@
 
                                         <div class="tab-pane fade show active" id="home-just" role="tabpanel"
                                              aria-labelledby="home-tab-just">
-                                            نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم
-                                            إيبسوم ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر
+                                            {{ $auctionDetailes->item_detailes }}
 
 
                                         </div>
@@ -447,9 +474,7 @@
 
                                         <div class="tab-pane fade" id="profile-just" role="tabpanel" aria-labelledby="profile-tab-just">
 
-
-
-
+                                            {{ $auctionDetailes->delivery_details}}
 
                                         </div>
 
@@ -474,30 +499,33 @@
                                                         </thead>
 
                                                         <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
+                                                        @foreach($bidUsers as $key=>$val)
+
+                                                            <tr>
+                                                            <th scope="row">{{++$no}}</th>
                                                             <td>
                                                                 <div class="img-circle">
-                                                                    <img src=" {{ asset('assets/img/users-photo/02.png') }} " alt="">
+                                                                    <img src=" {{$val->user->image? get_file($val->user->image): asset('assets/img/user.png') }} " alt="">
                                                                 </div>
                                                             </td>
-                                                            <td>Alice</td>
-                                                            <td>12 / 2 /2021</td>
-                                                            <td>09:12</td>
-                                                            <td>3500 جنية</td>
+                                                            <td>{{$val->user->name}}</td>
+                                                            <td>{{\Carbon\Carbon::parse($val->created_at)->toDateString()}}</td>
+                                                            <td>{{\Carbon\Carbon::parse($val->created_at)->toTimeString()}}</td>
+                                                            <td>{{$val->bid_price}}</td>
                                                         </tr>
-                                                        <tr>
-                                                            <th scope="row">2</th>
-                                                            <td>
-                                                                <div class="img-circle">
-                                                                    <img src=" {{ asset('assets/img/users-photo/02.png') }} " alt="">
-                                                                </div>
-                                                            </td>
-                                                            <td>Alice</td>
-                                                            <td>12 / 2 /2021</td>
-                                                            <td>09:12</td>
-                                                            <td>3500 جنية</td>
-                                                        </tr>
+                                                        @endforeach
+{{--                                                        <tr>--}}
+{{--                                                            <th scope="row">2</th>--}}
+{{--                                                            <td>--}}
+{{--                                                                <div class="img-circle">--}}
+{{--                                                                    <img src=" {{ asset('assets/img/users-photo/02.png') }} " alt="">--}}
+{{--                                                                </div>--}}
+{{--                                                            </td>--}}
+{{--                                                            <td>Alice</td>--}}
+{{--                                                            <td>12 / 2 /2021</td>--}}
+{{--                                                            <td>09:12</td>--}}
+{{--                                                            <td>3500 جنية</td>--}}
+{{--                                                        </tr>--}}
                                                         </tbody>
                                                     </table>
 
@@ -555,22 +583,39 @@
     <!--////////////////////////////////////////////////////////////////////////////////-->
     <!--////////////////////////////////////////////////////////////////////////////////-->
     <!--////////////////////////////////////////////////////////////////////////////////-->
-  <script src="{{ asset('assets/js/jquery-3.4.1.min.js')}}"></script>
-  <script src="{{ asset('assets/js/popper.min.js') }}"></script>
-  <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-  <script src="{{ asset('assets/js/mdb.min.js') }}"></script>
-  <script src="{{ asset('assets/js/smooth-scroll.min.js') }}"></script>
-  <script src="{{ asset('assets/js/swiper.js') }}"></script>
-  <script src="{{ asset('assets/js/aos.js') }}"></script>
-  <script src="{{ asset('assets/js/dropify.min.js') }}"></script>
-  <script src="{{ asset('assets/js/jquery.appear.min.js') }}"></script>
-  <script src="{{ asset('assets/js/odometer.min.js') }}"></script>
-  <script src="{{ asset('assets/js/jquery.fancybox.min.js') }}"></script>
-  <script src="{{ asset('assets/js/select2.js') }}"></script>
-  <script src="{{ asset('assets/js/fontawesome-pro.js') }}"></script>
-  <script src="{{ asset('assets/js/stars.js') }}"></script>
-  <script src="{{ asset('assets/js/main.js') }}"></script>
-    <!-- Initialize Swiper -->
+@include('layouts.site.js')
+
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("{{$auctionDetailes->end_at}}").getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+
+            // Get todays date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now an the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="cont-down"
+            document.getElementById("count-down").innerHTML = days + "d " + hours + "h " +
+                minutes + "m " + seconds + "s ";
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("count-down").innerHTML = "لقد إنتهى وقت المزاد";
+            }
+        }, 1000);
+    </script>
+
     <script>
         var swiper = new Swiper('.swiper-container', {
             autoplay: {
@@ -595,164 +640,14 @@
                     slidesPerView: 4,
                 },
                 1024: {
-                    slidesPerView: 4,
+                    slidesPerView: 5,
                 },
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
             }
         });
     </script>
-    <script>
-        $(document).ready(function () {
-
-            // Hide sideNav
-            $('.button-collapse').sideNav('hide');
-            // Show sideNav
-            $('.button-collapse').sideNav('show');
-        });
-    </script>
-  <script>
-    // Set the date we're counting down to
-    var countDownDate = new Date("{{$t_date}}").getTime();
-
-    // Update the count down every 1 second
-    var x = setInterval(function () {
-
-      // Get todays date and time
-      var now = new Date().getTime();
-
-      // Find the distance between now an the count down date
-      var distance = countDownDate - now;
-
-      // Time calculations for days, hours, minutes and seconds
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      // Display the result in the element with id="cont-down"
-      document.getElementById("count-down").innerHTML = days + "d " + hours + "h " +
-        minutes + "m " + seconds + "s ";
-
-      // If the count down is finished, write some text
-      if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("count-down").innerHTML = "EXPIRED";
-      }
-    }, 1000);
-  </script>
-    <script>
-        $(document).ready(function () {
-
-            // Hide sideNav
-            $('.button-collapse').sideNav('hide');
-            // Show sideNav
-            $('.button-collapse').sideNav('show');
-        });
-    </script>
-
-  <!-- Initialize Swiper -->
-    <!-- Initialize Swiper -->
-    <script>
-        var swiper = new Swiper('.swiper-container', {
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-
-            spaceBetween: 10,
-            freeMode: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            breakpoints: {
-                0: {
-                    slidesPerView: 2,
-                },
-                640: {
-                    slidesPerView: 3,
-                },
-                768: {
-                    slidesPerView: 4,
-                },
-                1024: {
-                    slidesPerView: 4,
-                },
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            }
-        });
-    </script>
-    <script>
-    var swiper = new Swiper('.swiper-container', {
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-
-      spaceBetween: 10,
-      freeMode: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      breakpoints: {
-        0: {
-          slidesPerView: 2,
-        },
-        640: {
-          slidesPerView: 3,
-        },
-        768: {
-          slidesPerView: 4,
-        },
-        1024: {
-          slidesPerView: 5,
-        },
-      }
-    });
-  </script>
-  <script>
-    $(document).ready(function () {
-      $("#price-input-show").click(function () {
-        $("#mazad-input").toggle();
-      });
-    });
-    $(document).ready(function () {
-
-        $('.favorite').on('click', function() {
-            {{--var auction_id =   $(this).attr("attr_id")--}}
-
-            {{--/*  $("#butsave").attr("disabled", "disabled"); */--}}
-            {{--$.ajax({--}}
-            {{--    url: "{{route('adding-to-favorite')}}",--}}
-            {{--    type: "POST",--}}
-            {{--    data: {--}}
-            {{--        "_token" : "{{csrf_token()}}","auction_id":auction_id--}}
-            {{--    },--}}
-            {{--    cache: false,--}}
-            {{--    success: function(data){--}}
-            {{--        console.log(data)--}}
-            {{--    },--}}
-
-            {{--    error:function (data){--}}
-            {{--        console.log(data)--}}
-
-            {{--    }--}}
-            {{--});--}}
-            alert('dd')
-        });
-    });
-  </script>
-
-
+    @toastr_js
+    @toastr_render
 </body>
-@jquery
-@toastr_js
-@toastr_render
+{{--@jquery--}}
+
 </html>
