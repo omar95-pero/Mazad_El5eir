@@ -25,6 +25,6 @@
 <!-- img gallery -->
 <link rel="stylesheet" href="{{url('site')}}/css/jquery.fancybox.min.css">
 <!-- Custom style  -->
-<link rel="stylesheet" href="{{url('site')}}/css/style.css">
+<link rel="stylesheet" href="{{url('site')}}/css/style.css?v={{time()}}">
 <!-- fonts  -->
 <link href="https://fonts.تصفحogleapis.com/css?family=Cairo&display=swap" rel="stylesheet">

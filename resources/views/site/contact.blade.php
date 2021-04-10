@@ -12,7 +12,9 @@
   <!-- Bootstrap -->
   @include('layouts.site.css')
   <!-- fonts  -->
-  <link href="https://fonts.تصفحogleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -154,18 +156,27 @@
                   </div> -->
                   <div class="col-lg-12 col-md-12">
                     <div class="form-group">
-                      <textarea name="message" class="form-control" id="message" cols="30" rows="6" required
-                        data-error="Write your message" placeholder="إكتب رسالتك"></textarea>
-                      <div class="help-block with-errors"></div>
+{{--                      <textarea name="message" class="form-control" id="message" cols="30" rows="6" required--}}
+{{--                        data-error="Write your message" placeholder="إكتب رسالتك"></textarea>--}}
+                        <textarea class="form-control" id="summary-ckeditor" name="message" cols="30" rows="6" required placeholder="إكتب رسالتك"></textarea>
+
+                        <div class="help-block with-errors"></div>
                     </div>
                   </div>
-                  <div class="col-lg-12">
+                  <div class="col-lg-12 ">
+                    @if(config('services.recaptcha.key'))
+                      <div class="g-recaptcha w-100 d-flex justify-content-center"
+                           data-sitekey="{{config('services.recaptcha.key')}}" aria-required="">
+                      </div>
+                    @endif
                     <div class="send-btn">
+
                       <button type="submit" class="default-btn">
                         إرسال
                         <i class="flaticon-right"></i>
                         <span></span>
                       </button>
+
                     </div>
                     <div id="msgSubmit" class="h3 text-center hidden"></div>
                     <div class="clearfix"></div>
@@ -216,6 +227,10 @@
   <!--////////////////////////////////////////////////////////////////////////////////-->
    @include('layouts.site.js')
 
+  <script>
+      CKEDITOR.replace( 'summary-ckeditor');
+
+  </script>
 
 </body>
 

@@ -89,7 +89,7 @@
               <div class="d-table-cell">
                 <div class="user-content-inner">
                   <div class="top">
-                    <a href="index.blade.php">
+                    <a href="{{route("index")}}">
                       <img src="{{asset('assets/img/logo.png')}}" alt="Logo">
                     </a>
                     <h2>إنشاء حساب</h2>

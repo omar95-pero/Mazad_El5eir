@@ -3,13 +3,13 @@
 
 @section('title')
     <li class="m-nav__item">
-        <a href="{{url(' admin/news ')}}" class="m-nav__link">
+        <a href="{{route('show.news')}}" class="m-nav__link">
             <span class="m-nav__link-text">الاخبار</span>
         </a>
     </li>
     <li class="m-nav__separator">-</li>
     <li class="m-nav__item">
-        <a href="{{url(' admin/news')}}" class="m-nav__link">
+        <a href="{{route('create.news')}}" class="m-nav__link">
             <span class="m-nav__link-text">اضافة خبر جديد</span>
         </a>
     </li>
@@ -49,7 +49,7 @@
                         </div>
 
                     <div class="form-group  col-sm-6" >
-                        <label for="image">الصوره</label>
+                        <label for="image">يمكنك اضافة صورة او فيديو</label>
                         <input type="file" name="image"  id="input-file-now-custom-1"   class="dropify" style="border-radius: 20px"
                                data-default-file="" >
                     </div>

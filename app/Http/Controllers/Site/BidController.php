@@ -17,15 +17,23 @@ class BidController extends Controller
 {
     public function bidProcess(BidRequest $request , $id)
     {
-        $maxPrice = Bid::where('Auction_id', request('id'))->with('auction','user')->orderBy('bid_price','DESC')->first();
-        $auction = Auction::findOrFail($id);
 
-        $bidProcess =  request([
+            double:$maxPrice  = Bid::where('Auction_id', request('id'))->with('auction','user')->orderBy('bid_price','DESC')->first();
+            $auction = Auction::findOrFail($id);
+        if($maxPrice == null) {
+            $maxPrice = $auction->start_price;
+        }else{
+           $maxPrice  = Bid::where('Auction_id', request('id'))->with('auction','user')->orderBy('bid_price','DESC')->first();
+
+            $maxPrice=$maxPrice->bid_price;
+        }
+            $bidProcess =  request([
             'user_id' => auth()->user()->id,
             'bid_price',
             'Auction_id',
         ]);
         $bidProcess['user_id'] = auth()->user()->id;
+//        dd($maxPrice->bid_price);
 //        ---------------------
         $notifyData = request([
             'from',
@@ -33,9 +41,8 @@ class BidController extends Controller
             'title',
             'body',
         ]);
-//        dd($bidProcess);
-        if ( $bidProcess['bid_price'] > $auction->start_price && ( $maxPrice == null || $bidProcess['bid_price'] > $maxPrice->bid_price)){
-             if (($bidProcess['bid_price'] - $auction -> start_price) % $auction->bid_limit === 0) {
+        if ( $bidProcess['bid_price'] > $auction->start_price && ( $maxPrice == null || $bidProcess['bid_price'] > $maxPrice)){
+            if ( (($bidProcess['bid_price']-$maxPrice)/$auction->bid_limit) >= 1) {
 //            if ($bidProcess['bid_price'] >= ($maxPrice->bid_price + $auction->bid_limit )){
                 $bid = Bid::create($bidProcess);
 //                ---------------------------------
@@ -46,7 +53,7 @@ class BidController extends Controller
                 toastr()->success('تم اضافة القيمة بنجاح ');
                 return back();
             }else{
-                toastr()->error('يجب ان تكون القيمة المضافة مساوية لحد المزايدة أو مضاعفة له ');
+                toastr()->error('يجب ان تكون القيمة المضافة مساوية لحد المزايدة أو اعلى منه ');
                 return back();
             }
         } else {

@@ -63,9 +63,10 @@
                         <th>#</th>
                         <th>الإسم</th>
                         <th>البريد الإلكترونى</th>
+                        <th>حظر</th>
                         <th>رقم التليفون</th>
                         <th class="not-exported">الصوره</th>
-                        <th class="not-exported">تعديل</th>
+{{--                        <th class="not-exported">تعديل</th>--}}
                         <th class="not-exported">حذف</th>
 
                     </tr>
@@ -81,13 +82,14 @@
 
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
+                            <td><label class="switch"><a href="{{route('updateState.User',$user->id)}}"><input type="checkbox" {{$user->blocked_status == "yes" ? 'checked' :''}}><span class="slider round"></span></a></label></td>
                             <td>{{$user->phone_number}}</td>
                             <td><img style="width: 70px;height: 70px" src="{{get_file($user->image)}}" alt="user" onclick="window.open(this.src)"/></td>
-                            <td >
-                                  <a href="{{route('UserEdit',$user->id)}}">
-                                      <button type="submit" class="btn btn-info btn-sm"   ><i class="fa fa-edit" style="margin-left: 1px"></i></button>
-                                  </a>
-                            </td>
+{{--                            <td >--}}
+{{--                                  <a href="{{route('UserEdit',$user->id)}}">--}}
+{{--                                      <button type="submit" class="btn btn-info btn-sm"   ><i class="fa fa-edit" style="margin-left: 1px"></i></button>--}}
+{{--                                  </a>--}}
+{{--                            </td>--}}
                             <td >
                                 <button type="button" class="btn btn-danger btn-sm"  id="submit_delete"  attr_route="{{route('UserDestroy',$user->id)}}" ><i class="fa fa-trash" style="margin-left: 1px"></i></button>
                             </td>

@@ -21,12 +21,14 @@ class ResetPasswordController extends Controller
     public function sendVerificationCode(Request $request ){
 // dd($request->email);
        $email = $request->email;
-       $title = 'كود التحقيق :';
-       $text = '5656098';
-     $user = User::where('email',$email)->get();
+        $title = 'كود التحقيق :';
+        $text = '5656098';
+        $user = User::where('email',$email)->get();
+//        return $user;
 //     dd($user);
 
-        $this->send_EmailFun($email,$text,$title);
+     $this->send_EmailFun($email,$text,$title);
+
         return view('auth/verification-code',compact('user'));
 
 

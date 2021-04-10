@@ -24,6 +24,15 @@ class AuctionsController extends Controller
         }
         return back();
     }
+    public function is_special( $id){
+        $specialState = Auction::findOrFail($id);
+        if ($specialState->is_special == 'no'){
+            $specialState = Auction::where('id',$id)->update(['is_special'=>'yes']);
+        }elseif($specialState->is_special == 'yes'){
+            $specialState = Auction::where('id',$id)->update(['is_special'=>'no']);
+        }
+        return back();
+    }
 
 
     public function destroyAuction($id){

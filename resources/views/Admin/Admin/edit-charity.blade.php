@@ -43,7 +43,7 @@
                     <div class="row">
                         <div class="form-group col-sm-6">
                                                             <label for="body">البريد الالكتروني :</label>
-                            <input class="form-control" name="url" type="email" id="slug" placeholder="البريد الالكتروني..."  data-validation="required" value="{{$charity->email}}"></input>
+                            <input class="form-control" name="text" type="email" id="slug" placeholder="البريد الالكتروني..."  data-validation="required" value="{{$charity->email}}"></input>
                         </div>
                         <div class="form-group col-sm-6">
                                                             <label for="body">رقم التليفون :</label>

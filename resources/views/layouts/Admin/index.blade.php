@@ -21,6 +21,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="description" content="Latest updates and statistic charts">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
 
+    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
     <!--------------------------CSS------------------------------->
     @include('layouts.Admin.css')
@@ -111,9 +112,9 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <!-- begin::Body -->
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
-<div class="loader">
-    <div class="triple-spinner"></div>
-</div>
+{{--<div class="loader">--}}
+{{--    <div class="triple-spinner"></div>--}}
+{{--</div>--}}
 <!-- begin:: Page -->
 <div class="m-grid m-grid--hor m-grid--root m-page">
     <!-- BEGIN: Header -->
@@ -173,6 +174,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- end:: Body -->
 
     <!-- begin::Footer -->
+
 @include('layouts.Admin.footer')
     <!-- end::Footer -->
 </div>
@@ -662,9 +664,13 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
 @stack('js')
-</body>
+<script>
+    CKEDITOR.replace( 'summary-ckeditor');
+
+</script>
 @jquery
 @toastr_js
 @toastr_render
+</body>
 <!-- end::Body -->
 </html>

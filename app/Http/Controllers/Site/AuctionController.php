@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Site\AuctionRequest;
 use App\Models\Auction_View;
+use App\Models\Category;
+use App\Models\Dlivery_Details;
 use App\Models\Favorite;
+use App\Models\Govrnate;
 use Illuminate\Support\Carbon;
 use App\Models\Auction;
 use App\Models\Charity;
@@ -13,7 +16,7 @@ use App\Models\Bid;
 use App\Http\Traits\SendEmail;
 use Illuminate\Http\Request;
 use App\Models\Image;
-
+use Validator;
 class AuctionController extends Controller
 {
     use SendEmail;
@@ -22,12 +25,15 @@ class AuctionController extends Controller
     public function index()
         {
             $charities = Charity::get()->all();
-            return view('site.AuctionAdd', compact('charities'));
+            $categories = Category::get()->all();
+            $govrnates = Govrnate::get()->all();
+            return view('site.AuctionAdd', compact('charities','categories','govrnates'));
         }
 
 
-    public function create(AuctionRequest $request)
+    public function create(Request $request)
         {
+
 
             $auctionData = request([
                         'image',
@@ -40,28 +46,50 @@ class AuctionController extends Controller
                         'item_detailes',
                         'delivery_details',
                         'user_id',
-                        'charity_id',]);
-            $imagesData = request([
-                'imag',
-                'img',
-                'imge',
-                  ]);
+                        'charity_id',
+                        'category_id',
+                                    ]);
+             $deliver_details = request (['govrnate_id','Auction_id','weight','length','width','height','type','is_breakable']);
             //-----------------------------
             $auctionData['image'] = store_file($request, 'image', "mazad");
             $auctionData['user_id'] = request()->user()->id;
-            $obgAuction =  Auction::create($auctionData);
+            if ($auctionData['end_at']> \Carbon\Carbon::now() && $auctionData['start_at'] > \Carbon\Carbon::now()){
+                if (strlen($auctionData['item_detailes']) >= 30) {
+//                    dd($auctionData);
+//                    dd($request);
+                    $obgAuction = Auction::create($auctionData);
+                }else{
+                    toastr()->error('من فضلك ادخل تفاصيل المنتج بحيث لاتقل عن 30 حرف');
+                    return back();
+                }
+            }else{
+                toastr()->error('يجب أن يكون التاريخ مستقبلاً');
+                return back();
+            }
             //-----------------------------
-            if ($request->image != '') {
+//            if ($request->image != '') {
+//        if ($imagesData){
+
+        if ($request->imag != '')
                 $imagesData['imag'] = store_file($request, 'imag', "mazad");
-                $imagesData['img']  = store_file($request, 'img', "mazad");
-                $imagesData['imge'] = store_file($request, 'imge', "mazad");
+        if ($request->img != '')
+            $imagesData['img']  = store_file($request, 'img', "mazad");
+        if ($request->imge != '')
+            $imagesData['imge'] = store_file($request, 'imge', "mazad");
+
                 $imagesData['auction_id'] = $obgAuction->id;
 //                dd($imagesData);
                 Image::create($imagesData);
-            }else{
-                toastr()->error('هناك خطأ بالبيانات المدخلة');
-                return back();
-            }
+//                dd($deliver_details);
+                if ($deliver_details)
+                    $deliver_details['Auction_id']=$obgAuction->id;
+                dd($deliver_details['is_breakable']);
+                Dlivery_Details::create($deliver_details);
+
+//            }else{
+//                toastr()->error('هناك خطأ بالبيانات المدخلة');
+//                return back();
+//            }
 
             toastr()->success('سوف يتم مراجعة المزاد وسيتم نشره قريباً');
             return redirect()->route('index');
@@ -70,14 +98,19 @@ class AuctionController extends Controller
 
     public function getAllAuctions()
         {
-            $auctions = Auction::with('charity')->orderBy('created_at','DESC')->get();
-
+            $auctions = Auction::with('charity')->orderBy('created_at','DESC')->paginate(10);
+//            $biders = Bid::groupBy('Auction_id')->get()->last();
+//            dd($biders);
 
             foreach ($auctions as  $key => $val){
                 $bidNumbers = Bid::where('Auction_id',$val->id)->groupBy('user_id')->get();
             $val->count_users = $bidNumbers->count();
             }
-
+           foreach ($auctions as  $key => $val){
+            $lastBid = Bid::where('Auction_id',$val->id)->groupBy('user_id')->orderBy('bid_price','DESC')->take(1)->get();
+            $val->best_user = $lastBid;
+//            dd($val->best_user);
+           }
 
 
             return view('site.mazadat-page', compact('auctions'));
@@ -86,7 +119,21 @@ class AuctionController extends Controller
 
     public function auctionDetails($id)
         {
-            $auctionDetailes = Auction::with('user','charity','images')->findOrFail($id);
+            $auctionDetailes = Auction::with('user','charity','images','delivery.govrnate')->findOrFail($id);
+//           dd($auctionDetailes);
+            /*--------------------------number of views-------*/
+             $auctionDetailes->increment('views' ,1);
+             /*------------------------------------------------*/
+            /*-------------------Bid Users Count---------------*/
+        $bidUsersNumber = Bid::where('Auction_id',$id)
+            ->distinct('user_id')
+            ->count();
+//        dd($bidUsersNumber);
+        /*------------------------------------------------------------------*/
+       /*-----------------------------Number of Bids------------------------*/
+        $bidsNumber = Bid::where('Auction_id',$auctionDetailes->id)
+            ->count();
+        /*-------------------------------------------------*/
             $charity_name = $auctionDetailes->charity->name;
             $getImages = $auctionDetailes->images;
 //            dd($getImages);
@@ -106,6 +153,8 @@ class AuctionController extends Controller
 
         $maxPrice = Bid::where('auction_id', $id)->groupBy('auction_id')->max('bid_price');
 
+
+
             $bids = Bid::where('auction_id', $id)
                 ->with('user')
                 ->orderBy('bid_price', 'desc')
@@ -121,18 +170,12 @@ class AuctionController extends Controller
             $t_date = Carbon::parse($auctionDetailes->end_at)->isoFormat('MMMM D, YYYY h:mm:ss ');
             $duration = $f_date ->diff($t_date,true);
 #==============================================================================================
-#==============================================================================================
-                $view =[
-                    'auction_id'=>request('id'),
-                ];
-               $insertView = Auction_View::create($view);
-#=============================================================================================
-#================================get Views Numbers============================================
-               $view_count = Auction_View::groupBy('auction_id')->count('id');
-#===============================================================================
 
+#===============================================================================
+//        -----------------------------------get Categories---------------------
+        $categories = Category::get();
                return view('site.auction-details',
-                   compact('auctionDetailes', 'maxPrice','charity_name', 'bids','t_date','view_count','bidUsers','getImages'))
+                   compact('auctionDetailes', 'maxPrice','charity_name', 'bids','t_date','bidUsers','getImages','categories','bidUsersNumber','bidsNumber'))
                    ->with('no',0);
         }
 
@@ -149,11 +192,16 @@ class AuctionController extends Controller
                  $email = $bestBid->user->email ;
                  $title = 'مزاد الخير ';
                  $text = 'تم انتهاء المزاد ويمكنكم الدفع الآن';
-
+//dd($bestBid->auction->user->email);
+                 $emailForContributor = $bestBid->auction->user->email;
+                 $titleForContributer = 'مزاد الخير';
+                 $textForContributer = 'شكراً لتبرعكم ودمتم للخير سابقين';
                 $this->send_EmailFun($email,$text,$title);
+                $this->send_EmailFun($emailForContributor,$textForContributer,$titleForContributer);
                 $emailStatus = $bestBid->auction->email ;
 
                 $Status = Auction::where('id',$bestBid->auction->id)->update(['email'=>'yes']);
+
 
             }
 
@@ -172,14 +220,48 @@ class AuctionController extends Controller
             ->orWhere('item_detailes', 'LIKE', "%{$search}%")
             ->get();
 
-        // Return the search view with the resluts compacted
-        return view('site.mazadat-page', compact('auctions'));
+//        ------------------Get The Last Bid Price-------------------
+        foreach ($auctions as  $key => $val){
+            $lastBid = Bid::where('Auction_id',$val->id)->groupBy('user_id')->orderBy('bid_price','DESC')->take(1)->get();
+            $val->best_user = $lastBid;
+//            dd($val->best_user);
+        }
+//        ------------------------------------------------------------
+//        // Return the search view with the resluts compacted
+        if ($auctions) {
+            return view('site.mazadat-page', compact('auctions'));
+        }else{
+            $notFound = 'عفواً لاتوجد نتائج بحث';
+            return view('site.mazadat-page',compact('notFound'));
+        }
+
     }
-    public function Best(){
+    public function bestAuctions(){
 //        ----------------Best Auctions For Side Bar------------
-        $auctions = Auction::orderBy('start_price','DESC')->take(3)->get();
-//        return $auctions;
+        $auctions = Auction::where('is_special','yes')->get();
+        foreach ($auctions as  $key => $val){
+            $bidNumbers = Bid::where('Auction_id',$val->id)->groupBy('user_id')->get();
+            $val->count_users = $bidNumbers->count();
+        }
+        foreach ($auctions as  $key => $val){
+            $lastBid = Bid::where('Auction_id',$val->id)->groupBy('user_id')->orderBy('bid_price','DESC')->take(1)->get();
+            $val->best_user = $lastBid;
+//            dd($val->best_user);
+        }
         return view('site.mazadat-page', compact('auctions'));
     }
+     public function category($id){
+        $auctions = Auction::where('category_id',$id)->get();
+         foreach ($auctions as  $key => $val){
+             $bidNumbers = Bid::where('Auction_id',$val->id)->groupBy('user_id')->get();
+             $val->count_users = $bidNumbers->count();
+         }
+         foreach ($auctions as  $key => $val){
+             $lastBid = Bid::where('Auction_id',$val->id)->groupBy('user_id')->orderBy('bid_price','DESC')->take(1)->get();
+             $val->best_user = $lastBid;
+//            dd($val->best_user);
+         }
+         return view('site.mazadat-page', compact('auctions'));
+     }
 
 }

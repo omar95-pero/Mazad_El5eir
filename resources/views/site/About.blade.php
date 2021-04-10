@@ -74,16 +74,8 @@
   <!--////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////-->
-  <section class="contact-sec">
-    <div class="title-top mb-5 mt-5 d-flex align-items-center justify-content-start">
-{{--      <div class="contents d-flex align-items-center mr-4 justify-content-center">--}}
-{{--        <a href="index.blade.php"> <i class="fad fa-home pl-2"></i> الرئيسية </a>--}}
-{{--        <span> \ </span>--}}
-{{--        <h3 class="font-weight-bold"> من نحن </h3>--}}
+  <section class="contact-sec mt-5">
 
-{{--      </div>--}}
-
-    </div>
 
 
   </section>
@@ -98,19 +90,16 @@
 
   <div class="terms mt-5">
 
-    <div class="container">
+    <div class="container pt-5">
 
-      <div class="row pb-5">
+      <div class="row pt-5 pb-5">
 
         <div class="col-md-8 mt-3">
           <h3 class="font-weight-bold title text-center pb-4">
-            عن مزادات الخير
+            {{$data->title}}
           </h3>
           <p class="pb-2 mt-3 fourth-color">
-            نص شكلي (بمعنى أن الغاية هي الشكل وليس المحتوى) ويُستخدم في صناعات المطابع ودور النشر. كان لوريم إيبسوم
-            ولايزال المعيار للنص الشكلي منذ القرن الخامس عشر عندما قامت مطبعة مجهولة برص مجموعة من الأحرف بشكل عشوائي
-            أخذتها من نص، لتكوّن كتيّب بمثابة دليل أو مرجع شكلي لهذه الأحرف. خمسة قرون من الزمن لم تقضي على هذا النص، بل
-            انه حتى صار مستخدماً وبشكله الأصلي في الطباعة والتنضيد الإلكتروني.
+            {!! $data->body !!}
           </p>
 
         </div>
@@ -118,7 +107,7 @@
 
         <div class="col-md-4">
           <div class="col-3-contents p-2">
-              <img src="{{asset('assets/img/about.jpeg')}}" style="width: 100%">
+              <img src="{{get_file($data->image)}}" style="width: 100%">
 {{--            <h4 class="right-title py-2">روابط مختصرة</h4>--}}
 
 {{--            <div class="textwidget">--}}

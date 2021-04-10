@@ -35,9 +35,10 @@
     <!-- Custom style  -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- fonts  -->
-    <link href="https://fonts.تصفحogleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
-</head>
 @toastr_css
+    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+</head>
 <body>
 
 
@@ -53,15 +54,15 @@
     </form>
 </div>
   <!-- ================ spinner ================= -->
-  {{-- <div class="spinner">
-    <div class="loader">
-      <div class="rect1"></div>
-      <div class="rect2"></div>
-      <div class="rect3"></div>
-      <div class="rect4"></div>
-      <div class="rect5"></div>
-    </div>
-  </div> --}}
+{{--   <div class="spinner">--}}
+{{--    <div class="loader">--}}
+{{--      <div class="rect1"></div>--}}
+{{--      <div class="rect2"></div>--}}
+{{--      <div class="rect3"></div>--}}
+{{--      <div class="rect4"></div>--}}
+{{--      <div class="rect5"></div>--}}
+{{--    </div>--}}
+{{--  </div>--}}
   <!-- ================ spinner ================= -->
 
 
@@ -92,7 +93,7 @@
 
   <section class="donations-area addauction-page margin-top">
 
-    <div class="title-top mb-5 d-flex align-items-center justify-content-start">
+{{--    <div class="title-top mb-5 d-flex align-items-center justify-content-start">--}}
 {{--      <div class="contents d-flex align-items-center mr-4 justify-content-center">--}}
 {{--        <a href="{{ route('index') }}"> <i class="fad fa-home pl-2"></i> الرئيسية </a>--}}
 {{--        <span> \ </span>--}}
@@ -100,109 +101,247 @@
 
 {{--      </div>--}}
 
-    </div>
+{{--    </div>--}}
     <div class="container">
 
       <form action="{{ route('create.auction') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
-        <div class="col-md-6  mb-3">
-          <h5 class="font-weight-bold py-4">الصور </h5>
-          <div class="d-flex justify-content-between">
-            <input type="file" name="image"  class="dropify"  />
-{{--              <div class="d-flex justify-content-between">--}}
-                 <input type="file" name="imag" class="dropify" />
-                 <input type="file" name="img" class="dropify" />
-                 <input type="file" name="imge" class="dropify" />
-{{--              </div>--}}
 
-          </div>
-        </div>
 
-        <div class="col-md-6  mb-3 d-flex align-items-end">
-          <div class="inputs w-100">
-            <div class="inpu-i  ">
-              <input class="form-control position-relative pr-4" name="item_name" type="text" placeholder="اسم المنتج" required>
-              <i class="far fa-cart-plus position-relative" style="    top: -30px;
-              right: 7px; color:#107b50;"></i>
-            </div>
-            <div class="inpu-i  ">
-              <input class="form-control position-relative pr-4" name="address" type="text" placeholder="العنوان" required>
-              <i class="far fa-map-marker-alt position-relative" style="    top: -30px;
-              right: 7px; color:#107b50;"></i>
-            </div>
 
-            <div class="inpu-i  ">
-              <input class="form-control position-relative pr-4" name="start_price"  type="number" placeholder="سعر البدأ" required>
-              <i class="fad fa-dollar-sign position-relative" style="    top: -30px;
-              right: 10px; color:#107b50;"></i>
-            </div>
-            <div class="inpu-i  ">
-                  <input class="form-control position-relative pr-4" name="bid_limit"  type="number" placeholder="حد المزايدة" required>
-                  <i class="fad fa-dollar-sign position-relative" style="    top: -30px;
-              right: 10px; color:#107b50;"></i>
+
+        <div class="col-md-12 px-0 mb-5">
+          <div class="inputs row py-3  w-100 " style="border: 1px solid #c5c5c5; box-shadow: 0px 1px 6px #00000050;">
+
+              <div  class="col-md-12">
+                  <h3 class="font-weight-bold pb-3">أضف مزاد </h3>
               </div>
 
-              <div class="inpu-i  ">
-              <input class="form-control position-relative pr-4" name="start_at" type="datetime-local" placeholder="توقيت البدأ" required>
-              <i class="fad fa-calender position-relative" style="    top: -30px;
-              right: 10px; color:#107b50;"></i>
+              <div class="col-md-7 mx-auto  mb-5">
+                  <div class="d-flex justify-content-between">
+                      <input type="file" name="image"  class="dropify" required />
+                      @error('image')
+                      <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                      @enderror
+                      <input type="file" name="imag" class="dropify" />
+                      @error('imag')
+                      <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                      @enderror
+                      <input type="file" name="img" class="dropify" />
+                      @error('img')
+                      <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                      @enderror
+                      <input type="file" name="imge" class="dropify"  />
+                      @error('imge')
+                      <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                      @enderror
+
+
+                  </div>
+              </div>
+            <div class="inpu-i  col-md-6">
+              <input class="form-control position-relative pr-5" name="item_name" type="text" placeholder="اسم المنتج" required>
+              <i class="far fa-cart-plus position-relative" ></i>
+                @error('item_name')
+                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                @enderror
             </div>
-            <div class="inpu-i  ">
-              <input class="form-control position-relative pr-4" name="end_at" type="datetime-local" placeholder="توقيت الانتهاء" required>
-              <i class="fad fa-calender position-relative" style="    top: -30px;
-              right: 10px; color:#107b50;"></i>
+            <div class="inpu-i  col-md-6">
+              <input class="form-control position-relative pr-5" name="address" type="text" placeholder="العنوان" required>
+              <i class="far fa-map-marker-alt position-relative" ></i>
+                @error('address')
+                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                @enderror
             </div>
+
+            <div class="inpu-i  col-md-6">
+              <input class="form-control position-relative pr-5" name="start_price"  type="number" placeholder="سعر البدأ" required>
+              <i class="fad fa-dollar-sign position-relative" ></i>
+                @error('start_price')
+                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                @enderror
+            </div>
+            <div class="inpu-i  col-md-6">
+                  <input class="form-control position-relative pr-5" name="bid_limit"  type="number" placeholder="حد المزايدة" required>
+                  <i class="fad fa-dollar-sign position-relative" ></i>
+                @error('bid_limit')
+                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                @enderror
+              </div>
+
+              <div class="inpu-i  col-md-6">
+                  <input placeholder="توقيت الانتهاء" class="form-control position-relative pr-2" name="end_at" type="text"  onfocus="(this.type='datetime-local')"
+                         onblur="(this.type='text')" required>
+                  <i class="fad fa-calender position-relative" ></i>
+                  @error('end_at')
+                  <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                  @enderror
+            </div>
+            <div class="inpu-i col-md-6 ">
+                <input placeholder="توقيت البدأ" class="form-control position-relative pr-2" name="start_at" type="text"  onfocus="(this.type='datetime-local')"
+                       onblur="(this.type='text')"  required>
+                <i class="fad fa-calender position-relative" ></i>
+                @error('start_at')
+                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                @enderror
+
+            </div>
+
+              <div class="col-md-6">
+                  <select required class="browser-default custom-select mb-4" name="charity_id" style="height: 50px" >
+                      <option  value=" " disabled selected > الهيئة المراد التبرع لها :</option>
+                      @foreach ($charities as $charity)
+                          <option value="{{ $charity->id }}" {{$charity->name == $charity->id  ? 'selected' : ''}}>{{ $charity->name }}</option>
+                      @endforeach
+                  </select>
+                  @error('charity_id')
+                  <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                  @enderror
+              </div>
+
+
+
+              <div class="col-md-6">
+                  <select class="browser-default mb-4 custom-select" name="category_id" style="height: 50px">
+                      <option option value=" " disabled selected> التصنيف :</option>
+                      @foreach ($categories as $category)
+                          <option value="{{ $category->id }}" {{$category->title == $category->id  ? 'selected' : ''}}>{{ $category->title }}</option>
+                      @endforeach
+                  </select>
+                  @error('category_id')
+                  <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                  @enderror
+              </div>
+
+              <div class="w-100 px-3">
+                  <h4 class="font-weight-bold my-4"> تفاصيل التوصيل </h4>
+              </div>
+
+              <div class="inpu-i  col-md-6 ">
+
+
+                  <select class="browser-default mb-4 custom-select" name="govrnate_id" style="height: 50px">
+                      <option option value=" " disabled selected> المحافظة :</option>
+                      @foreach($govrnates as $gov)
+                     <option value="{{ $gov->id }}" {{$gov->govrnate == $gov->id  ? 'selected' : ''}}>{{$gov->govrnate}}</option>
+                      @endforeach
+                  </select>
+              </div>
+
+              <div class="inpu-i  col-md-6 ">
+
+
+                  <select class="browser-default mb-4 custom-select" name="type" style="height: 50px">
+                      <option option value=" " disabled selected> النوع :</option>
+                      <option value="{{ "الكترونيات"}}" {{"الكترونيات"? 'selected' : ''}}>الكترونيات</option>
+                      <option value="{{ "ملابس"}}" {{"ملابس"? 'selected' : ''}}> ملابس </option>
+                      <option  value="{{ "موبايلات"}}" {{"موبايلات"? 'selected' : ''}}> موبايلات </option>
+                      <option  value="{{ "اخرى"}}" {{"اخرى"? 'selected' : ''}}> اخرى </option>
+
+                  </select>
+
+              </div>
+
+
+
+              <div class="inpu-i  col-md-6 ">
+
+
+                  <select class="browser-default mb-4 custom-select" name="is_breakable" style="height: 50px">
+                      <option option value=" " disabled selected> قابلية الكسر :</option>
+                      <option value="{{ "yes"}}" {{" قابل للكسر"? 'selected' : ''}} > قابل للكسر</option>
+                      <option value="{{ "no"}}" {{" غير قابل"? 'selected' : ''}}>غير قابل</option>
+
+                  </select>
+
+              </div>
+
+
+
+
+              <div class="inpu-i  col-md-6 ">
+
+                  <input placeholder="الوزن  " name="weight" class="form-control position-relative pr-5"   type="number"
+                         required>
+                  <i class="fad fa-weight position-relative" ></i>
+
+
+
+              </div>
+
+              <div class="w-100 px-3">
+                  <h4 class="font-weight-bold my-4"> حجم المنتج   </h4>
+              </div>
+
+              <div class="inpu-i  col-md-4 ">
+
+                  <input placeholder="الطول  " name="length" class="form-control position-relative pr-5"   type="number"
+                         required>
+                  <i class="fad fa-box-open position-relative" ></i>
+
+              </div>
+              <div class="inpu-i  col-md-4 ">
+
+                  <input placeholder="العرض  " name="width" class="form-control position-relative pr-5"   type="number"
+                         required>
+                  <i class="fad fa-box-open position-relative" ></i>
+
+              </div>
+              <div class="inpu-i  col-md-4 ">
+
+                  <input placeholder="الإرتفاع  " name="height" class="form-control position-relative pr-5"   type="number"
+                         required>
+                  <i class="fad fa-box-open position-relative" ></i>
+              </div>
+
+
+
+              <div class="inpu-i  col-md-12 ">
+{{--              <textarea rows="4" class="form-control position-relative  pr-4" name="item_detailes" type="text"--}}
+{{--                        placeholder="تفاصيل المنتج"></textarea>--}}
+                  <textarea  class="form-control" id="summary-ckeditor item_detailes"
+                             name="item_detailes" cols="30" rows="6" required placeholder="تفاصيل المنتج" >  تفاصيل المنتج    </textarea>
+
+{{--                  <i class="fad fa-info " style="    bottom: 102px;--}}
+{{--            right: 10px;     color: #107b50;"></i>--}}
+                  @error('item_detailes')
+                  <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+              </div>
+
+
+
+              <div class="w-100 d-flex justify-content-center">
+                  <button type="submit" class="btn sure-btn "> تأكيد </button>
+              </div>
+
           </div>
         </div>
-
-        <div class="col-md-6  mb-3 d-flex align-items-end">
-          <div class="inputs w-100">
-            <div class="inpu-i   ">
-
-              <textarea rows="4" class="form-control position-relative  pr-4" name="item_detailes" type="text"
-                placeholder="تفاصيل المنتج"></textarea>
-              <i class="fad fa-info " style="    bottom: 102px;
-            right: 10px;     color: #107b50;"></i>
-            </div>
-          </div>
-
-            <div class="inputs w-100">
-                <div class="inpu-i   ">
-
-              <textarea rows="4" class="form-control position-relative  pr-4" name="delivery_details" type="text"
-                        placeholder="تفاصيل التوصيل"></textarea>
-                    <i class="fad fa-info " style="    bottom: 102px;
-            right: 10px;     color: #107b50;"></i>
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="col-md-6  mb-3 d-flex align-items-top">
-          <div class="inputs w-100">
-            <!-- <div class="inpu-i  ">
-              <input class="form-control position-relative pr-4" type="text" placeholder="العنوان">
-              <i class="far fa-map-marker-alt position-relative" style="    top: -30px;
-              right: 7px; color:#107b50;"></i>
-            </div> -->
-            <select class="browser-default custom-select" name="charity_id">
-              <option option value=" " disabled selected> الهيئة المراد التبرع لها :</option>
-              @foreach ($charities as $charity)
-              <option value="{{ $charity->id }}" {{$charity->name == $charity->id  ? 'selected' : ''}}>{{ $charity->name }}</option>
-              @endforeach
-            </select>
-
-            <div class="col-12  mt-4 d-flex align-items-center justify-content-center">
-              <button type="submit" class="btn sure-btn "> تأكيد </button>
-            </div>
-          </div>
-        </div>
-
-
-
-
       </div>
       </form>
 
@@ -301,10 +440,14 @@
 
     $('.dropify').dropify();
 </script>
-
-</body>
-@jquery
+<script>
+    CKEDITOR.replace( 'summary-ckeditor item_detailes' );
+</script>
+<script>
+    CKEDITOR.replace( 'summary-ckeditor delivery_details' );
+</script>
 @toastr_js
 @toastr_render
+</body>
 
 </html>

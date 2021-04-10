@@ -62,7 +62,7 @@
                         </th>
                         <th>#</th>
                         <th>اسم المنتج</th>
-                        <th>حالة المزاد</th>
+                        <th> المزادات المميزة</th>
                         <th>سعر البدأ</th>
                         <th class="not-exported">الصوره</th>
                         <th class="not-exported">تعديل حالة المزاد</th>
@@ -79,7 +79,7 @@
 {{--                                <td>{{$i}}</td>--}}
                                 <td>{{++$n}}</td>
                                 <td>{{$data->item_name}}</td>
-                                <td>{{$data->status}}</td>
+                                <td><label class="switch"><a href="{{route('update_to_special.Auction',$data->id)}}"><input type="checkbox" {{$data->is_special == "yes" ? 'checked' :''}}><span class="slider round"></span></a></label></td>
                                 <td>{{$data->start_price}}</td>
                                 <td><img style="width: 70px;height: 70px" src="{{get_file($data->image)}}" alt="user" onclick="window.open(this.src)"/></td>
                                 <td><label class="switch"><a href="{{route('updateState.Auction',$data->id)}}"><input type="checkbox" {{$data->status == "done" ? 'checked' :''}}><span class="slider round"></span></a></label></td>

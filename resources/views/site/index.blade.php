@@ -2,7 +2,6 @@
 
 @section('content')
     <section class=" main ">
-
         <!-- Swiper -->
         <div class="swiper-container gallery-top">
             <div class="swiper-wrapper">
@@ -32,7 +31,14 @@
             <div class="swiper-wrapper">
         @foreach($news as $new2)
                 <div class="swiper-slide">
-                    <div class="thumbsImg"><img src="{{ get_file($new2->image) }}"></div>
+                    <div class="thumbsImg">
+                        @if(str_contains(mime_content_type($new2->image),'image'))
+                        <img src="{{ get_file($new2->image) }}">
+                        @endif
+                        @if(str_contains(mime_content_type($new2->image),'video'))
+                        <iframe width="560" height="315" src="{{ get_file($new2->image) }}" frameborder="0" allowfullscreen></iframe>
+                       @endif
+                    </div>
                 </div>
         @endforeach
 
@@ -45,83 +51,84 @@
 
     </section>
 @endsection
-@section('index')
+{{--@section('index')--}}
 
-    <div class="container">
-      <div class="auction-wrapper-7  m--15">
-        <div class="auction-item-7 time">
-          <div class="auction-inner row">
-            <a href="#0" class="upcoming-badge-2" title="Upcoming Auction">
-                <i class="fad fa-gavel"></i>
-            </a>
-              <div class="auction-thumb bg_img" style="background-image: url({{ get_file($bestAuction->auction->image) }}); background-size: cover;"  >
-                  <img class="d-lg-none" src="{{ get_file($bestAuction->auction->image) }}" alt="upcoming">
-                  <a href="#0" class="rating"><i class="far fa-star"></i></a>
-              </div>
-            <div class="auction-content">
-              <div class="title-area">
-                <h6 class="title">
-                  <a href="{{ route('auction.details',$bestAuction->auction->id) }}">{{ $bestAuction->auction->item_name }}         </h6>
-                <!-- <div class="list-area">
-                  <span class="list-item">`
-                    <span class="list-id">Listing ID</span>14033488
-                  </span>
-                  <span class="list-item">
-                    <span class="list-id">Item #</span>0900-027867
-                  </span>
-                </div> -->
-                <!-- <div class="item-feature">
-                  <span>2 Beds</span>
-                  <span>2 Baths</span>
-                  <span>1,215 Sq. Ft.</span>
-                </div> -->
+{{--    <div class="container">--}}
+{{--      <div class="auction-wrapper-7  m--15">--}}
+{{--        <div class="auction-item-7 time">--}}
+{{--          <div class="auction-inner row">--}}
+{{--            <a href="#0" class="upcoming-badge-2" title="Upcoming Auction">--}}
+{{--                <i class="fad fa-gavel"></i>--}}
+{{--            </a>--}}
+{{--              <div class="auction-thumb bg_img" style="background-image: url({{ get_file($bestAuction->auction->image) }}); background-size: cover;"  >--}}
+{{--                  <img class="d-lg-none" src="{{ get_file($bestAuction->auction->image) }}" alt="upcoming">--}}
+{{--                  <a href="#0" class="rating"><i class="far fa-star"></i></a>--}}
+{{--              </div>--}}
+{{--            <div class="auction-content">--}}
+{{--              <div class="title-area">--}}
+{{--                <h6 class="title">--}}
+{{--                  <a href="{{ route('auction.details',$bestAuction->auction->id) }}">{{ $bestAuction->auction->item_name }}         </h6>--}}
+{{--                <!-- <div class="list-area">--}}
+{{--                  <span class="list-item">`--}}
+{{--                    <span class="list-id">Listing ID</span>14033488--}}
+{{--                  </span>--}}
+{{--                  <span class="list-item">--}}
+{{--                    <span class="list-id">Item #</span>0900-027867--}}
+{{--                  </span>--}}
+{{--                </div> -->--}}
+{{--                <!-- <div class="item-feature">--}}
+{{--                  <span>2 Beds</span>--}}
+{{--                  <span>2 Baths</span>--}}
+{{--                  <span>1,215 Sq. Ft.</span>--}}
+{{--                </div> -->--}}
 
-                <p>{{ $bestAuction->auction->item_detailes }}</p>
-              </div>
-              <div class="bid-area">
-                <div class="bid-inner row">
-                  <div class="bid-amount">
-                    <div class="icon">
-                      <i class="fad fa-gavel"></i>
-                    </div>
-                    <div class="amount-content">
-                      <div class="current">سعر البدأ</div>
-                      <div class="amount">{{ $bestAuction->auction->start_price }}</div>
-                    </div>
-                  </div>
-                  <div class="bid-amount">
-                    <div class="icon">
-                      <i class="fas fa-sack-dollar"></i>
-                    </div>
-                    <div class="amount-content">
-                      <div class="current">السعر الحالي</div>
-                      <div class="amount">{{ $bestAuction->bid_price}}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="bid-count-area">
-                <span class="item"><span class="left">عدد المزايدين</span> شخص
-                </span>
-                <!-- <span class="item">
-                  <span class="left">Last Bid </span>7 mins ago
-                </span> -->
-              </div>
-            </div>
-            <div class="auction-bidding">
-              <span class="bid-title"> باق من الزمن</span>
-              <p id="count-down" class="mt-2  "></p>
+{{--                <p>{{ $bestAuction->auction->item_detailes }}</p>--}}
+{{--              </div>--}}
+{{--              <div class="bid-area">--}}
+{{--                <div class="bid-inner row">--}}
+{{--                  <div class="bid-amount">--}}
+{{--                    <div class="icon">--}}
+{{--                      <i class="fad fa-gavel"></i>--}}
+{{--                    </div>--}}
+{{--                    <div class="amount-content">--}}
+{{--                      <div class="current">سعر البدأ</div>--}}
+{{--                      <div class="amount">{{ $bestAuction->auction->start_price }}</div>--}}
+{{--                    </div>--}}
+{{--                  </div>--}}
+{{--                  <div class="bid-amount">--}}
+{{--                    <div class="icon">--}}
+{{--                      <i class="fas fa-sack-dollar"></i>--}}
+{{--                    </div>--}}
+{{--                    <div class="amount-content">--}}
+{{--                      <div class="current">السعر الحالي</div>--}}
+{{--                      <div class="amount">{{ $bestAuction->bid_price}}</div>--}}
+{{--                    </div>--}}
+{{--                  </div>--}}
+{{--                </div>--}}
+{{--              </div>--}}
+{{--              <div class="bid-count-area">--}}
+{{--                <span class="item"><span class="left">عدد المزايدين</span> {{$num}} شخص--}}
+{{--                </span>--}}
+{{--                <!-- <span class="item">--}}
+{{--                  <span class="left">Last Bid </span>7 mins ago--}}
+{{--                </span> -->--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--            <div class="auction-bidding">--}}
+{{--              <span class="bid-title"> باق من الزمن</span>--}}
+{{--              <p id="demo-{{$bestAuction->auction->id}}" end-at="{{$bestAuction->auction->end_at}}"--}}
+{{--                 class="count-down timer timer-counter" style="color: #e67412; font-size: 18px;">></p>--}}
 
-              <div class="bid-incr">
-                <span class="title">أخر زيادة</span>
-                <h4>400ج.م</h4>
-              </div>
-              <a href="{{ route('auction.details',$bestAuction->auction->id) }}" class="custom-button">تفاصيل المزاد</a>
-            </div>
-          </div>
-        </div>
+{{--              <div class="bid-incr">--}}
+{{--                <span class="title">أخر زيادة</span>--}}
+{{--                <h4>{{ $bestAuction->auction->bid_limit }}ج.م</h4>--}}
+{{--              </div>--}}
+{{--              <a href="{{ route('auction.details',$bestAuction->auction->id) }}" class="custom-button">تفاصيل المزاد</a>--}}
+{{--            </div>--}}
+{{--          </div>--}}
+{{--        </div>--}}
 
 
-      </div>
-    </div>
-@endsection
+{{--      </div>--}}
+{{--    </div>--}}
+{{--@endsection--}}

@@ -10,17 +10,41 @@ use PharIo\Manifest\Email;
 trait SendEmail
 {
 
-    protected function send_EmailFun($email,$text,$title)
+    protected function send_EmailFun($email = '',$text = '',$title = '')
     {
-          Mail::send([
-            'html' => 'layouts.site.email-temp'],
-            ['text' => $text, 'email' => $email, 'logo' => 'http://malkheir.com/site/img/logo.png', 'title' => $title],
-             function ($message) use($email)  {
-                $message->to($email,'mazaadElkheir')
-                    ->from('support@malkheir.com','mazaadElkheir')
-                    ->subject(__('Reservation Details'));
-            }
-        );
+
+
+        $to = $email;
+        $subject = $title;
+        $txt = $text;
+        $headers = "From: support@malkheir.com" . "\r\n" .
+                   "CC: support@malkheir.com";
+
+        mail($to,$subject,$txt,$headers);
+
+
+
+//
+//          Mail::send(
+//
+//                [
+//                   'html' => 'layouts.site.email-temp'
+//                ],
+//                [
+//                    'text' => $text,
+//                    'email' => $email,
+//                    'logo' => 'http://malkheir.com/site/img/logo.png',
+//                    'title' => $title
+//                ],
+//                 function ($message) use($email)  {
+//                    $message->to($email,'mazaadElkheir')
+//                        ->from('support@malkheir.com','mazaadElkheir')
+//                        ->subject(__('Reservation Details'));
+//                }
+//
+//        );
+//
+
     }
 
 

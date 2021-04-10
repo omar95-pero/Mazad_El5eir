@@ -31,7 +31,8 @@ Route::get('/Read/{id}','Site\IndexController@is_readable')->name('readable');
 #====================================================================#
 #=====================================================================#
 //--------------------------------Linkes For Side Bar------------------
-Route::get('/bestAuctions','Site\AuctionController@Best')->name('bestAuctions');
+Route::get('/bestAuctions','Site\AuctionController@bestAuctions')->name('bestAuctions');
+Route::get('/cat/{id}','Site\AuctionController@category')->name('category');
 ###======================User Profile Routes========================####
 Route::get('/profile/{id}','Site\IndexController@getProfile')->name('user.profile');
 //------------------------------------------------------------------------------
@@ -45,6 +46,8 @@ Route::post('/reset_password/{id}','Site\ResetPasswordController@reset')->name('
 
 #############################Bid Process#############################
 #####################################################################
+//===============================All News ======================
+Route::get('/all_news','Site\IndexController@news')->name('news');
 #####################################################################
 Route::post('AuctionProcess/{id}', 'Site\BidController@bidProcess')->name('AuctionProcess');
 
@@ -70,8 +73,5 @@ Route::get('/artisan/{order}', function ($order) {
 
    \Illuminate\Support\Facades\Artisan::call($order) ;
 });
-
-
-
 
 

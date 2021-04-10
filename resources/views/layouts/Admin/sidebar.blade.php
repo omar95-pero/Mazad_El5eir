@@ -84,6 +84,39 @@
                     </ul>
                 </div>
             </li>
+            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-user"></i><span class="m-menu__link-text text">عن الموقع</span><i
+                        class="m-menu__ver-arrow la la-angle-right"></i></a>
+                <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
+                    <ul class="m-menu__subnav">
+                        <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"><span class="m-menu__link"><span class="m-menu__link-text"></span></span></li>
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('about')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text">عن الموقع</span></a></li>
+                        {{--                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('insert.charity')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text">أضافة جمعية</span></a></li>--}}
+
+                    </ul>
+                </div>
+            </li>
+            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-user"></i><span class="m-menu__link-text text">الاقسام</span><i
+                        class="m-menu__ver-arrow la la-angle-right"></i></a>
+                <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
+                    <ul class="m-menu__subnav">
+                        <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"><span class="m-menu__link"><span class="m-menu__link-text"></span></span></li>
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('ShowCategories.index')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text">الاقسام</span></a></li>
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('insert.category')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text">أضافة قسم</span></a></li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-user"></i><span class="m-menu__link-text text">اخر الاخبار</span><i
+                        class="m-menu__ver-arrow la la-angle-right"></i></a>
+                <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
+                    <ul class="m-menu__subnav">
+                        <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"><span class="m-menu__link"><span class="m-menu__link-text"></span></span></li>
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{url('admin/last_news/index ')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text">الاخبار</span></a></li>
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('create.last_news')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text text">أضافة خبر</span></a></li>
+
+                    </ul>
+                </div>
+            </li>
         </ul>
     </div>
 

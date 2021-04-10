@@ -81,8 +81,15 @@
                                 <td>{{$new->title}}</td>
                                 <td>{{$new->slug}}</td>
                                 <td>{{$new->body}}</td>
+                                @if(str_contains(mime_content_type($new->image),'image'))
                                 <td><img style="width: 70px;height: 70px" src="{{get_file($new->image)}}" alt="user" onclick="window.open(this.src)"/></td>
-                                <td >
+                                @endif
+                                @if(str_contains(mime_content_type($new->image),'video'))
+                                    <td>
+                                    <iframe width="75" height="75" src="{{ get_file($new->image) }}" frameborder="0" allowfullscreen></iframe>
+                                    </td>
+                                @endif
+                                    <td >
                                     <a href="{{ url('admin/news',$new->id)}}">
                                         <button type="submit" class="btn btn-info btn-sm"   ><i class="fa fa-edit" style="margin-left: 1px"></i></button>
                                     </a>
@@ -99,4 +106,7 @@
                             </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
 @endsection

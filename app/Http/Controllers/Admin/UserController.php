@@ -172,4 +172,13 @@ class UserController extends Controller
         $delete_=User::whereIn('id', $ids)->delete();
         return response('yes');
     }
+    public function userStatus( $id){
+        $state = User::findOrFail($id);
+        if ($state->blocked_status == 'no'){
+            $state = User::where('id',$id)->update(['blocked_status'=>'yes']);
+        }elseif($state->blocked_status == 'yes'){
+            $state = User::where('id',$id)->update(['blocked_status'=>'no']);
+        }
+        return back();
+    }
 }

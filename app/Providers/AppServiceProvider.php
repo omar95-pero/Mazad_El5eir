@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use App\Models\Notification;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Pagination\Paginator;
+use App\Validators\ReCaptcha;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,9 +25,12 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+
     public function boot()
     {
 
+        Validator::extend('recaptcha', 'App\Validators\ReCaptcha@validate');
+        Paginator::useBootstrap();
 
     }
 }

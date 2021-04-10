@@ -108,15 +108,15 @@
                             <h6 class=" font-weight-bold px-3 pt-21 pb-2 border-bottom"> الاشعارات </h6>
                             <h5 class=" font-weight-bold"> </h5>
 
-                            <div class="row">
+                            <div class="row" style="height: 250px!important;overflow-y: scroll!important;">
 {{--                                <div class="col-3 p-1 d-flex justify-content-center align-items-center">--}}
 {{--                                    <i class="far fa-bell"></i>--}}
 {{--                                </div>--}}
-
                                 @foreach(notificationHelper() as $key => $val)
-                                <div class="col-9 p-1 d-flex justify-content-start align-items-center pl-4">
                                     @if($val->is_read == 'no')
-                                    <a href="{{route('readable',$val->id)}}">
+                                        <div class="col-9 p-1 d-flex justify-content-start align-items-center pl-4">
+
+                                        <a href="{{route('readable',$val->id)}}">
                                         <h6>{{$out =auth()->user() == $val->user->name ?"لقد قمت انت":"قام :".$val->user->name }}  </h6>
                                         <p> بالمزايدة علي مزادك </p>
 

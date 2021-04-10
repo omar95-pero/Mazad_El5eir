@@ -90,74 +90,7 @@
     <!--////////////////////////////////////////////////////////////////////////////////-->
     <!--////////////////////////////////////////////////////////////////////////////////-->
 
-    <!-- SideNav slide-out button -->
-    <a href="#" data-activates="slide-out" class="btn btn-primary p-3 button-collapse"
-       style="position: fixed ; background-color: #107b50 !important ; z-index: 123456;"><i class="fas fa-bars"></i></a>
-
-    <!-- Sidebar navigation -->
-    <div id="slide-out" class="side-nav    " style="background-color: #fff !important; ">
-        <ul class="custom-scrollbar" style="overflow-y: scroll;">
-            <!-- Logo -->
-            <li>
-                <div class="logo-wrapper waves-light" style="height: 175px;">
-                    <a href="#"><img src="{{asset('assets/img/logo.png')}}" class="img-fluid flex-center"></a>
-                </div>
-            </li>
-            <!--/. Logo -->
-
-            <div class="container">
-                <ul class="side-contents mt-4">
-                    <li> <a href="{{route('bestAuctions')}}"
-                            style="height: 45px; color: #107b50; font-weight: bold; line-height: 40px ; font-size: 15px !important;">
-                            <i class="fad fa-concierge-bell ml-1"></i> مزادات مميزة </a> </li>
-                    <li> <a href=""
-                            style="height: 45px; color: #107b50; font-weight: bold; line-height: 40px ; font-size: 15px !important;"><i
-                                class="fad fa-concierge-bell ml-1"></i> الأكثر مزايدة</a> </li>
-                    <li> <a href=""
-                            style="height: 45px; color: #107b50; font-weight: bold; line-height: 40px ; font-size: 15px !important;"><i
-                                class="fad fa-tshirt ml-1"></i> ملابس</a> </li>
-                    <li> <a href=""
-                            style="height: 45px; color: #107b50; font-weight: bold; line-height: 40px ; font-size: 15px !important;"><i
-                                class="fad fa-tablet ml-1"></i> موبايلات وتابلت </a> </li>
-                    <li> <a href=""
-                            style="height: 45px; color: #107b50; font-weight: bold; line-height: 40px ; font-size: 15px !important;"><i
-                                class="fad fa-charging-station ml-1"></i> أجهزة كهربائيه</a> </li>
-                    <li> <a href=""
-                            style="height: 45px; color: #107b50; font-weight: bold; line-height: 40px ; font-size: 15px !important;"><i
-                                class="fad fa-couch ml-1"></i> اثاث وأدوات منزليه</a> </li>
-                    <li> <a href=""
-                            style="height: 45px; color: #107b50; font-weight: bold; line-height: 40px ; font-size: 15px !important;">
-                            <i class="fad fa-gamepad-alt ml-1"></i> العاب ومستلزمات أطفال</a> </li>
-                    <li> <a href=""
-                            style="height: 45px; color: #107b50; font-weight: bold; line-height: 40px ; font-size: 15px !important;">
-                            <i class="fad fa-gamepad-alt ml-1"></i>تحف وانتيكات</a> </li>
-                    <li> <a href=""
-                            style="height: 45px; color: #107b50; font-weight: bold; line-height: 40px ; font-size: 15px !important;">
-                            <i class="fad fa-gamepad-alt ml-1"></i>أجهزة رياضيه </a> </li>
-                    <li> <a href=""
-                            style="height: 45px; color: #107b50; font-weight: bold; line-height: 40px ; font-size: 15px !important;">
-                            <i class="fad fa-gamepad-alt ml-1"></i> أخرى </a> </li>
-                </ul>
-            </div>
-
-
-            <!--Social-->
-            <li>
-                <ul class="social">
-                    <li><a href="#" class="icons-sm fb-ic"><i class="fab fa-facebook-f"
-                                                              style="font-size:18px ; color: rgb(38, 51, 167);"> </i></a></li>
-                    <li><a href="#" class="icons-sm gplus-ic"><i class="fab fa-google-plus-g"
-                                                                 style="font-size:18px ; color: rgb(163, 7, 7);"> </i></a></li>
-                    <li><a href="#" class="icons-sm tw-ic"><i class="fab fa-twitter"
-                                                              style="font-size:18px ; color: rgb(23, 173, 243);"> </i></a></li>
-                </ul>
-            </li>
-            <!--/Social-->
-            <!--/. Side navigation links -->
-        </ul>
-        <div class="sidenav-bg "></div>
-    </div>
-    <!--/. Sidebar navigation -->
+   @include('layouts.site.side-bar')
 
     <!--////////////////////////////////////////////////////////////////////////////////-->
     <!--////////////////////////////////////////////////////////////////////////////////-->
@@ -167,7 +100,7 @@
     <!--////////////////////////////////////////////////////////////////////////////////-->
     <!--////////////////////////////////////////////////////////////////////////////////-->
 
-    <div class="title-top margin-top  d-flex align-items-center justify-content-start">
+{{--    <div class="title-top margin-top  d-flex align-items-center justify-content-start">--}}
 {{--        <div class="contents d-flex align-items-center mr-4 justify-content-center">--}}
 {{--            <a href="{{ route('index') }}"> <i class="fad fa-home pl-2"></i> الرئيسية </a>--}}
 {{--            <span> \ </span>--}}
@@ -175,7 +108,7 @@
 
 {{--        </div>--}}
 
-    </div>
+{{--    </div>--}}
 
 
     <!--////////////////////////////////////////////////////////////////////////////////-->
@@ -187,13 +120,14 @@
     <!--////////////////////////////////////////////////////////////////////////////////-->
     <!-- Start Causes
     ============================================= -->
+    @if($auctionDetailes->status == 'done')
     <div class="causes-area  pt-5">
         <div class="container">
 
 
             <div class="causes-items">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 p-0">
                         <!-- Single Item -->
                         <div class="grid-item">
                             <div class="row">
@@ -201,62 +135,192 @@
 
 
 
-                                <div class="thumb col-lg-5 rounded" data-fancybox="gallery" href="img/TopSales/car.jpg"
-                  style="background-image: url({{ get_file($auctionDetailes->image) }});">
-
+                                <div class="thumb col-lg-5  rounded" {{--data-fancybox="gallery" href="{{get_file($auctionDetailes->image)}}"
+                  style="background-image: url({{ get_file($auctionDetailes->image) }});"--}}>
+                                    <img style="width: 100%; height: 70%;" src="{{ get_file($auctionDetailes->image) }}" data-fancybox="gallery" href="{{get_file($auctionDetailes->image)}}" alt="">
                   <span class="cats">لصالح {{$charity_name}}</span>
+                                    <div class="mb-4 ">
+                                        <div class="gallery my-4 px-0">
+                                            <!-- Swiper -->
+                                            <div class="swiper-container">
+                                                <div class="swiper-wrapper">
+                                                    @foreach($getImages as $image )
+                                                        <div class="swiper-slide">
+                                                            <a data-fancybox="gallery" href="{{ get_file($image->imag) }}">
+                                                                <img src="{{ get_file($image->imag) }}">
+                                                            </a>
+                                                        </div>
+                                                        <div class="swiper-slide">
+                                                            <a data-fancybox="gallery" href="{{ get_file($image->img) }}">
+                                                                <img src="{{ get_file($image->img) }}">
+                                                            </a>
+                                                        </div>
+                                                        <div class="swiper-slide">
+                                                            <a data-fancybox="gallery" href="{{ get_file($image->imge) }}">
+                                                                <img src="{{ get_file($image->imge) }}">
+                                                            </a>
+                                                        </div>
+                                                    @endforeach
+                                                    @foreach($getImages as $img )
+                                                        <div class="swiper-slide">
+                                                            <a data-fancybox="gallery" href="{{ get_file($img->imag) }}">
+                                                                <img src="{{ get_file($img->imag) }}">
+                                                            </a>
+                                                        </div>
+                                                        <div class="swiper-slide">
+                                                            <a data-fancybox="gallery" href="{{ get_file($img->img) }}">
+                                                                <img src="{{ get_file($img->img) }}">
+                                                            </a>
+                                                        </div>
+                                                        <div class="swiper-slide">
+                                                            <a data-fancybox="gallery" href="{{ get_file($img->imge) }}">
+                                                                <img src="{{ get_file($img->imge) }}">
+                                                            </a>
+                                                        </div>
+                                                    @endforeach
+                                                    {{--                                                @endforeach--}}
+                                                    {{--                                                <div class="swiper-slide">--}}
+                                                    {{--                                                    <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">--}}
+                                                    {{--                                                        <img src="{{ get_file($auctionDetailes->image) }}">--}}
+                                                    {{--                                                    </a>--}}
+                                                    {{--                                                </div>--}}
+                                                    {{--                                                <div class="swiper-slide">--}}
+                                                    {{--                                                    <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">--}}
+                                                    {{--                                                        <img src="{{ get_file($auctionDetailes->image) }}">--}}
+                                                    {{--                                                    </a>--}}
+                                                    {{--                                                </div>--}}
+                                                    {{--                                                <div class="swiper-slide">--}}
+                                                    {{--                                                    <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">--}}
+                                                    {{--                                                        <img src="{{ get_file($auctionDetailes->image) }}">--}}
+                                                    {{--                                                    </a>--}}
+                                                    {{--                                                </div>--}}
 
-                </div>
+                                                </div>
+                                                <!-- Add Pagination -->
+                                                <div class="swiper-pagination" style="bottom: -25px;">
+
+                                                </div>
+                                                <!-- Add Arrows -->
+                                                <div class="swiper-button-next" style="background-color: #fff ; left: 2px !important;
+                                                                            right: auto !important; bottom: 25px !important;"></div>
+                                                <div class="swiper-button-prev" style="right: 2px !important;
+                                                                        background-color: #fff ; left: auto !important; bottom: 25px !important;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
 
                                 <div class="info col-lg-7">
 
-                                    <h3 class="mb-4">
-                                        <a href="#"> المزاد عن {{ $auctionDetailes->item_name }}
-
-                                        </a>
+                                    <h3 class="mb-1 ">
+                                        <a href="#"> المزاد عن {{ $auctionDetailes->item_name }}</a>
 {{--                                        <span> <i class="far fa-eye"></i> </span>--}}
 {{--                                        <span>{{$view_count}}</span>--}}
                                         <a href="{{route('favorite-action',$auctionDetailes->id)}}">
-                                            <span class="float-left favorite " style="{{$auctionDetailes->favorite == "yes"?'transform: scale(0.9); color: #FFD700;':''}}">
+                                            <span class="float-left favorite " style="{{$auctionDetailes->favorite == "yes"?'transform: scale(0.9); color: red;':''}}">
                                                 <i class="fad fa-heart"></i>
                                             </span>
                                         </a>
                                     </h3>
-                                    <p>
-
-                                    </p>
+                                    <p style="color: #7b7b7b;
+    font-weight: bold;
+    font-size: 14px;">  <i class="fad fa-user pl-1" style="color: #107b50"></i>   <span>{{$auctionDetailes->user->name}}</span>  </p>
                                     <div class="top-entry my-3 row">
-                                        <div class="date col-md-6 mb-3">
-                                            <i class="fad fa-tags pl-2"></i> أعلى سعر  :<strong
+                                        <div class="date main-price col-md-12 d-flex justify-content-center mb-3">
+                                            <span style="    display: block; font-weight: bold; color: orangered; font-size: 20px;">  <i class="fad fa-tags pl-2"></i>أعلى سعر  :</span><strong
                                                     class="last-price font-weight-bold px-2">
 
                                                 {{  number_format($maxPrice)}}
 
                                             </strong> جنية
                                         </div>
-                                        <div class="date col-md-6 mb-3">
-                                            <i class="fad fa-tags pl-2"></i> سعر البدأ  :<strong
+                                        <div class="date col-md-6  d-flex  justify-content-center mb-3">
+                                            <span style="    display: block; font-weight: bold; color: #ffc200; font-size: 18px;">  <i class="fad fa-tags pl-2"></i>سعر البدأ  :</span><strong
                                                     class="last-price font-weight-bold px-2">
 
                                                 {{ number_format($auctionDetailes->start_price)}}
 
                                             </strong> جنية
                                         </div>
-                                        <div class="date col-md-6 mb-3">
-                                            <i class="fad fa-tags pl-2"></i> حد المزايدة :<strong
+                                        <div class="date d-flex col-md-6 justify-content-center mb-3">
+                                            <span style="    display: block; font-weight: bold; color: #ffc200; font-size: 18px;">  <i class="fad fa-tags pl-2"></i>حد المزايدة :</span>
+                                            <strong
                                                     class="last-price font-weight-bold px-2">
 
                                                 {{  number_format($auctionDetailes->bid_limit)}}
 
                                             </strong> جنية
                                         </div>
-                                        <div class="location col-md-6 mb-3">
-                                            <i class="fad fa-user pl-2"></i> <strong>صاحب المزاد : </strong> <a
-                                                    href="profile.html"> {{ $auctionDetailes->user->name }}                                            </a>
-                                        </div>
-                                    </div>
+{{--                                        <div class="location col-md-6 mb-3">--}}
+{{--                                            <span style="    display: block; font-weight: bold; color: #ffc200; font-size: 18px;">  <i class="fad fa-user pl-2"></i>صاحب المزاد :</span> <a--}}
+{{--                                                    href="#"> {{ $auctionDetailes->user->name }}                                            </a>--}}
+{{--                                        </div>--}}
 
-                                    <h3 class="font-weight-bold mb-3" style="color: #107b50; font-size: 23px "> أعلى المزايدين : </h3>
+
+
+                                        <div class="col-12 mb-3" style="background: #e7f2ed;">
+                                            <div  class="w-100 text-center">
+                                                <div id="demo-{{$auctionDetailes->id}}" class="countdown time-counter" end-at="{{$auctionDetailes->end_at}}">
+                                                    <ul class="d-flex justify-content-center mb-0">
+                                                        <li><span id="seconds" class="timer_sec"  style="display: block !important;" ></span>ثانية</li>
+
+                                                        <li><span id="minutes" class="timer_min" style="display: block !important;" ></span>دقيقة</li>
+
+                                                        <li><span id="hours" class="timer_hour" style="display: block !important;" ></span>ساعة</li>
+
+                                                        <li><span id="days" class="timer_day" style="display: block !important;" ></span>يوم</li>
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+                                            <div class="d-flex justify-content-around">
+
+                                                <div class="location   mb-3">
+                                                    <span style="   font-weight: bold; color: #8a8c8c; font-size: 25px;">  <i class="fad fa-eye pl-2"></i>
+                                                        {{ $auctionDetailes->views }}
+                                                   </span>
+                                                    <p class=" ">  مشاهدات </p>
+                                                </div>
+
+                                                <div class="location    mb-3">
+                                                    <span style="    font-weight: bold; color: #8a8c8c; font-size: 25px;">  <i class="fad fa-gavel pl-2" style="font-size: 25px;"></i>
+                                                     {{ $bidUsersNumber }}
+                                                    </span>
+                                                    <p class=" ">  مزايد </p>
+
+                                                </div>
+                                                <div class="location    mb-3">
+                                                    <span style="  font-weight: bold; color: #8a8c8c; font-size: 25px;">  <i class="fad fa-sack pl-2" style="font-size: 25px;"></i>
+                                                     {{ $bidsNumber }}
+                                                    </span>
+                                                    <p class=" ">  مزايدات </p>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="content-share d-flex justify-content-between">
+                                        <h3 class="font-weight-bold mb-3" style="color: #107b50; font-size: 23px ">   </h3>
+                                        <!--Social-->
+                                        <div class="">
+                                            <ul class="social d-flex float-left">
+
+{{--                                                <li class="mx-1">مشاركة :</li>--}}
+                                                <li class="mx-1"> <a  class="shareLink mx-1" target="_blank" href="https://facebook.com/sharer/sharer.php?u={{route('auction.details',$auctionDetailes->id)}}"><i class="fab fa-facebook-f"
+                                                                                                                                                                                                                  style="font-size:18px ; color: rgb(38, 51, 167);"> </i></a></li>
+                                                <li class="mx-1"><a  class="shareLink mx-1" target="_blank" href="https://plus.google.com/share?url={{route('auction.details',$auctionDetailes->id)}}"><i class="fab fa-google-plus-g"
+                                                                                                                                                                                                          style="font-size:18px ; color: rgb(163, 7, 7);"> </i></a></li>
+                                                <li class="mx-1"><a  class="shareLink mx-1" target="_blank" href="https://twitter.com/share?url={{route('auction.details',$auctionDetailes->id)}}"><i class="fab fa-twitter"
+                                                                                                                                                                                                      style="font-size:18px ; color: rgb(23, 173, 243);"> </i></a></li>
+                                            </ul>
+                                        </div>
+                                        <!--/Social-->
+                                    </div>
 
                                     <div  class="auction-people">
                                         <div class="row">
@@ -269,6 +333,7 @@
 
                                                         <img src="{{ $bid->user->image? get_file($bid->user->image):asset("assets/img/user.jpg")}}" alt="">
                                                     </div>
+
                                                     <div class="col-9 d-flex align-items-center">
                                                         <div>
                                                             <a class="font-weight-bold">{{ $bid->user->name }}</a>
@@ -285,131 +350,49 @@
                                         </div>
                                     </div>
 
-                                    <!--Social-->
-                                    <div class="my-3">
-                                        <ul class="social d-flex float-left">
+                                    <div class="">
+                                        {{--                                    <div class="progress-box">--}}
+                                        {{--                                        <div class="progress">--}}
+                                        {{--                                            <div class="progress-bar" role="progressbar" data-width="33">--}}
+                                        {{--                                                <span>33%</span>--}}
+                                        {{--                                            </div>--}}
+                                        {{--                                        </div>--}}
+                                        {{--                                        <!-- <p> أخر سعر :  $5488   <span> سعر البدء : $12800 </span> </p> -->--}}
 
-                                            <li class="mx-2">مشاركة :</li>
-                                            <li class="mx-2"> <a  class="shareLink mx-1" target="_blank" href="https://facebook.com/sharer/sharer.php?u={{route('auction.details',$auctionDetailes->id)}}"><i class="fab fa-facebook-f"
-                                                                                                   style="font-size:18px ; color: rgb(38, 51, 167);"> </i></a></li>
-                                            <li class="mx-2"><a  class="shareLink mx-1" target="_blank" href="https://plus.google.com/share?url={{route('auction.details',$auctionDetailes->id)}}"><i class="fab fa-google-plus-g"
-                                                                                                      style="font-size:18px ; color: rgb(163, 7, 7);"> </i></a></li>
-                                            <li class="mx-2"><a  class="shareLink mx-1" target="_blank" href="https://twitter.com/share?url={{route('auction.details',$auctionDetailes->id)}}"><i class="fab fa-twitter"
-                                                                                                   style="font-size:18px ; color: rgb(23, 173, 243);"> </i></a></li>
-                                        </ul>
+                                        {{--                                    </div>--}}
+
+
+
+                                                @auth
+                                                    @if(\Carbon\Carbon::parse($auctionDetailes->end_at) > \Carbon\Carbon::now())
+                                                        @if($auctionDetailes->user_id != auth()->user()->id)
+                                                            <form action="{{ url('AuctionProcess',$auctionDetailes->id) }}" method="POST">
+                                                                @csrf
+                                                                <div class="form-group d-flex" style="    justify-content: space-around;">
+                                                                    <input type="number" class="form-control w-75" style="height: 50px" name="bid_price" placeholder=" ادخل سعر المزايدةلايقل عن{{ $out = number_format(($out = $maxPrice?$maxPrice:$auctionDetailes->start_price)+$auctionDetailes->bid_limit)}}" required>
+                                                                    <input type="hidden" class="form-control" name="Auction_id" value="{{ $auctionDetailes->id }}">
+                                                                    <button id="price-input-show" class="btn m-0 btn-theme border" href="#" style=" border-radius: 6px !important;     border-radius: 6px !important;
+    padding: 10px 20px;
+    font-weight: bold;">زايد
+                                                                        الان</button>
+                                                                </div>
+
+
+                                                            </form>
+                                                        @endif
+                                                    @endif
+                                                @endauth
+
+
                                     </div>
-                                    <!--/Social-->
+
+
+
                                 </div>
 
 
-                                <div class="col-lg-5 px-0">
-                                    <div class="gallery my-4 px-0">
-                                        <!-- Swiper -->
-                                        <div class="swiper-container">
-                                            <div class="swiper-wrapper">
-                                                @foreach($getImages as $image )
-                                                <div class="swiper-slide">
-                                                    <a data-fancybox="gallery" href="{{ get_file($image->imag) }}">
-                                                        <img src="{{ get_file($image->imag) }}">
-                                                    </a>
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <a data-fancybox="gallery" href="{{ get_file($image->img) }}">
-                                                        <img src="{{ get_file($image->img) }}">
-                                                    </a>
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <a data-fancybox="gallery" href="{{ get_file($image->imge) }}">
-                                                        <img src="{{ get_file($image->imge) }}">
-                                                    </a>
-                                                </div>
-                                                @endforeach
-                                                    @foreach($getImages as $img )
-                                                        <div class="swiper-slide">
-                                                            <a data-fancybox="gallery" href="{{ get_file($img->imag) }}">
-                                                                                        <img src="{{ get_file($img->imag) }}">
-                                                            </a>
-                                                        </div>
-                                                        <div class="swiper-slide">
-                                                            <a data-fancybox="gallery" href="{{ get_file($img->img) }}">
-                                                                <img src="{{ get_file($img->img) }}">
-                                                            </a>
-                                                        </div>
-                                                        <div class="swiper-slide">
-                                                            <a data-fancybox="gallery" href="{{ get_file($img->imge) }}">
-                                                                <img src="{{ get_file($img->imge) }}">
-                                                            </a>
-                                                        </div>
-                                                    @endforeach
-{{--                                                @endforeach--}}
-{{--                                                <div class="swiper-slide">--}}
-{{--                                                    <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">--}}
-{{--                                                        <img src="{{ get_file($auctionDetailes->image) }}">--}}
-{{--                                                    </a>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="swiper-slide">--}}
-{{--                                                    <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">--}}
-{{--                                                        <img src="{{ get_file($auctionDetailes->image) }}">--}}
-{{--                                                    </a>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="swiper-slide">--}}
-{{--                                                    <a data-fancybox="gallery" href="{{ get_file($auctionDetailes->image) }}">--}}
-{{--                                                        <img src="{{ get_file($auctionDetailes->image) }}">--}}
-{{--                                                    </a>--}}
-{{--                                                </div>--}}
-
-                                            </div>
-                                            <!-- Add Pagination -->
-                                            <div class="swiper-pagination" style="bottom: -25px;">
-
-                                            </div>
-                                            <!-- Add Arrows -->
-                                            <div class="swiper-button-next" style="background-color: #fff ; left: 2px !important;
-  right: auto !important; bottom: 25px !important;"></div>
-                                            <div class="swiper-button-prev" style="right: 2px !important;
-  background-color: #fff ; left: auto !important; bottom: 25px !important;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-7">
-                                    <div class="progress-box">
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" data-width="33">
-                                                <span>33%</span>
-                                            </div>
-                                        </div>
-                                        <!-- <p> أخر سعر :  $5488   <span> سعر البدء : $12800 </span> </p> -->
-
-                                    </div>
-                                    <div
-                                        class="mt-4 d-flex justify-content-between align-items-center position-relative">
 
 
-                                        <p id="count-down" class="mt-2 "></p>
-                                    </div>
-                                    <div class="row">
-                                    <div class="col-lg-8">
-                                        @auth
-                       @if(\Carbon\Carbon::parse($auctionDetailes->end_at) > \Carbon\Carbon::now())
-
-                                        <form action="{{ url('AuctionProcess',$auctionDetailes->id) }}" method="POST">
-                                            @csrf
-                                            <div class="col-lg-12">
-                                            <div class="form-group">
-                                            <input type="number" class="form-control" name="bid_price" placeholder=" ادخل سعر المزايدة{{number_format($maxPrice).'+'.number_format($auctionDetailes->bid_limit)}}" required>
-                                            <input type="hidden" class="form-control" name="Auction_id" value="{{ $auctionDetailes->id }}">
-                                            </div>
-                                           </div>
-                                            <button id="price-input-show" class="btn btn-theme border" href="#">زايد
-                                            الان</button>
-                                         </form>
-                       @endif
-                                        @endauth
-
-                                    </div>
-                                    </div>
-                                </div>
 
 
                                 <style>
@@ -417,14 +400,22 @@
                                     .md-tabs .nav-item.open .nav-link {
                                         background-color: #ffffff;
                                         color: rgb(48, 48, 48);
+                                    }
 
+                                    .md-tabs .nav-link p {
+                                        color:#0f0f0f !important;
+                                    }
 
+                                    @media (max-width: 768px) {
+                                        .top-entry span {
+                                            display: inline !important;
+                                        }
                                     }
                                 </style>
 
                                 <div class="col-12 mb-3  client-edits">
                                     <ul class="nav nav-tabs nav-justified md-tabs " id="myTabJust" role="tablist"
-                                        style="background-color:#107b50; box-shadow: none; ">
+                                        style="background-color:#e7f2ed; box-shadow: none; ">
                                         <li class="nav-item">
                                             <a class="nav-link active" id="home-tab-just" data-toggle="tab" href="#home-just" role="tab"
                                                aria-controls="home-just" aria-selected="true">
@@ -465,7 +456,7 @@
 
                                         <div class="tab-pane fade show active" id="home-just" role="tabpanel"
                                              aria-labelledby="home-tab-just">
-                                            {{ $auctionDetailes->item_detailes }}
+                                            {!! $auctionDetailes->item_detailes !!}
 
 
                                         </div>
@@ -474,7 +465,13 @@
 
                                         <div class="tab-pane fade" id="profile-just" role="tabpanel" aria-labelledby="profile-tab-just">
 
-                                            {{ $auctionDetailes->delivery_details}}
+                                            <p>المحافظة:{{$auctionDetailes->delivery->govrnate->govrnate}}</p>
+                                            <p>الطول:{{$auctionDetailes->delivery->length}}سم</p>
+                                            <p>العرض:{{$auctionDetailes->delivery->width}}سم</p>
+                                            <p>الارتفاع:{{$auctionDetailes->delivery->height}}سم</p>
+                                            <p>الوزن:{{$auctionDetailes->delivery->weight}}جم</p>
+                                            <p>القابلية للكسر:{{$out = $auctionDetailes->delivery->is_breakable=='yes'?'قابل للكسر':'غير قابل للكسر'}}</p>
+                                            <p>التصنيف:{{ $auctionDetailes->delivery->type}}</p>
 
                                         </div>
 
@@ -549,6 +546,7 @@
             </div>
         </div>
     </div>
+    @endif
     <!-- End Causes -->
 {{--<div class="row">--}}
 {{--    <div class="col-12">--}}
@@ -584,37 +582,72 @@
     <!--////////////////////////////////////////////////////////////////////////////////-->
     <!--////////////////////////////////////////////////////////////////////////////////-->
 @include('layouts.site.js')
-
     <script>
-        // Set the date we're counting down to
-        var countDownDate = new Date("{{$auctionDetailes->end_at}}").getTime();
-
-        // Update the count down every 1 second
         var x = setInterval(function () {
 
-            // Get todays date and time
-            var now = new Date().getTime();
+            $(".time-counter").each(function () {
+                var op  = $(this)
+                var oneEndAt = $(this).attr("end-at");
+                var countDownDate = new Date(oneEndAt).getTime();
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
 
-            // Find the distance between now an the count down date
-            var distance = countDownDate - now;
+                if (distance <= 0){
+                    $(this).css("text-align","center","height","80px").html("منتهى ");
+                }else {
+                    var days   = op.find('.timer_day').html(Math.floor(distance / (1000 * 60 * 60 * 24))) ;
+                    var hours  = op.find(".timer_hour").html(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))) ;
+                    var min    = op.find(".timer_min").html(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+                    var second = op.find(".timer_sec").html( Math.floor((distance % (1000 * 60)) / 1000));
+                }
 
-            // Time calculations for days, hours, minutes and seconds
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Display the result in the element with id="cont-down"
-            document.getElementById("count-down").innerHTML = days + "d " + hours + "h " +
-                minutes + "m " + seconds + "s ";
+                // Get today's date and tme
+                // Find the distance between now and the count down date
 
-            // If the count down is finished, write some text
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("count-down").innerHTML = "لقد إنتهى وقت المزاد";
-            }
-        }, 1000);
+
+                // console.log(typeof days);
+                // console.log(h);
+                // console.log(m);
+                // console.log(s);
+                //do something later when date is reached
+
+                // seconds
+            }, 0)
+        });
     </script>
+
+
+    {{--    <script>--}}
+{{--        // Set the date we're counting down to--}}
+{{--        var countDownDate = new Date("{{$auctionDetailes->end_at}}").getTime();--}}
+
+{{--        // Update the count down every 1 second--}}
+{{--        var x = setInterval(function () {--}}
+
+{{--            // Get todays date and time--}}
+{{--            var now = new Date().getTime();--}}
+
+{{--            // Find the distance between now an the count down date--}}
+{{--            var distance = countDownDate - now;--}}
+
+{{--            // Time calculations for days, hours, minutes and seconds--}}
+{{--            var days = Math.floor(distance / (1000 * 60 * 60 * 24));--}}
+{{--            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));--}}
+{{--            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));--}}
+{{--            var seconds = Math.floor((distance % (1000 * 60)) / 1000);--}}
+
+{{--            // Display the result in the element with id="cont-down"--}}
+{{--            document.getElementById("count-down").innerHTML = days + "d " + hours + "h " +--}}
+{{--                minutes + "m " + seconds + "s ";--}}
+
+{{--            // If the count down is finished, write some text--}}
+{{--            if (distance < 0) {--}}
+{{--                clearInterval(x);--}}
+{{--                document.getElementById("count-down").innerHTML = "لقد إنتهى وقت المزاد";--}}
+{{--            }--}}
+{{--        }, 1000);--}}
+{{--    </script>--}}
 
     <script>
         var swiper = new Swiper('.swiper-container', {

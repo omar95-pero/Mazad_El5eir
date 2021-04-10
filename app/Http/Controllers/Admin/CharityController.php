@@ -49,7 +49,7 @@ class CharityController extends Controller
     public function destroy($id)
     {
         $row =Charity::find($id)->delete();
-        toastr()->success('تم حذف الخبر بنجاح');
+        toastr()->success('تم حذف الجمعية بنجاح');
         return redirect('admin/charities/index');
     }
 }

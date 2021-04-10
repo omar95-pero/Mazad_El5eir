@@ -28,7 +28,26 @@ class AuctionRequest extends FormRequest
             'start_price' => 'required|number',
             'target_price' => 'required|number',
             'start_at' => 'required',
-            'end_at' => 'required'
+            'end_at' => 'required',
+            'image' => 'image|required',
+            'imag' => 'image|required',
+            'img' => 'image|required',
+            'imge' => 'image|required',
+            'item_detailes' =>'string|required',
+            'delivery_details' =>'string|required',
+
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'required' => 'يجب عليك ادخال هذا الحقل',
+            'max:300' => 'هذا الحقل لايجب ان يزيد عن 300 حرف',
+            'number' => 'هذا الحقل يجب ان يكون رقم',
+            'image' => 'هذا الحقل يجب ان يكون صورة',
+            'string' => 'هذا الحقل يجب ان يكون حروف',
+
+
         ];
     }
 }

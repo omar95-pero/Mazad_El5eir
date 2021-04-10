@@ -34,5 +34,9 @@ return [
         'client_secret' => 'your client secret key',
         'redirect' => 'http://localhost:8000/authorized/google/callback',
     ],
+    'recaptcha' => [
+        'key' => env('GOOGLE_RECAPTCHA_KEY'),
+        'secret' => env('GOOGLE_RECAPTCHA_SECRET'),
+    ],
 
 ];

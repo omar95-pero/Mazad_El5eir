@@ -35,8 +35,9 @@
     <!-- Custom style  -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- fonts  -->
-    <link href="https://fonts.تصفحogleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
     @toastr_css
+    <link href="https://fonts.تصفحogleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+
     <script>
         @if(Session::has('message'))
             toastr.options =
@@ -172,20 +173,62 @@
                 <h3>
                   <a href="#">{{$auction->item_name}}</a>
                 </h3>
-                <p>{{$out = strlen($auction->item_detailes)> 50 ?substr($auction->item_detailes ,0,50)."..." : $auction->item_detailes }}
-                </p>
+{{--                <p>{{$out = strlen($auction->item_detailes)> 50 ?substr($auction->item_detailes ,0,50)."..." : $auction->item_detailes }}--}}
+{{--                </p>--}}
+
+
+{{--                  <div class="countdown timer-counter" end-at="{{$auction->end_at}}">--}}
+{{--                      <ul class="d-flex justify-content-center mb-0">--}}
+{{--                          <li><span id="seconds-{{$auction->id}}"></span>ثانية</li>--}}
+
+{{--                          <li><span id="minutes-{{$auction->id}}"></span>دقيقة</li>--}}
+
+{{--                          <li><span id="hours-{{$auction->id}}"></span>ساعة</li>--}}
+
+{{--                          <li><span id="days-{{$auction->id}}"></span>يوم</li>--}}
+{{--                      </ul>--}}
+{{--                  </div>--}}
+                  <div id="demo-{{$auction->id}}" class="countdown time-counter" style="height: 80px" end-at="{{$auction->end_at}}">
+                      @if($auction->end_at<now())
+
+                      <p class="no_time" ></p>
+                      @endif
+                      @if($auction->end_at>now())
+                      <ul class="d-flex justify-content-center count_time mb-0 ">
+                          <li><span id="seconds" class="timer_sec" ></span>ثانية</li>
+
+                          <li><span id="minutes" class="timer_min"></span>دقيقة</li>
+
+                          <li><span id="hours" class="timer_hour"></span>ساعة</li>
+
+                          <li><span id="days" class="timer_day"></span>يوم</li>
+                      </ul>
+                          @endif
+                  </div>
+
+
+
+
+
+                  {{--                  <p id="demo-{{$auction->id}}"--}}
+{{--                     data-count="{{$timer =gmdate('Y-m-d h:m:s' , \Carbon\Carbon::parse($auction->end_at)->diffInSeconds(\Carbon\Carbon::now()))}}"--}}
+{{--                     end-at="{{$auction->end_at}}"--}}
+{{--                     class="count-down timer timer-counter" style="color: #e67412; font-size: 18px;"></p>--}}
+
               </div>
               <div class="bottom">
-                <div class="skill">
-                  <div class="skill-bar skill1 wow fadeInRightBig">
-                    <span class="skill-count1">85%</span>
-                  </div>
-                </div>
+{{--                <div class="skill">--}}
+{{--                  <div class="skill-bar skill1 wow fadeInRightBig">--}}
+{{--                    <span class="skill-count1"></span>--}}
+{{--                  </div>--}}
+{{--                </div>--}}
                 <ul>
-                  <li> سعر البدأ : {{number_format($auction->start_price)}}ج.م</li>
-{{--                    <li> <p id="" class="count-down" style="color: #e67412; font-size: 18px;"></p></li>--}}
+                  <li> <span>  <i class="fad fa-gavel mr-1"></i> سعر البدأ :</span> {{number_format($auction->start_price)}}ج.م</li>
+                    <li style="padding-right: 10px ; border-right:1px dotted #eee "> <span>  <i class="fad fa-sack-dollar" style="color:#ea1515 !important;"></i> أعلى سعر  :</span>@foreach($auction->best_user as $bid) {{number_format($bid->bid_price)}}ج.م@endforeach</li>
+
+{{--                    <li style="padding-right: 10px ; border-right:1px dotted #eee "> <p id="count-down" class="count-down" style="color: #e67412; font-size: 18px;"></p></li>--}}
                 </ul>
-                <h4> <span>{{$auction->count_users }} شخص </span> قاموا بالمزايدة </h4>
+                <h4 class="text-center"> <span>{{$auction->count_users }} شخص </span> قاموا بالمزايدة </h4>
               </div>
             </div>
           </div>
@@ -349,7 +392,7 @@
       </div>
 
       <div class="w-100 py-3 d-flex align-items-center justify-content-center">
-        <a href="mazadat-page.html" class="see-all"> كل المزادات </a>
+        <a href="{{route('auctions')}}" class="see-all"> كل المزادات </a>
       </div>
 
     </div>
@@ -367,12 +410,13 @@
   <!-- Start Counter Area -->
   <section class="counter-area py-3" style="direction: ltr;">
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-lg-3 col-sm-6" data-aos="zoom-in" data-aos-duration="1100">
           <div class="single-counter">
             <h2>
                 <i class="fad fa-hand-holding-heart mr-1"></i>
+                <br>
               <span class="odometer" data-count="{{$charities}}">00</span>
             </h2>
 
@@ -388,11 +432,12 @@
           <div class="single-counter">
             <h2>
                 <i class="fad fa-sack-dollar"></i>
-              <span class="odometer" data-count="1000">00</span>
+                <br>
+              <span class="odometer" data-count="{{$auction->total}}">-1000</span>
 {{--              <span class="target">+</span>--}}
             </h2>
 
-            <p>أشياء ثمينة</p>
+            <p>اجمالي التبرعات</p>
 
             <div class="counter-shape">
               <!-- <img src="{{ asset('') }}"img/counter-shape.png" alt="Image"> -->
@@ -404,6 +449,7 @@
           <div class="single-counter">
             <h2>
                 <i class="fad fa-user-crown mr-1"></i>
+                <br>
               <span class="odometer" data-count="{{$count_bids}}">-1000</span>
             </h2>
 
@@ -419,7 +465,8 @@
           <div class="single-counter">
             <h2>
                 <i class="fad fa-gavel mr-1"></i>
-              <span class="odometer" data-count="{{count($auctions)}}">00</span>
+                <br>
+              <span class="odometer" data-count="{{$count_auctions}}">00</span>
               <!-- <span class="target">%</span> -->
             </h2>
 
@@ -429,6 +476,8 @@
               <!-- <img src="{{ asset('') }}"img/counter-shape.png" alt="Image"> -->
             </div>
           </div>
+
+
         </div>
       </div>
     </div>
@@ -465,19 +514,19 @@
           <h2>أخر الأخبار</h2>
         </div>
         <div class="row">
-            @foreach($auctions as $auction)
+            @foreach($last_news as $last)
           <div class="col-lg-6">
             <div class="event-item">
-              <img src="{{ $auction->image }}" alt="Event">
+              <img src="{{ $last->image }}" alt="Event">
               <div class="inner">
-                <h4>{{Carbon\Carbon::parse($auction->start_at)->toFormattedDateString()}}<span></span></h4>
+                <h4>{{Carbon\Carbon::parse($last->created_at)->toFormattedDateString()}}<span></span></h4>
                 <h3>
-                  <a href="{{ route('auction.details',$auction->id) }}">مزاد على {{$auction->item_name}} </a>
+                  <a href="{{route('news')}}">{{$last->title}} </a>
                 </h3>
                 <ul>
                   <li>
                     <i class="fal fa-stopwatch"></i>
-                    <span>2.00pm - 5.00pm</span>
+                    <span>{{$last->created_at}}</span>
                   </li>
                   <!-- <li>
                     <i class="fal fa-map-marker-check"></i>
@@ -491,6 +540,10 @@
         </div>
       </div>
     </div>
+      <div class="w-100 py-3 d-flex align-items-center justify-content-center" style="    background: #f8f8f8;
+    font-size: 20px;">
+          <a href="{{route('news')}}" class="see-all" style="color: #0e3d67"> عرض الاخبار </a>
+      </div>
   </section>
   <!--////////////////////////////////////////////////////////////////////////////////-->
   <!--////////////////////////////////////////////////////////////////////////////////-->
@@ -575,6 +628,109 @@
   <!--////////////////////////////////////////////////////////////////////////////////-->
 @include('layouts.site.js')
 
+<script>
+
+    var x = setInterval(function () {
+
+        $(".time-counter").each(function () {
+           var op  = $(this)
+            var oneEndAt = $(this).attr("end-at");
+            var countDownDate = new Date(oneEndAt).getTime();
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+
+            if (distance>0){
+                var days   = op.find('.timer_day').html(Math.floor(distance / (1000 * 60 * 60 * 24))) ;
+                var hours  = op.find(".timer_hour").html(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))) ;
+                var min    = op.find(".timer_min").html(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+                var second = op.find(".timer_sec").html( Math.floor((distance % (1000 * 60)) / 1000));
+            }else {
+               $(".count_time").hide();
+                $(this).find(".no_time").css("text-align","center").html("منتهى ");
+            }
+
+
+            // Get today's date and tme
+            // Find the distance between now and the count down date
+
+
+            // console.log(typeof days);
+            // console.log(h);
+            // console.log(m);
+            // console.log(s);
+            //do something later when date is reached
+
+            // seconds
+        }, 0)
+    });
+</script>
+
+{{--<script>--}}
+{{--    (function () {--}}
+{{--        const second = 1000,--}}
+{{--            minute = second * 60,--}}
+{{--            hour = minute * 60,--}}
+{{--            day = hour * 24;--}}
+
+{{--        let birthday = "Sep 30, 2021 00:00:00",--}}
+{{--            countDown = new Date(birthday).getTime(),--}}
+{{--            x = setInterval(function() {--}}
+
+{{--                let now = new Date().getTime(),--}}
+{{--                    distance = countDown - now;--}}
+
+{{--                    document.getElementById("days").innerText = Math.floor(distance / (day)),--}}
+{{--                    document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),--}}
+{{--                    document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),--}}
+{{--                    document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);--}}
+
+{{--                //do something later when date is reached--}}
+{{--                if (distance < 0) {--}}
+{{--                    let headline = document.getElementById("headline"),--}}
+{{--                        countdown = document.getElementsByClassName("countdown"),--}}
+{{--                        content = document.getElementById("content");--}}
+
+{{--                    headline.innerText = "It's my birthday!";--}}
+{{--                    countdown.style.display = "none";--}}
+{{--                    content.style.display = "block";--}}
+
+{{--                    clearInterval(x);--}}
+{{--                }--}}
+{{--                //seconds--}}
+{{--            }, 0)--}}
+{{--    }());--}}
+{{--</script>--}}
+{{--<script>--}}
+{{--    var x = setInterval(function () {--}}
+{{--        $(".timer-counter").each(function () {--}}
+{{--            var oneEndAt = $(this).attr("end-at");--}}
+{{--            var countDownDate = new Date(oneEndAt).getTime();--}}
+{{--            // Get today's date and tme--}}
+{{--            var now = new Date().getTime();--}}
+{{--            // Find the distance between now and the count down date--}}
+{{--            var distance = countDownDate - now;--}}
+{{--            // Time calculations for days, hours, minutes and seconds--}}
+{{--            var days = Math.floor(distance / (1000 * 60 * 60 * 24));--}}
+{{--            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));--}}
+{{--            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));--}}
+{{--            var seconds = Math.floor((distance % (1000 * 60)) / 1000);--}}
+{{--            // Display the result in the element with id="demo"--}}
+{{--            // console.log(seconds);--}}
+{{--            if(days < 0 && hours < 0 && minutes < 0 && seconds < 0){--}}
+{{--                $(this).html("منتهى ");--}}
+{{--            }--}}
+{{--            else{--}}
+{{--                $(this).html( days + "d " + hours + "h " + minutes + "m " + seconds + "s ");--}}
+{{--            }--}}
+
+{{--        })--}}
+{{--    }, 1000);--}}
+
+
+{{--</script>--}}
+
+@toastr_js
+@toastr_render
 </body>
 
 </html>

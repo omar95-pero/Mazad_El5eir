@@ -44,11 +44,11 @@
                     <div class="row">
                             <div class="form-group col-sm-6">
 {{--                                <label for="body">البريد الالكتروني :</label>--}}
-                                <input class="form-control" name="email" type="url" id="slug" placeholder="البريد الالكتروني..."  data-validation="required"></input>
+                                <input class="form-control" name="email" type="text" id="slug" placeholder="البريد الالكتروني..."  data-validation="required"></input>
                             </div>
                             <div class="form-group col-sm-6">
 {{--                                <label for="body">رقم التليفون :</label>--}}
-                                <input class="form-control" name="phone_number" type="number" id="slug" placeholder="رقم التليفون..."  data-validation="required"></input>
+                                <input class="form-control" name="phone_number" type="tel"  id="slug" pattern="[0-9]{14}" placeholder="mobile ex: 00201002345678"  data-validation="required"></input>
                             </div>
                     </div>
                     <div class="row">

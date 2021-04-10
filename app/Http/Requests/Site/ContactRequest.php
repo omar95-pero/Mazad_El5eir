@@ -44,7 +44,8 @@ class ContactRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|email',
             'phone_number' => 'required',
-            'message' => 'required'
+            'message' => 'required',
+            'g-recaptcha-response' => 'required|recaptcha',
         ];
     }
     public function messages()
@@ -52,6 +53,8 @@ class ContactRequest extends FormRequest
         return [
             'required' => 'هذا الحقل مطلوب ادخاله',
             'email' => 'هذا الايميل خاطئ',
+            'g-recaptcha-response.recaptcha' => 'Captcha verification failed',
+            'g-recaptcha-response.required' => 'Please complete the captcha'
 
         ];
     }

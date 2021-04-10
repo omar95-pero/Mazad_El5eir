@@ -90,7 +90,8 @@
                                 <td>{{$message->phone_number}}</td>
                                 <td>
 {{--                                    <img style="width: 70px;height: 70px" src="{{get_file($user->image)}}" alt="user" onclick="window.open(this.src)"/></td>--}}
-                                  <a href="{{route('ShowMessage',$message->id)}}"> {{$out = strlen($message->message)> 15 ?substr($message->message ,0,15)."..." : $message->message }}</a>
+                                    <a href="{{route('ShowMessage',$message->id)}}"> التفاصيل</a>
+                                    {{--                                    <a href="{{route('ShowMessage',$message->id)}}"> {{$out = strlen($message->message)> 15 ?substr($message->message ,0,15)."..." : $message->message }}</a>--}}
                                 </td>
                                 <td>{{$message->created_at->diffForHumans()}}</td>
                                 <td>

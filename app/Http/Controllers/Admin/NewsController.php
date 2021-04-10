@@ -13,6 +13,10 @@ class NewsController extends Controller
     {
         $news = News::get();
         return view('Admin/Admin/news',compact('news'));
+//        foreach ($news as $val){
+//            $ext = pathinfo($val->image, PATHINFO_EXTENSION);
+//            dd($ext);
+//        }
 
     }
     public function create()

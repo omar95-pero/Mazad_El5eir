@@ -35,7 +35,7 @@
 
                         <div class="form-group col-sm-6">
                             <label for="body">الموضوع:</label>
-                            <input class="form-control" name="body" type="text" id="title" placeholder="الموضوع..."  data-validation="required" value="{{$settings->body}}">
+                            <textarea rows="8" class="form-control" name="body" type="text" id="title" placeholder="الموضوع..."  data-validation=" required"> {{$settings->body}}</textarea>
                         </div>
                         <div class="form-group  col-sm-6" >
                             <label for="image">الصوره</label>
