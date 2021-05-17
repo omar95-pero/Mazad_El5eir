@@ -5,37 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>مزاد الخير</title>
-    <!-- icon -->
-    <link rel="icon" type="image/x-icon" href="#">
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-rtl.css') }}">
-    <!-- MDBootstrap -->
-    <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}">
-    <!-- Font Awesome Stars-->
-    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-stars.css') }}">
-    <!-- odometer -->
-    <link rel="stylesheet" href="{{ asset('assets/css/odometer.min.css') }}">
-    <!-- flatIcon -->
-    <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
-    <!-- dropify -->
-    <link rel="stylesheet" href="{{ asset('assets/css/dropify.min.css') }}">
-    <!-- swiper -->
-    <link rel="stylesheet" href="{{ asset('assets/css/swiper.css') }}">
-    <!-- select2 -->
-    <link rel="stylesheet" href="{{ asset('assets/css/select2.css') }}">
-    <!-- animate -->
-    <link rel="stylesheet" href="{{ asset('assets/css/aos.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/normalize.css') }}">
-    <!-- img gallery -->
-    <link rel="stylesheet" href="{{ asset('assets/css/jquery.fancybox.min.css') }}">
-    <!-- Custom style  -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <!-- fonts  -->
-@toastr_css
-    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+    @include('layouts.site.css')
+
 </head>
 <body>
 <!-- ================ spinner ================= -->
@@ -79,7 +50,7 @@
     <div class="event-area pt-5 pb-4">
         <div class="container-fluid mt-5">
             <div class="section-title">
-                 <h2>أخر الأخبار</h2>
+                 <h2>{{__('last_news')}}</h2>
             </div>
 
             <div class="row">
@@ -90,7 +61,7 @@
                             <div class="inner">
                                 <h4>{{Carbon\Carbon::parse($last->created_at)->toFormattedDateString()}}<span></span></h4>
                                 <h3>
-                                    <a href="#">{{$last->title}} </a>
+                                    <a href="{{route('news_details',$last->id)}}">{{$last->title}} </a>
                                 </h3>
                                 <ul>
                                     <li>
@@ -104,7 +75,7 @@
                                 </ul>
 
                                 <p class="text-white mt-4">
-                                    {{$last->body}}
+                                    {{$out = strlen($last->body)> 50 ?substr($last->body ,0,50)."..." : $last->body }}
                                 </p>
                             </div>
                         </div>
@@ -242,6 +213,21 @@
             disableOnInteraction: false,
         },
     });
+</script>
+<script>
+    $("body").click(function(event) {
+        $('.notifications').slideUp();
+    });
+
+    $(".notifications").click(function(event) {
+        event.stopPropagation();
+    });
+
+    $(".nav-link.notificationsIcon").click(function(event) {
+        event.stopPropagation();
+        $('.notifications').slideToggle();
+    });
+
 </script>
 @toastr_js
 @toastr_render

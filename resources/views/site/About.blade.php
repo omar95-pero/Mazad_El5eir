@@ -6,36 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>مزاد الخير</title>
-  <!-- icon -->
-  <link rel="icon" type="image/x-icon" href="#">
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-rtl.css') }}">
-  <!-- MDBootstrap -->
-  <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}">
-  <!-- Font Awesome Stars-->
-  <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-stars.css') }}">
-  <!-- odometer -->
-  <link rel="stylesheet" href="{{ asset('assets/css/odometer.min.css') }}">
-  <!-- flatIcon -->
-  <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
-  <!-- dropify -->
-  <link rel="stylesheet" href="{{ asset('assets/css/dropify.min.css') }}">
-  <!-- swiper -->
-  <link rel="stylesheet" href="{{ asset('assets/css/swiper.css') }}">
-  <!-- select2 -->
-  <link rel="stylesheet" href="{{ asset('assets/css/select2.css') }}">
-  <!-- animate -->
-  <link rel="stylesheet" href="{{ asset('assets/css/aos.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/normalize.css') }}">
-  <!-- img gallery -->
-  <link rel="stylesheet" href="{{ asset('assets/css/jquery.fancybox.min.css') }}">
-  <!-- Custom style  -->
-  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-  <!-- fonts  -->
-  <link href="https://fonts.تصفحogleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+@include('layouts.site.css')
 </head>
 
 <body>

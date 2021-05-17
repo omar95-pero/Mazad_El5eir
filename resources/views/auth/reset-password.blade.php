@@ -69,7 +69,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <form method="GET" action="{{route('SendVerificationCode')}}">
+                                    <form method="POST" action="{{route('SendVerificationCode')}}">
                                         @csrf
                                         <div class="form-group row">
 
@@ -144,7 +144,8 @@
 
 
 @include('layouts.site.js')
-
+@toastr_js
+@toastr_render
 </body>
 
 </html>

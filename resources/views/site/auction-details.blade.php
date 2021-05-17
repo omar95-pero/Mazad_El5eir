@@ -6,35 +6,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>مزاد الخير</title>
-  <!-- icon -->
-  <link rel="icon" type="image/x-icon" href="#">
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-rtl.css') }}">
-  <!-- MDBootstrap -->
-  <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}">
-  <!-- Font Awesome Stars-->
-  <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-stars.css') }}">
-  <!-- odometer -->
-  <link rel="stylesheet" href="{{ asset('assets/css/odometer.min.css') }}">
-  <!-- flatIcon -->
-  <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
-  <!-- dropify -->
-  <link rel="stylesheet" href="{{ asset('assets/css/dropify.min.css') }}">
-  <!-- swiper -->
-  <link rel="stylesheet" href="{{ asset('assets/css/swiper.css') }}">
-  <!-- select2 -->
-  <link rel="stylesheet" href="">
-  <!-- animate -->
-  <link rel="stylesheet" href="{{ asset('assets/css/aos.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/normalize.css') }}">
-  <!-- img gallery -->
-  <link rel="stylesheet" href="{{ asset('assets/css/jquery.fancybox.min.css') }}">
-  <!-- Custom style  -->
-  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-  <!-- fonts  -->
+@include('layouts.site.css')
+
+<!-- fonts  -->
     @toastr_css
   <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
 {{--    @toastr_css--}}
@@ -218,7 +192,7 @@
 {{--                                        <span> <i class="far fa-eye"></i> </span>--}}
 {{--                                        <span>{{$view_count}}</span>--}}
                                         <a href="{{route('favorite-action',$auctionDetailes->id)}}">
-                                            <span class="float-left favorite " style="{{$auctionDetailes->favorite == "yes"?'transform: scale(0.9); color: red;':''}}">
+                                            <span class="  favorite " style="{{$auctionDetailes->favorite == "yes"?'transform: scale(0.9); color: red;':''}}">
                                                 <i class="fad fa-heart"></i>
                                             </span>
                                         </a>
@@ -322,35 +296,35 @@
                                         <!--/Social-->
                                     </div>
 
-                                    <div  class="auction-people">
-                                        <div class="row">
+{{--                                    <div  class="auction-people">--}}
+{{--                                        <div class="row">--}}
 
-                                            @foreach ($bids as $bid)
+{{--                                            @foreach ($bids as $bid)--}}
 
-                                                <div  class="col-md-6 row my-2">
+{{--                                                <div  class="col-md-6 row my-2">--}}
 
-                                                    <div class="col-3 d-flex align-items-center">
+{{--                                                    <div class="col-3 d-flex align-items-center">--}}
 
-                                                        <img src="{{ $bid->user->image? get_file($bid->user->image):asset("assets/img/user.jpg")}}" alt="">
-                                                    </div>
+{{--                                                        <img src="{{ $bid->user->image? get_file($bid->user->image):asset("assets/img/user.jpg")}}" alt="">--}}
+{{--                                                    </div>--}}
 
-                                                    <div class="col-9 d-flex align-items-center">
-                                                        <div>
-                                                            <a class="font-weight-bold">{{ $bid->user->name }}</a>
-                                                            <h6 class="font-weight-bold">{{number_format($bid->bid_price) }}جنية</h6>
-                                                            <small class="d-block"> {{  $bid->created_at }} <span
-                                                                        class="mr-2 font-weight-bold"></span></small>
-                                                        </div>
-                                                    </div>
-                                                </div>
+{{--                                                    <div class="col-9 d-flex align-items-center">--}}
+{{--                                                        <div>--}}
+{{--                                                            <a class="font-weight-bold">{{ $bid->user->name }}</a>--}}
+{{--                                                            <h6 class="font-weight-bold">{{number_format($bid->bid_price) }}جنية</h6>--}}
+{{--                                                            <small class="d-block"> {{  $bid->created_at }} <span--}}
+{{--                                                                        class="mr-2 font-weight-bold"></span></small>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
 
 
-                                            @endforeach
+{{--                                            @endforeach--}}
 
-                                        </div>
-                                    </div>
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
-                                    <div class="">
+{{--                                    <div class="">--}}
                                         {{--                                    <div class="progress-box">--}}
                                         {{--                                        <div class="progress">--}}
                                         {{--                                            <div class="progress-bar" role="progressbar" data-width="33">--}}
@@ -359,13 +333,13 @@
                                         {{--                                        </div>--}}
                                         {{--                                        <!-- <p> أخر سعر :  $5488   <span> سعر البدء : $12800 </span> </p> -->--}}
 
-                                        {{--                                    </div>--}}
+{{--                                                                            </div>--}}
 
 
 
-                                                @auth
+
                                                     @if(\Carbon\Carbon::parse($auctionDetailes->end_at) > \Carbon\Carbon::now())
-                                                        @if($auctionDetailes->user_id != auth()->user()->id)
+{{--                                                        @if($auctionDetailes->user_id != auth()->user()->id)--}}
                                                             <form action="{{ url('AuctionProcess',$auctionDetailes->id) }}" method="POST">
                                                                 @csrf
                                                                 <div class="form-group d-flex" style="    justify-content: space-around;">
@@ -379,9 +353,9 @@
 
 
                                                             </form>
-                                                        @endif
+{{--                                                        @endif--}}
                                                     @endif
-                                                @endauth
+
 
 
                                     </div>
@@ -464,15 +438,15 @@
 
 
                                         <div class="tab-pane fade" id="profile-just" role="tabpanel" aria-labelledby="profile-tab-just">
-
+                                            @if($auctionDetailes->delivery != null)
                                             <p>المحافظة:{{$auctionDetailes->delivery->govrnate->govrnate}}</p>
-                                            <p>الطول:{{$auctionDetailes->delivery->length}}سم</p>
-                                            <p>العرض:{{$auctionDetailes->delivery->width}}سم</p>
-                                            <p>الارتفاع:{{$auctionDetailes->delivery->height}}سم</p>
-                                            <p>الوزن:{{$auctionDetailes->delivery->weight}}جم</p>
+                                            <p>الطول:{{$out = $auctionDetailes->delivery->length >=100?($auctionDetailes->delivery->length/100).'متر':($auctionDetailes->delivery->length).'سم'}}</p>
+                                            <p>العرض:{{$out = $auctionDetailes->delivery->width >=100?($auctionDetailes->delivery->width/100).'متر':($auctionDetailes->delivery->width).'سم'}}</p>
+                                            <p>الارتفاع:{{$out = $auctionDetailes->delivery->height >=100?($auctionDetailes->delivery->height/100).'متر':($auctionDetailes->delivery->height).'سم'}}</p>
+                                            <p>الوزن:{{$out = $auctionDetailes->delivery->weight>=1000?($auctionDetailes->delivery->weight/1000).'كجم':($auctionDetailes->delivery->weight).'جم'}}</p>
                                             <p>القابلية للكسر:{{$out = $auctionDetailes->delivery->is_breakable=='yes'?'قابل للكسر':'غير قابل للكسر'}}</p>
                                             <p>التصنيف:{{ $auctionDetailes->delivery->type}}</p>
-
+                                            @endif
                                         </div>
 
 

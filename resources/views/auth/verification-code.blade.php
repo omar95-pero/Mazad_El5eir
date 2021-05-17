@@ -171,7 +171,8 @@
 
 
 @include('layouts.site.js')
-
+@toastr_js
+@toastr_render
 </body>
 
 </html>

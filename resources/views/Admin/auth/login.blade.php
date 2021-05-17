@@ -17,7 +17,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- begin::Head -->
 <head>
     <meta charset="utf-8" />
-    <title>تسجيل الدخول | الصفوة</title>
+    <title>تسجيل الدخول | لوحة التحكم</title>
     <meta name="description" content="Latest updates and statistic charts">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="{{url('Admin')}}/img/logo.png" />
@@ -405,12 +405,12 @@ License: You must have a valid license purchased only from themeforest(the above
 </div>
 <!-- begin:: Page -->
 <div class="m-grid m-grid--hor m-grid--root m-page">
-    <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--signin m-login--2 m-login-2--skin-3" id="m_login" style="background-image: url({{url('admin')}}/assets/app/media/img//bg/bg-2.jpg);">
+    <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--signin m-login--2 m-login-2--skin-3" id="m_login" style="background-image: url({{asset('site')}}/img/back.png);">
         <div class="m-grid__item m-grid__item--fluid	m-login__wrapper">
             <div class="m-login__container">
                 <div class="m-login__logo">
                     <a href="#">
-                        <img src="{{get_file('Admin/img/logo.png')}}" style="width: 20% !important;">
+                        <img src="{{asset('site')}}/img/logo.png" style="width: 20% !important;">
                     </a>
                 </div>
                 <div class="m-login__signin">
@@ -541,7 +541,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 if (data.status == 'email')  return toastr.error('البريد الإلكترونى غير موجود!!')
             },
             error: function () {
-                swal("هناك خطأ ماّ!!", {
+                swal("اهلاً بك في لوحة التحكمّ!!", {
                     icon: "error",
                 })
                     .then(function(){

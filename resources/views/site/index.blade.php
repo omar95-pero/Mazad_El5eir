@@ -13,9 +13,11 @@
                         <p>{{$new->slug}}
 
                         </p>
-                        <a href="{{route('auctions')}}">
-                        <button class=" btn"> تصفح </button>
+                        @if($new->link)
+                        <a href="{{$new->link}}">
+                        <button class=" btn"> {{__('browse')}} </button>
                         </a>
+                            @endif
                     </div>
                 </div>
 
@@ -32,11 +34,13 @@
         @foreach($news as $new2)
                 <div class="swiper-slide">
                     <div class="thumbsImg">
-                        @if(str_contains(mime_content_type($new2->image),'image'))
+                        @if($new2->image)
+{{--                        @if(str_contains(mime_content_type($new2->image),'image'))--}}
                         <img src="{{ get_file($new2->image) }}">
-                        @endif
-                        @if(str_contains(mime_content_type($new2->image),'video'))
-                        <iframe width="560" height="315" src="{{ get_file($new2->image) }}" frameborder="0" allowfullscreen></iframe>
+{{--                        @endif--}}
+{{--                        @if(str_contains(mime_content_type($new2->image),'video'))--}}
+{{--                        <iframe width="560" height="315" src="{{ get_file($new2->image) }}" frameborder="0" allowfullscreen></iframe>--}}
+{{--                       @endif--}}
                        @endif
                     </div>
                 </div>

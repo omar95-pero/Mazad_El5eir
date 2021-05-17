@@ -19,7 +19,7 @@ class Admin
 //        abort(403);
         if (Auth::guard('admin')->check()){
             if ($request=='login'){
-                return redirect('admin/home');
+                return redirect('/admin/home');
             }
 //            return $request;
             return $next($request);

@@ -48,11 +48,15 @@
                                 <textarea class="form-control" name="body" type="text" id="slug" placeholder="الموضوع..."  data-validation="required"></textarea>
                         </div>
 
-                    <div class="form-group  col-sm-6" >
+                        <div class="form-group col-sm-6">
+                            <label for="title">اضافة لينك:</label>
+                            <input class="form-control" name="link" type="url" id="title" placeholder=" http://www.mazad.com"  data-validation="required">
+                        </div>
+                    </div>
+                    <div class="form-group" >
                         <label for="image">يمكنك اضافة صورة او فيديو</label>
                         <input type="file" name="image"  id="input-file-now-custom-1"   class="dropify" style="border-radius: 20px"
                                data-default-file="" >
-                    </div>
                     </div>
                     <input class="btn btn-primary" type="submit" value="إضافة">
                 </form>

@@ -1,8 +1,13 @@
-<title>مزاد الخير</title>
+<title>{{__('mazad')}}</title>
 <!-- icon -->
 <link rel="icon" type="image/x-icon" href="#">
 <!-- Bootstrap -->
-<link rel="stylesheet" href="{{url('site')}}/css/bootstrap-rtl.css">
+@if(LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-rtl.css') }}">
+@endif
+@if(LaravelLocalization::getCurrentLocaleDirection() == 'ltr')
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+@endif
 <!-- MDBootstrap -->
 <link rel="stylesheet" href="{{url('site')}}/css/mdb.min.css">
 <!-- Font Awesome -->
@@ -27,4 +32,6 @@
 <!-- Custom style  -->
 <link rel="stylesheet" href="{{url('site')}}/css/style.css?v={{time()}}">
 <!-- fonts  -->
-<link href="https://fonts.تصفحogleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+@toastr_css
+
+<link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">

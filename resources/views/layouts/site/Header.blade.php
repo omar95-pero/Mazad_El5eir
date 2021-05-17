@@ -13,27 +13,54 @@
             <div class="collapse navbar-collapse " id="navbarTogglerDemo01">
                 <ul class="navbar-nav index-navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('index') }}">الرئيسية </a>
+                        <a class="nav-link " href="{{ route('index') }}">{{__('home')}} </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('auctions') }}">المزادات </a>
+                        <a class="nav-link " href="{{ route('auctions') }}">{{__('auctions')}}</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('aboutus') }}">من نحن </a>
+                        <a class="nav-link " href="{{ route('aboutus') }}">{{__('about_us')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('site.Contact') }}">تواصل معنا </a>
+                        <a class="nav-link " href="{{ route('site.Contact') }}">{{__('contact_us')}} </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link " href="{{ route('store') }}">المتجر </a>
+                        <a class="nav-link " href="{{ route('store') }}">{{__('store')}} </a>
                     </li>
-                    @guest
+                    <li class=" nav-item d-flex align-items-center justify-content-center">
+                        <div class="dropdown">
+
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fad fa-globe-asia px-2"></i>   {{ LaravelLocalization::getCurrentLocale() }}
+
+                            </a>
+
+                            <div class="dropdown-menu">
+{{--                                <a class="dropdown-item" href="#"> <i class="fad fa-globe-asia px-2"></i>--}}
+{{--                                    en </a>--}}
+{{--                                <a class="dropdown-item" href="#">--}}
+{{--                                    <i class="fad fa-globe-asia px-2"></i> عربي--}}
+                                <ul>
+                                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                        <li>
+                                            <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                                {{ $properties['native'] }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+
+                            </div>
+                        </div>
+                    </li>
+
+                @guest
 
 
                         <li class="nav-item">
-                            <a class="nav-link " href="{{ route('login') }}">تسجيل الدخول </a>
+                            <a class="nav-link " href="{{ route('login') }}">{{__('login')}} </a>
                         </li>
 {{--                        <li class="nav-item">--}}
 {{--                            <a class="nav-link " href="{{ route('register') }}">التسجيل بالموقع </a>--}}
@@ -41,6 +68,8 @@
 
                     @endguest
                     @auth
+
+
                         <li class=" nav-item">
                             <div class="dropdown">
 
@@ -50,10 +79,10 @@
 
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="{{route('user.profile',auth()->user()->id)}}"> <i
-                                            class="fad fa-user mx-2"></i>{{ auth()->user()->name }}</a>
+                                                class="fad fa-user mx-2"></i>{{ auth()->user()->name }}</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('تسجيل الخروج') }}
+                                        {{ __('logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -105,7 +134,7 @@
                             <span class=" badge"> {{count__()}} </span>
                         </div>
                         <div class=" notifications ">
-                            <h6 class=" font-weight-bold px-3 pt-21 pb-2 border-bottom"> الاشعارات </h6>
+                            <h6 class=" font-weight-bold px-3 pt-21 pb-2 border-bottom"> {{__('notifications')}} </h6>
                             <h5 class=" font-weight-bold"> </h5>
 
                             <div class="row" style="height: 250px!important;overflow-y: scroll!important;">

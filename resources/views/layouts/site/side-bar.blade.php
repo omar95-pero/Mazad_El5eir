@@ -7,8 +7,8 @@
     <ul class="custom-scrollbar" style="overflow-y: scroll;">
         <!-- Logo -->
         <li>
-            <div class="logo-wrapper waves-light" style="height: 175px;">
-                <a href="#"><img src="{{asset('assets/img/logo.png')}}" class="img-fluid flex-center"></a>
+            <div class="logo-wrapper waves-light" style="height: 155px;">
+{{--                <a href="#"><img src="{{asset('assets/img/logo.png')}}" class="img-fluid flex-center"></a>--}}
             </div>
         </li>
         <!--/. Logo -->

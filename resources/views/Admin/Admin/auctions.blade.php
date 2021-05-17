@@ -78,7 +78,7 @@
                                 </td>
 {{--                                <td>{{$i}}</td>--}}
                                 <td>{{++$n}}</td>
-                                <td>{{$data->item_name}}</td>
+                                <td><a href="{{route('auction_details',$data->id)}}">{{$data->item_name}}</a></td>
                                 <td><label class="switch"><a href="{{route('update_to_special.Auction',$data->id)}}"><input type="checkbox" {{$data->is_special == "yes" ? 'checked' :''}}><span class="slider round"></span></a></label></td>
                                 <td>{{$data->start_price}}</td>
                                 <td><img style="width: 70px;height: 70px" src="{{get_file($data->image)}}" alt="user" onclick="window.open(this.src)"/></td>

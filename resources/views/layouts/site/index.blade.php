@@ -6,11 +6,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>مزاد الخير</title>
+    <title>{{__('mazad')}}</title>
     <!-- icon -->
     <link rel="icon" type="image/x-icon" href="#">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-rtl.css') }}">
+    @if(LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-rtl.css') }}">
+    @endif
+    @if(LaravelLocalization::getCurrentLocaleDirection() == 'ltr')
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+    @endif
     <!-- MDBootstrap -->
     <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
     <!-- Font Awesome -->
@@ -36,7 +41,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- fonts  -->
     @toastr_css
-    <link href="https://fonts.تصفحogleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
 
     <script>
         @if(Session::has('message'))
@@ -154,9 +159,9 @@
   <section class="donations-area pt-5 pb-4">
     <div class="container">
       <div class="section-title">
-        <span class="sub-title">مزادات خيرية</span>
-        <h2 class="py-3">كن سببا في جعل شخصا يبتسم</h2>
-        <p>مزادات خيرية لصالح الخير , ساهم بأشيائك القيمة في الخير</p>
+        <span class="sub-title"> {{__('char_auc')}}</span>
+        <h2 class="py-3">{{__('smile')}}</h2>
+        <p>{{__('good')}}</p>
       </div>
       <div class="row">
       @foreach($showAuctions as $auction)
@@ -165,13 +170,13 @@
           <div class="donation-item">
             <div class="img">
               <img src="{{ get_file($auction->image) }}" alt="Donation">
-              <a class="common-btn" href="{{ route('auction.details',$auction->id) }}">تفاصيل المزاد</a>
+              <a class="common-btn" href="{{ route('auction.details',$auction->id) }}">{{__('auc_details')}}</a>
             </div>
             <div class="inner">
               <div class="top">
-                <a class="tags" href="#">{{$auction->charity->name}}</a>
+                <a class="tags" href="{{ route('auction.details',$auction->id) }}">{{$auction->charity->name}}</a>
                 <h3>
-                  <a href="#">{{$auction->item_name}}</a>
+                  <a href="{{ route('auction.details',$auction->id) }}">{{$auction->item_name}}</a>
                 </h3>
 {{--                <p>{{$out = strlen($auction->item_detailes)> 50 ?substr($auction->item_detailes ,0,50)."..." : $auction->item_detailes }}--}}
 {{--                </p>--}}
@@ -195,13 +200,13 @@
                       @endif
                       @if($auction->end_at>now())
                       <ul class="d-flex justify-content-center count_time mb-0 ">
-                          <li><span id="seconds" class="timer_sec" ></span>ثانية</li>
+                          <li><span id="seconds" class="timer_sec" ></span>{{__('sec')}}</li>
 
-                          <li><span id="minutes" class="timer_min"></span>دقيقة</li>
+                          <li><span id="minutes" class="timer_min"></span>{{__('min')}}</li>
 
-                          <li><span id="hours" class="timer_hour"></span>ساعة</li>
+                          <li><span id="hours" class="timer_hour"></span>{{__('hr')}}</li>
 
-                          <li><span id="days" class="timer_day"></span>يوم</li>
+                          <li><span id="days" class="timer_day"></span>{{__('day')}}</li>
                       </ul>
                           @endif
                   </div>
@@ -223,16 +228,18 @@
 {{--                  </div>--}}
 {{--                </div>--}}
                 <ul>
-                  <li> <span>  <i class="fad fa-gavel mr-1"></i> سعر البدأ :</span> {{number_format($auction->start_price)}}ج.م</li>
-                    <li style="padding-right: 10px ; border-right:1px dotted #eee "> <span>  <i class="fad fa-sack-dollar" style="color:#ea1515 !important;"></i> أعلى سعر  :</span>@foreach($auction->best_user as $bid) {{number_format($bid->bid_price)}}ج.م@endforeach</li>
+                  <li> <span>  <i class="fad fa-gavel mr-1"></i>  {{__('start_price')}} :</span> {{number_format($auction->start_price)}}{{__('LE')}}</li>
+                    <li style="padding-right: 10px ; border-right:1px dotted #eee "> <span>  <i class="fad fa-sack-dollar" style="color:#ea1515 !important;"></i> {{__('best_price')}}  :</span>@foreach($auction->best_user as $bid) {{number_format($bid->bid_price)}}{{__('LE')}}@endforeach</li>
 
 {{--                    <li style="padding-right: 10px ; border-right:1px dotted #eee "> <p id="count-down" class="count-down" style="color: #e67412; font-size: 18px;"></p></li>--}}
                 </ul>
-                <h4 class="text-center"> <span>{{$auction->count_users }} شخص </span> قاموا بالمزايدة </h4>
+                <h4 class="text-center"> <span>{{$auction->count_users }} {{__('person')}} </span> {{__('they_bid')}} </h4>
               </div>
             </div>
           </div>
+
         </div>
+
           @endforeach
 {{--        <div class="col-sm-6 col-lg-4">--}}
 {{--          <div class="donation-item">--}}
@@ -392,7 +399,7 @@
       </div>
 
       <div class="w-100 py-3 d-flex align-items-center justify-content-center">
-        <a href="{{route('auctions')}}" class="see-all"> كل المزادات </a>
+        <a href="{{route('auctions')}}" class="see-all">{{__('all_auc')}} </a>
       </div>
 
     </div>
@@ -420,7 +427,7 @@
               <span class="odometer" data-count="{{$charities}}">00</span>
             </h2>
 
-            <p>جمعية خيرية</p>
+            <p>{{__('charity')}}</p>
 
             <div class="counter-shape">
               <!-- <img src="{{ asset('') }}"img/counter-shape.png" alt="Image"> -->
@@ -433,11 +440,11 @@
             <h2>
                 <i class="fad fa-sack-dollar"></i>
                 <br>
-              <span class="odometer" data-count="{{$auction->total}}">-1000</span>
+              <span class="odometer" data-count="{{$total}}">00</span>
 {{--              <span class="target">+</span>--}}
             </h2>
 
-            <p>اجمالي التبرعات</p>
+            <p>{{__('total_donations')}}</p>
 
             <div class="counter-shape">
               <!-- <img src="{{ asset('') }}"img/counter-shape.png" alt="Image"> -->
@@ -450,10 +457,10 @@
             <h2>
                 <i class="fad fa-user-crown mr-1"></i>
                 <br>
-              <span class="odometer" data-count="{{$count_bids}}">-1000</span>
+              <span class="odometer" data-count="{{$count_bids}}">00</span>
             </h2>
 
-            <p>مزايد </p>
+            <p>{{__('bidder')}} </p>
 
             <div class="counter-shape">
               <!-- <img src="{{ asset('') }}"img/counter-shape.png" alt="Image"> -->
@@ -470,7 +477,7 @@
               <!-- <span class="target">%</span> -->
             </h2>
 
-            <p>مزاد </p>
+            <p>{{__('auc')}} </p>
 
             <div class="counter-shape">
               <!-- <img src="{{ asset('') }}"img/counter-shape.png" alt="Image"> -->
@@ -510,8 +517,8 @@
     <div class="event-area pt-5 pb-4">
       <div class="container">
         <div class="section-title">
-          <span class="sub-title">مزاد الخير </span>
-          <h2>أخر الأخبار</h2>
+          <span class="sub-title">{{__('mazad')}} </span>
+          <h2>{{__('last_news')}}</h2>
         </div>
         <div class="row">
             @foreach($last_news as $last)
@@ -521,7 +528,7 @@
               <div class="inner">
                 <h4>{{Carbon\Carbon::parse($last->created_at)->toFormattedDateString()}}<span></span></h4>
                 <h3>
-                  <a href="{{route('news')}}">{{$last->title}} </a>
+                  <a href="{{route('news_details',$last->id)}}">{{$last->title}} </a>
                 </h3>
                 <ul>
                   <li>
@@ -542,7 +549,7 @@
     </div>
       <div class="w-100 py-3 d-flex align-items-center justify-content-center" style="    background: #f8f8f8;
     font-size: 20px;">
-          <a href="{{route('news')}}" class="see-all" style="color: #0e3d67"> عرض الاخبار </a>
+          <a href="{{route('news')}}" class="see-all" style="color: #0e3d67"> {{__('show_news')}} </a>
       </div>
   </section>
   <!--////////////////////////////////////////////////////////////////////////////////-->
@@ -573,7 +580,7 @@
   <section class="CarsSlider">
     <div class="container">
       <div class=" Title ">
-        <h2>الجمعيات</h2>
+        <h2>{{__('charities')}}</h2>
       </div>
       <div class="swiper-container cars">
         <div class="swiper-wrapper">

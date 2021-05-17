@@ -69,7 +69,7 @@ class RegisterController extends Controller
         $email =$data['email'];
         $title = 'مزاد الخير ';
         $text = ' تم التسجيل بنجاح نتمنى لكم الخير دوماً';
-        $this->send_EmailFun($email,$text,$title);
+        $this->send_EmailFun($email,$text,$title,'مرحباً بك.');
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

@@ -21,8 +21,9 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="description" content="Latest updates and statistic charts">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
 
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-
+   
     <!--------------------------CSS------------------------------->
     @include('layouts.Admin.css')
 @toastr_css

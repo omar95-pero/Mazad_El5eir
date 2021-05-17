@@ -20,6 +20,7 @@
         <div class="rect5"></div>
     </div>
 </div>
+{{--omar pero--}}
 <!-- ================ spinner ================= -->
 
 
@@ -87,15 +88,15 @@
                 <ul class="nav nav-tabs nav-justified md-tabs " id="myTabJust" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="home-tab-just" data-toggle="tab" href="#home-just" role="tab"
-                           aria-controls="home-just" aria-selected="true"><i class="fad fa-user-edit"></i> تعديل البروفايل</a>
+                           aria-controls="home-just" aria-selected="true"><i class="fad fa-user-edit"></i>{{__('update_profile')}}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="profile-tab-just" data-toggle="tab" href="#profile-just" role="tab"
-                           aria-controls="profile-just" aria-selected="false"><i class="fad fa-star"></i> المفضلة</a>
+                           aria-controls="profile-just" aria-selected="false"><i class="fad fa-star"></i> {{__('favorites')}}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="profile-tab-just" data-toggle="tab" href="#gallery-just" role="tab"
-                           aria-controls="profile-just" aria-selected="false"><i class="fad fa-gavel"></i> مزاداتي
+                           aria-controls="profile-just" aria-selected="false"><i class="fad fa-gavel"></i> {{__('my_auctions')}}
                         </a>
                     </li>
                     {{--                    <li class="nav-item">--}}
@@ -106,7 +107,7 @@
                     <li class="nav-item">
                         <a class="nav-link" id="profile-tab-just" data-toggle="tab" href="#total-just" role="tab"
                            aria-controls="profile-just" aria-selected="false"><i class="fad fa-gavel"></i>
-                            إجمالي التبرعات
+                            {{__('total_donations')}}
 
                         </a>
                     </li>
@@ -118,19 +119,19 @@
                     <div class="tab-pane fade show active" id="home-just" role="tabpanel" aria-labelledby="home-tab-just">
                         <div class="row  my-2">
                             <div class="col-sm-6 mb-3 font-weight-bold">
-                                <p> الاسم :{{ auth()->user()->name }} </p>
+                                <p> {{__('name')}} :{{ auth()->user()->name }} </p>
                             </div>
 
                             <div class="col-sm-6 mb-3 font-weight-bold">
-                                <p> العنوان : {{ auth()->user()->address }}</p>
+                                <p> {{__('Address')}} : {{ auth()->user()->address }}</p>
                             </div>
 
                             <div class="col-sm-6 mb-3 font-weight-bold">
-                                <p> رقم التليفون : {{ auth()->user()->phone_number }}</p>
+                                <p> {{__('phone_num')}} : {{ auth()->user()->phone_number }}</p>
                             </div>
 
                             <div class="col-sm-6 mb-3 font-weight-bold">
-                                <p> البريد الإلكتروني : {{ auth()->user()->email }}</p>
+                                <p> {{__('email')}} : {{ auth()->user()->email }}</p>
                             </div>
 
                             <!--
@@ -139,7 +140,7 @@
                             </div> -->
 
                             <div class="w-100 mt-3 d-flex align-items-center justify-content-center">
-                                <button class="btn edit-profile" data-toggle="modal" data-target="#exampleModalCenter"> تعديل البيانات
+                                <button class="btn edit-profile" data-toggle="modal" data-target="#exampleModalCenter"> {{__('update_data')}}
                                 </button>
                             </div>
 
@@ -153,7 +154,7 @@
 
                                     <div class="modal-content">
                                         <div class="modal-header d-flex justify-content-center">
-                                            <h5 class="modal-title font-weight-bold" id="exampleModalLongTitle">تعديل البروفايل</h5>
+                                            <h5 class="modal-title font-weight-bold" id="exampleModalLongTitle">{{__('update_profile')}}</h5>
 
                                         </div>
                                         <div class="modal-body">
@@ -162,21 +163,21 @@
                                                 <div class="row">
                                                     <div class="col-6 mb-3 d-flex">
 
-                                                        <input type="text" name="name" class="form-control" placeholder="الإسم" value="{{auth()->user()->name}}">
+                                                        <input type="text" name="name" class="form-control" placeholder="{{__('name')}}" value="{{auth()->user()->name}}">
 
                                                     </div>
 
                                                     <div class="col-6 mb-3 d-flex">
-                                                        <input type="text" name="address" class="form-control" placeholder="العنوان " value="{{auth()->user()->address}}">
+                                                        <input type="text" name="address" class="form-control" placeholder="{{__('Address')}} " value="{{auth()->user()->address}}">
                                                     </div>
 
                                                     <div class="col-6 mb-3 d-flex">
-                                                        <input type="number" name="phone_number" class="form-control" placeholder="رقم التليفون"value="{{auth()->user()->phone_number}}">
+                                                        <input type="number" name="phone_number" class="form-control" placeholder="{{__('phone_num')}}"value="{{auth()->user()->phone_number}}">
                                                     </div>
 
 
                                                     <div class="col-6 mb-3 d-flex">
-                                                        <input type="email" name="email" class="form-control" placeholder="البريد الإلكتروني" value="{{auth()->user()->email}}">
+                                                        <input type="email" name="email" class="form-control" placeholder="{{__('email')}}" value="{{auth()->user()->email}}">
                                                     </div>
                                                     {{--                                                                          <div class="col-12 mb-6 d-flex">--}}
                                                     {{--                                                                              <input type="file" name="image" class="form-control" placeholder="الصورة الشخصية" value="{{auth()->user()->email}}">--}}
@@ -190,8 +191,8 @@
                                                 {{--                                                                        </div>--}}
                                                 <div class="modal-footer text-center d-flex justify-content-center">
                                                     {{--                                            <button type="submit" class="btn edit-profile" data-dismiss="modal"></button>--}}
-                                                    <input type="submit" class="btn edit-profile"  value="حفظ التغييرات">
-                                                    <button type="button" class="btn edit-profile" data-dismiss="modal"> إلغاء </button>
+                                                    <input type="submit" class="btn edit-profile"  value="{{__('save_changes')}}">
+                                                    <button type="button" class="btn edit-profile" data-dismiss="modal"> {{__('cancel')}} </button>
 
                                                 </div>
                                             </form>
@@ -219,7 +220,7 @@
                                                 <div class="top">
                                                     <a class="tags" href="#">#{{$fav->auction->charity->name}}</a>
                                                     <h3>
-                                                        <a href="{{route('auction.details',$fav->auction->id)}}">مزاد على {{$fav->auction->item_name}}</a>
+                                                        <a href="{{route('auction.details',$fav->auction->id)}}">{{__('auction_on')}} {{$fav->auction->item_name}}</a>
                                                     </h3>
                                                     {{--                                                  <p>{{$auction->item_detailes}}--}}
                                                     {{--                                                  </p>--}}
@@ -231,8 +232,8 @@
                                                     {{--                                                    </div>--}}
                                                     {{--                                                  </div>--}}
                                                     <ul>
-                                                        <li> أخر سعر : <strong> 5,500 $ </strong> </li>
-                                                        <li> سعر بدايةالمزاد : <strong>{{$fav->auction->start_price}}</strong> </li>
+                                                        <li> {{__('best_price')}} : <strong> 5,500 {{__('LE')}}</strong> </li>
+                                                        <li> {{__('start_price')}} : <strong>{{$fav->auction->start_price}} {{__('LE')}}</strong> </li>
                                                     </ul>
                                                     <!-- <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4> -->
                                                 </div>
@@ -261,7 +262,7 @@
                                                 <div class="top">
                                                     <a class="tags" href="#">#{{$auction->charity->name}}</a>
                                                     <h3>
-                                                        <a href="{{route('auction.details',$auction->id)}}">مزاد على {{$auction->item_name}}</a>
+                                                        <a href="{{route('auction.details',$auction->id)}}">{{__('auction_on')}}{{$auction->item_name}}</a>
                                                     </h3>
                                                     {{--                                                  <p>{{$auction->item_detailes}}--}}
                                                     {{--                                                  </p>--}}
@@ -273,8 +274,8 @@
                                                     {{--                                                    </div>--}}
                                                     {{--                                                  </div>--}}
                                                     <ul>
-                                                        <li> أخر سعر : <strong> 5,500 $ </strong> </li>
-                                                        <li> سعر مزادي : <strong>{{$auction->start_price}}</strong> </li>
+                                                        <li>{{__('best_price')}} : <strong> 5,500 $ </strong> </li>
+                                                        <li> {{__('start_price')}} : <strong>{{$auction->start_price}}</strong> </li>
                                                     </ul>
                                                     <!-- <h4> <span> 60 شخص </span> قاموا بالمزايدة </h4> -->
                                                 </div>
@@ -309,7 +310,7 @@
                             border-radius: 10px;
                             color: #585858;
                             font-weight: bold;">
-                            <i class="fad fa-sack-dollar mx-2" style="color: #ca2106;"></i>إجمالي التبرعات : <span class="font-weght-bold" style="    color: #ca2106;"> 500  جنية  </span>
+                            <i class="fad fa-sack-dollar mx-2" style="color: #ca2106;"></i>{{__('total_donations')} : <span class="font-weght-bold" style="    color: #ca2106;"> 500  {{__('LE')}}  </span>
                         </h3>
                         <style>
                             @media (max-width:768px){
@@ -329,7 +330,7 @@
 
             <div class="col-lg-3 my-2">
                     <div class="info p-3">
-                        <h4 class="pb-2">الاحصائيات</h4>
+                        <h4 class="pb-2">{{__('statistics')}}</h4>
                         <!-- <div class="row my-2">
                           <div class="col-6">
                             التقييمات
@@ -348,7 +349,7 @@
                         <div class="row my-2">
                             <div class="col-10">
                                 <p>
-                                    المزادات المفضلة :
+                                    {{__('favorite_auctions')}} :
                                 </p>
                             </div>
 
@@ -362,7 +363,7 @@
                         <div class="row my-2">
                             <div class="col-10">
                                 <p>
-                                    عدد مزاداتي :
+                                    {{__('num_of_my_auctions')}} :
                                 </p>
                             </div>
 

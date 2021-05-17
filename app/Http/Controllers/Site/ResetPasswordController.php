@@ -22,24 +22,33 @@ class ResetPasswordController extends Controller
 // dd($request->email);
        $email = $request->email;
         $title = 'كود التحقيق :';
-        $text = '5656098';
+        $code = rand(1, 100000);
+
+        $text = 'your code is '.$code;
+
+        if (User::where('email',$email)->count() == 0){
+            toastr()->error('نأسف! هذا المستخدم غير موجود.');
+            return back();
+        }
+
+        User::where('email',$email)->update(['code'=>$code]);
         $user = User::where('email',$email)->get();
 //        return $user;
 //     dd($user);
 
-     $this->send_EmailFun($email,$text,$title);
-
+     $this->send_EmailFun($email,$text,$title,'Reset password');
+        toastr()->info('يرجى التحقق من بريدك الإلكترونى');
         return view('auth/verification-code',compact('user'));
 
 
     }
     public function verificated(Request $request,$id)
     {
+        if ($request->code == User::findOrFail($id)->code) {
 
-        $code = $request->code;
-        if ($code == '5656098') {
             $user = User::findOrFail($id);
             return view('auth/new-password',compact('user'));
+
         }else{
             toastr()->error('الكود الذي ادخلته غير صحيح');
             return back();

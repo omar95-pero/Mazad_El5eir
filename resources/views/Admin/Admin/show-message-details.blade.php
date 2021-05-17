@@ -36,25 +36,21 @@
                             <label for="name">البريد الإلكترونى:</label>
                             <input class="form-control" name="email" type="email" id="name" placeholder="البريد الإلكترونى..." value="{{$find->email}}" readonly>
                         </div>
-
+                    </div>
                         <input type="hidden" name="status" value="admin">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label for="phone_number">رقم التليفون:</label>
+                                <input class="form-control" name="phone_number" type="number" id="phone_number" placeholder="رقم التليفون..." value="{{$find->phone_number}}" readonly>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="message">الرسالة :</label>
+                                <textarea cols="50" rows="14" disabled>
 
-                        <div class="form-group col-sm-6">
-                            <label for="name">رقم التليفون :</label>
-                            <input class="form-control" name="phone_number" type="number" id="name" placeholder="رقم التليفون..." value="{{$find->phone_number}}" readonly>
-                        </div>
-                        <div class="form-group col-sm-6">
-                            <label for="message">الرسالة :</label>
-                            <div class="col-12 d-flex align-items-center">
-                                <div>
-{{--                                    <a class="font-weight-bold">{{ $bid->user->name }}</a>--}}
-                                    <h6 class="font-weight-bold">{!! $find->message !!}</h6>
-{{--                                    <small class="d-block"> {{  $bid->created_at }} <span--}}
-{{--                                            class="mr-2 font-weight-bold"></span></small>--}}
-                                </div>
-                                </div>
-{{--                            <input class="form-control" name="message" type="text" id="name"  value="{{$find->message}}" readonly>--}}
-                        </div>
+                                   {!! $find->message !!}
+
+                                </textarea>
+                            </div>
 
                     </div>
 

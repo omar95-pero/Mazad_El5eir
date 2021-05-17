@@ -5,11 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>مزاد الخير</title>
+    <title>{{__('mazad')}}</title>
     <!-- icon -->
     <link rel="icon" type="image/x-icon" href="#">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-rtl.css') }}">
+    @if(LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-rtl.css') }}">
+    @endif
+    @if(LaravelLocalization::getCurrentLocaleDirection() == 'ltr')
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+@endif
     <!-- MDBootstrap -->
     <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
     <!-- Font Awesome -->
@@ -25,7 +30,7 @@
     <!-- swiper -->
     <link rel="stylesheet" href="{{ asset('assets/css/swiper.css') }}">
     <!-- select2 -->
-    <link rel="stylesheet" href="{{ asset('assets/css/select2.css') }}">
+    <link rel="stylesheet" href="">
     <!-- animate -->
     <link rel="stylesheet" href="{{ asset('assets/css/aos.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/normalize.css') }}">
@@ -34,10 +39,10 @@
     <!-- Custom style  -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- fonts  -->
-@toastr_css
+    @toastr_css
     <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
-    <style>
-        .pagination {
+
+    .pagination {
             display: inline-block;
         }
 
@@ -105,9 +110,9 @@
         <div class="row w-100">
             <div class="col-lg-7 mx-auto col-md-8 ">
                 <form class=" d-flex align-items-center justify-content-center" action="{{route('search')}}"
-                      method="GET">
+                      method="post">
                     @csrf
-                    <input class="form-control z-depth-1" name="search" type="text" placeholder="إبحث عن مزاد ..."
+                    <input class="form-control z-depth-1" name="search" type="text" placeholder="{{__('Search')}} ..."
                            aria-label="Search" style="height: 50px;">
                     <button type="submit" class="btn" style="padding: 10px 15px;
             border-radius: 4px;
@@ -128,8 +133,7 @@
                             <div class="img">
                                 <img style="height: 200px; width:340px;" src="{{ get_file($auction->image) }}"
                                      alt="Donation">
-                                <a class="common-btn" href="{{ route('auction.details',$auction->id) }}">تفاصيل
-                                    المزاد</a>
+                                <a class="common-btn" href="{{ route('auction.details',$auction->id) }}">{{__('auc_details')}}</a>
                             </div>
                             <div class="inner">
                                 <div class="top">
@@ -154,13 +158,13 @@
                                         @endif
                                         @if($auction->end_at>now())
                                         <ul class="d-flex justify-content-center mb-0">
-                                            <li><span id="seconds" class="timer_sec" ></span>ثانية</li>
+                                            <li><span id="seconds" class="timer_sec" ></span>{{__('sec')}}</li>
 
-                                            <li><span id="minutes" class="timer_min"></span>دقيقة</li>
+                                            <li><span id="minutes" class="timer_min"></span>{{__('min')}}</li>
 
-                                            <li><span id="hours" class="timer_hour"></span>ساعة</li>
+                                            <li><span id="hours" class="timer_hour"></span>{{__('hr')}}</li>
 
-                                            <li><span id="days" class="timer_day"></span>يوم</li>
+                                            <li><span id="days" class="timer_day"></span>{{__('day')}}</li>
                                         </ul>
                                         @endif
                                     </div>
@@ -177,16 +181,16 @@
                                     {{--                </div>--}}
                                     <ul>
                                         <li>
-                                            <span>  <i class="fad fa-gavel mr-1"></i> سعر البدأ :</span> {{number_format($auction->start_price)}}
-                                            ج.م
+                                            <span>  <i class="fad fa-gavel mr-1"></i> {{__('start_price')}}  :</span> {{number_format($auction->start_price)}}
+                                            {{__('LE')}}
                                         </li>
                                         <li style="padding-right: 10px ; border-right:1px dotted #eee "><span>  <i class="fad fa-sack-dollar" style="color:#ea1515 !important;">
 
-                                                </i> أعلى سعر  :</span>@foreach($auction->best_user as $bid) {{number_format($bid->bid_price)}}
-                                            ج.م@endforeach @if($auction->count_users == 0){{ 0 }}  ج.م @endif </li>
+                                                </i> {{__('best_price')}}   :</span>@foreach($auction->best_user as $bid) {{number_format($bid->bid_price)}}
+                                            {{__('LE')}}@endforeach @if($auction->count_users == 0){{ 0 }} {{__('LE')}} @endif </li>
                                         {{--                    <li style="padding-right: 10px ; border-right:1px dotted #eee "> <p id="count-down" class="count-down" style="color: #e67412; font-size: 18px;"></p></li>--}}
                                     </ul>
-                                    <h4 class="text-center"><span> {{$auction->count_users}} شخص </span> قاموا بالمزايدة
+                                    <h4 class="text-center"><span> {{$auction->count_users}} {{__('person')}} </span>{{__('they_bid')}}
                                     </h4>
                                 </div>
                             </div>
@@ -371,6 +375,21 @@
             disableOnInteraction: false,
         },
     });
+</script>
+<script>
+    $("body").click(function(event) {
+        $('.notifications').slideUp();
+    });
+
+    $(".notifications").click(function(event) {
+        event.stopPropagation();
+    });
+
+    $(".nav-link.notificationsIcon").click(function(event) {
+        event.stopPropagation();
+        $('.notifications').slideToggle();
+    });
+
 </script>
 @toastr_js
 @toastr_render

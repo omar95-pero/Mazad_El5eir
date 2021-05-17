@@ -15,6 +15,13 @@ class AuctionsController extends Controller
         return view('Admin.Admin.auctions',compact('getAuctions'))->with('n',0);
 
     }
+    public function show($id)
+    {
+        $auction_details = Auction::with('user','charity')->findOrFail($id);
+
+        return view('Admin.Admin.auction_details',compact('auction_details'));
+
+    }
     public function AuctionStatus( $id){
          $state = Auction::findOrFail($id);
         if ($state->status == 'cancel'){

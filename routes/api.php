@@ -30,6 +30,5 @@ Route::post('ProfileUpdate/{id}', 'Auth\UpdateProfileController@update');
 /*-------------------| Auctions Routs |----------------------*/
 Route::get('allAuctions','Auctions\AuctionController@index');
 Route::post('add_auction','Auctions\AuctionController@create');
-Route::get('Auction/{id}', 'Auctions\AuctionController@show');
-Route::get('bestAuction', 'Auctions\AuctionController@getBestAuction');
+//Route::get('users', 'Auth\RegisterController@getAllUsers');
 

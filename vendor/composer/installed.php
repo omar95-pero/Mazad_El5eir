@@ -528,6 +528,15 @@
       ),
       'reference' => '1e7e6be2dc543bf466236fb171e5b20e1b06aee6',
     ),
+    'mcamara/laravel-localization' => 
+    array (
+      'pretty_version' => '1.6.1',
+      'version' => '1.6.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '4f0bfd89e5ee8100cb8cff8ca2cc3b985ed46694',
+    ),
     'mockery/mockery' => 
     array (
       'pretty_version' => '1.4.2',

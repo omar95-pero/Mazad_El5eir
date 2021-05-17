@@ -48,18 +48,23 @@ class IndexController extends Controller
             $val->count_users = $bidNumbers->count();
         }
         foreach ($showAuctions as  $key => $val){
-            $lastBid = Bid::where('Auction_id',$val->id)->groupBy('user_id')->orderBy('bid_price','DESC')->take(1)->get();
+            $lastBid = Bid::where('Auction_id',$val->id)->orderBy('bid_price','DESC')->take(1)->get();
             $val->best_user = $lastBid;
             $val->total = $val->best_user->sum('bid_price');
 //            dd(str_contains(mime_content_type($val->image),'video'));
 //            dd($val->best_user->sum('bid_price'));
         }
-
-//======================================Get All Charities Images Before The Footer=============================
+        /*-----------totlal of donation-------------------*/
+       $total_donations =Bid::select('auction_id','bid_price', DB::raw('max(bid_price) as max'))
+            ->groupBy('Auction_id')
+            ->get();
+//       return $total_donations;
+        $total = $total_donations->sum('max');
+//==================================Get All Charities Images Before The Footer=============================
      $charitiesImages = Charity::get('image');
 //        dd($charitiesImages);
 
-      return view('site.index', compact(['bestAuction','last_news','charities','news','count_bids','showAuctions','charitiesImages','count_auctions','num']));
+      return view('site.index', compact(['bestAuction','last_news','charities','news','count_bids','showAuctions','charitiesImages','count_auctions','num','total']));
     }
     public function getProfile()
     {
@@ -83,7 +88,6 @@ class IndexController extends Controller
     {
         $data = About::first();
 //        dd($data);
-
         return view('site.About',compact('data'));
     }
     public function Store(){
@@ -101,5 +105,11 @@ class IndexController extends Controller
         $last_news = Last_News::orderBy('created_at','DESC')->get();
 
         return view('site.news_details',compact('last_news'));
+    }
+    public function news_details($id){
+        $news_detail = Last_News::findOrFail($id);
+//        dd($news_detail);
+        return view('site.news_detail',compact('news_detail'));
+
     }
 }

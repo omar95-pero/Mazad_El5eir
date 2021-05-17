@@ -30,7 +30,7 @@
 
                         <div class="form-group col-sm-12">
                             <label for="message">الرسالة :</label>
-                            <textarea class="form-control" name="message" type="text" id="name" placeholder="الرسالة..." ></textarea>
+                            <textarea class="form-control" id="summary-ckeditor" name="message" cols="30" rows="6" required placeholder="إكتب رسالتك"></textarea>
                         </div>
 
                     </div>
@@ -55,3 +55,4 @@
     {{--    </div>--}}
 
 @endsection
+

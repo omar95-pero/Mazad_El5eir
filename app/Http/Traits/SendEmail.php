@@ -10,12 +10,11 @@ use PharIo\Manifest\Email;
 trait SendEmail
 {
 
-    protected function send_EmailFun($email = '',$text = '',$title = '')
+    protected function send_EmailFun($email = '',$text = '',$title = '',$subject = '')
     {
 
 
         $to = $email;
-        $subject = $title;
         $txt = $text;
         $headers = "From: support@malkheir.com" . "\r\n" .
                    "CC: support@malkheir.com";

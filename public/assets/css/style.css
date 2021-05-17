@@ -1887,6 +1887,175 @@ span.swiper-pagination-current {
   font-weight: bold;
 }
 
+
+
+/* ---------    */  /* -------------- */
+
+
+.news-details .news-detailsImg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.news-details .news-detailsImg img {
+  height: 100%;
+  width: 100%;
+}
+
+@media (min-width:980px) {
+  .news-details .news-detailsImg img {
+     width: 70%;
+    height: 400px;
+  }
+}
+
+.news-details .news-detailsInfo p {
+  line-height: 35px;
+}
+
+
+.newsCol {
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.211);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.211);
+  position: relative;
+}
+
+.news .sideTitle {
+  position: relative;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.newsCol .date {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 8px;
+  border-radius: 0px 0px 4px 4px;
+  background-color: #3f8665;
+  color: #fff;
+  -webkit-box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.251);
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.251);
+}
+
+.newsCol .date span {
+  display: block;
+  text-align: center;
+}
+
+.newsCol .date span:nth-child(1) {
+  font-size: 25px;
+  font-weight: bold;
+  color: #8db596;
+}
+
+.newsCol img {
+  border-radius: 8px;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 180px;
+}
+
+.newsCol h5 {
+  color: #3f8665;
+  font-size: 18px;
+}
+
+.filter ul li {
+  list-style: none;
+  padding: 15px 0px 10px;
+  border-bottom: 1px dashed #a4a4a4;
+}
+
+.filter ul li a {
+  color: #3f8665;
+}
+
+.filter ul li a:hover {
+  color: #8db596;
+}
+
+.search {
+  width: 100%;
+}
+
+.search button,
+.search [type="submit"] {
+  border: 0;
+  background: none;
+  position: absolute;
+  top: 11px;
+  left: 13px;
+  cursor: pointer;
+}
+
+.search input {
+  border-radius: 100px;
+}
+
+@media (max-width: 768px) {
+
+  .newsCol img {
+    height: 130px;
+  }
+  .newsCol .date {
+    padding: 5px;
+  }
+  .newsCol .date span {
+    font-size: 14px;
+  }
+  .newsCol h5 {
+    font-size: 16px;
+  }
+
+  .search {
+    width: 75% !important;
+    margin: auto;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  .newsCol img {
+    height: 130px;
+  }
+  .newsCol .date {
+    padding: 5px;
+  }
+  .newsCol .date span {
+    font-size: 14px;
+  }
+  .newsCol h5 {
+    font-size: 16px;
+  }
+  .search {
+    width: 100% !important;
+    margin: auto;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*Upcoming Auction Section Starts Here*/
 .upcoming-auction {
   background-color: #f3f2fb;

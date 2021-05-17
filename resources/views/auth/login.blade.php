@@ -6,11 +6,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>مزاد الخير</title>
+    <title>{{__('mazad')}}</title>
     <!-- icon -->
     <link rel="icon" type="image/x-icon" href="#">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-rtl.css') }}">
+    @if(LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-rtl.css') }}">
+    @endif
+    @if(LaravelLocalization::getCurrentLocaleDirection() == 'ltr')
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+    @endif
     <!-- MDBootstrap -->
     <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
     <!-- Font Awesome -->
@@ -58,7 +63,7 @@
 
         <div class="col-lg-5 p-0 img-col-6">
           <div class="over-lay d-flex align-items-center justify-content-center">
-            <h3>تسجيل الدخول</h3>
+            <h3>{{{__('login')}}}</h3>
           </div>
           <div class="user-img" style="background-image: url({{ URL:: asset('assets/img/login.jpg') }});">
             <img src="{{ asset('assets/img/login.jpg') }}" alt="User">
@@ -74,7 +79,7 @@
                     <a href="{{route('index')}}">
                       <img src="{{ asset('assets/img/logo.png') }}" alt="Logo">
                     </a>
-                    <h2>تسجيل الدخول</h2>
+                    <h2>{{__('login')}}</h2>
                   </div>
 
                 <div class="card-body">
@@ -84,7 +89,7 @@
 {{--                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('البريد الاليكتروني') }}</label>--}}
 
                             <div class="col-md-12">
-                                <input id="email" placeholder="الإيميل" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" placeholder="{{__('email')}}" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -98,7 +103,7 @@
 {{--                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('كلمة المرور') }}</label>--}}
 
                             <div class="col-md-12">
-                                <input id="password" placeholder="كلمة المرور" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" placeholder="{{__('password')}}" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -115,7 +120,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('تذكرني') }}
+                                        {{ __('remember_me') }}
                                     </label>
 
                                 </div>
@@ -124,7 +129,7 @@
                             <div class="col-md-6">
                                 @if (Route::has('password.request'))
                                     <a class="btn-link" href="{{ route('EmailForm') }}">
-                                        {{ __('هل نسيت كلمة المرور؟') }}
+                                        {{ __('do_you_forget_password') }}?
                                     </a>
                                 @endif
                             </div>
@@ -133,7 +138,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-12 d-flex justify-content-center">
                                 <button type="submit" class="btn common-btn">
-                                    {{ __('دخول') }}
+                                    {{ __('login') }}
                                 </button>
 
 
@@ -141,19 +146,19 @@
                         </div>
                     </form>
                   <div class="bottom">
-                    <p>لا تملك حساب ؟ <a href="{{ route('register') }}">إنشاء حساب</a></p>
-                    <h4>أو</h4>
+                    <p>{{__('do_you_not_have_an_account')}} ؟ <a href="{{ route('register') }}">{{__('create_account')}}</a></p>
+                    <h4>{{__('or')}}</h4>
                     <ul>
                       <li>
                         <a href="#" target="_blank">
                           <i class="fab fa-facebook-square ml-1"></i>
-                          دخول بالفيسبوك
+                         {{__('login_with_facebook')}}
                         </a>
                       </li>
                       <li>
                         <a href="#" target="_blank">
                           <i class="fab fa-google-plus ml-1"></i>
-                          دخول بجوجل
+                          {{__('login_with_google')}}
                         </a>
                       </li>
                     </ul>

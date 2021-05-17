@@ -34,8 +34,16 @@ class LoginController extends Controller
      * @return void
      */
     public function __construct()
-        {
-
-             $this->middleware('guest')->except('logout');
-        }
+    {
+       return $this->middleware('guest')->except('logout');
+    }
+//    public function __construct()
+//    {
+//        if(auth()->user()->blocked_status == 'no'){
+//            $this->loggedOut()->toastr()->error('انت محظور من الموقع');
+//
+//        }else{
+//            $this->middleware('guest')->except('logout');
+//        }
+//    }
 }

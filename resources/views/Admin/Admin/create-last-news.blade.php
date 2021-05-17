@@ -45,7 +45,7 @@
                     <div class="row">
                         <div class="form-group col-sm-6">
                             <label for="body">الموضوع:</label>
-                            <textarea class="form-control" name="body" type="text" id="slug" placeholder="الموضوع..."  data-validation="required"></textarea>
+                            <textarea class="form-control" rows="9" name="body" type="text" id="slug" placeholder="الموضوع..."  data-validation="required"></textarea>
                         </div>
 
                         <div class="form-group  col-sm-6" >

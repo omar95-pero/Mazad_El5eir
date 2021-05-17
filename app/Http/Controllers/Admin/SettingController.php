@@ -29,7 +29,7 @@ class SettingController extends Controller
 
 //       dd($newSetting);
        $settings->update($newSetting);
-       return redirect()->route('settings');
+       return back();
 
    }
     public function ShowAdminsCheckDelete(Request $request){

@@ -22,13 +22,16 @@ class AuthController extends Controller
         if ($valedator->fails()){
             $rememberme = request('rememberme') == 1?true:false;
             if (admin()->attempt(['email' => request('email'), 'password' => request('password')], $rememberme)) {
-                return response()->json(['status'=>'yes']);
+	            response()->json(['status'=>'yes']);
+            return   redirect('admin');
+
             } else {
                 return response()->json(['status'=>'password']);
             }
         }
         else{
-            return response()->json(['status'=>'email']);
+            return
+             response()->json(['status'=>'email']);
         }
     }//end fun
     /**

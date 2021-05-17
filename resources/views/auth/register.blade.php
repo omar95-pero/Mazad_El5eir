@@ -7,11 +7,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>مزاد الخير</title>
+  <title>{{__('mazad')}}</title>
   <!-- icon -->
   <link rel="icon" type="image/x-icon" href="#">
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-rtl.css') }}">
+    @if(LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-rtl.css') }}">
+    @endif
+    @if(LaravelLocalization::getCurrentLocaleDirection() == 'ltr')
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+@endif
   <!-- MDBootstrap -->
   <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
   <!-- Font Awesome -->
@@ -76,7 +81,7 @@
 
         <div class="col-lg-5 p-0 img-col-6">
           <div class="over-lay d-flex align-items-center justify-content-center">
-            <h3>إنشاء حساب</h3>
+            <h3>{{__('create_account')}}</h3>
           </div>
           <div class="user-img" style="background-image: url({{asset('assets/img/register.jpg')}});">
             <img src=" {{asset('assets/img/register.jpg')}} " alt="User">
@@ -92,14 +97,14 @@
                     <a href="{{route("index")}}">
                       <img src="{{asset('assets/img/logo.png')}}" alt="Logo">
                     </a>
-                    <h2>إنشاء حساب</h2>
+                    <h2>{{__('create_account')}}</h2>
                   </div>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="اسم المستخدم">
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{__('name')}}">
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -109,7 +114,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="الايميل">
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{__('email')}}">
 
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -120,7 +125,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="كلمة المرور">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="{{__('password')}}">
 
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -131,29 +136,29 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="تأكيد كلمة المرور">
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="{{__('confirm_password')}}">
                                 </div>
                             </div>
 
                             <div class="col-lg-12 d-flex align-items-center justify-content-center">
-                                <button type="submit" class="btn common-btn waves-effect waves-light">تسجيل</button>
+                                <button type="submit" class="btn common-btn waves-effect waves-light">{{__('register')}}</button>
                             </div>
                         </div>
                     </form>
                   <div class="bottom">
-                    <p>قمت بالتسجيل مسبقا ؟ <a href="{{ route('login') }}">دخول </a></p>
-                    <h4>أو</h4>
+                    <p>{{__('do_you_register_before')}} ؟ <a href="{{ route('login') }}">{{__('login')}} </a></p>
+                    <h4>{{__('or')}}</h4>
                     <ul>
                       <li>
                         <a href="#" target="_blank">
                           <i class="icofont-facebook"></i>
-                          دخول بالفيسبوك
+                          {{__('login_with_facebook')}}
                         </a>
                       </li>
                       <li>
                         <a href="#" target="_blank">
                           <i class="icofont-google-plus"></i>
-                          دخول بجوجل
+                          {{__('login_with_google')}}
                         </a>
                       </li>
                     </ul>

@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <h4 class="footer-title">مزاد الخير</h4>
+                    <h4 class="footer-title"> {{__('mazad')}}</h4>
                     <div class="about-widget white-bg d-flex align-items-center justify-content-center p-1"
                          style="border-radius: 6px;">
                         <!-- <p class="logo-p"> الابداع الثالث لتقنية المعلومات توفر عليك عناء ادارة الهوية الرقمية بدون الحاجة لعشرات الموظفين
@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="col-md-3">
-                    <h4 class="footer-title">مزاد الخير</h4>
+                    <h4 class="footer-title"> {{__('mazad')}}</h4>
                     <div class="about-widget ">
                         <p class="logo-p">
                   {{getSettings()->body}}
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="col-md-3">
-                    <h4 class="footer-title">الشركة </h4>
+                    <h4 class="footer-title">{{__('company')}} </h4>
                     <ul class="sitemap-widget">
                         <li class="active"><a class="d-flex justify-content-between align-items-center" href="{{url('/ShowAuctions')}}">
 
@@ -44,7 +44,7 @@
 
 
                 <div class="col-md-3">
-                    <h4 class="footer-title">تحميل التطبيق
+                    <h4 class="footer-title"> {{__('download')}}
 
                     </h4>
                     <ul class="sitemap-widget">
@@ -81,7 +81,7 @@
             <div class="row">
                 <div class="col-md-4 col-sm-6 d-flex align-items-center">
                     <div class="copyright ">
-                        <p>&copy; 2020 جميع الحقوق محفوظه , <a href="#" target="_blank"> المطورون </a>.</p>
+                        <p>&copy; 2020 {{__('copyright')}} , <a href="#" target="_blank"> {{__('motowroon')}} </a>.</p>
                     </div>
                 </div>
                 <div class="col-md-8 col-sm-6">

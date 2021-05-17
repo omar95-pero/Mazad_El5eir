@@ -66,7 +66,8 @@ class NewsController extends Controller
 
     public function destroy($id)
     {
-        $row =News::find($id)->delete();
+        $row =News::find($id);
+        $row->delete();
         toastr()->success('تم حذف الخبر بنجاح');
         return redirect('admin/news/index');
     }

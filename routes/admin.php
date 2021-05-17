@@ -79,6 +79,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/auction/state/{id}','AuctionsController@AuctionStatus')->name('updateState.Auction');
     Route::get('/auction/is_special/{id}','AuctionsController@is_special')->name('update_to_special.Auction');
     Route::get('/auction/delete/{id}','AuctionsController@destroyAuction')->name('delete.Auction');
+    Route::get('/auction/{id}','AuctionsController@show')->name('auction_details');
 //============================================Charities Routes====================================
     Route::get('/charities/index','CharityController@show')->name('ShowCharities.index');
     Route::get('/charities/insert','CharityController@insert')->name('insert.charity');

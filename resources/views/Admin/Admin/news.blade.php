@@ -81,6 +81,7 @@
                                 <td>{{$new->title}}</td>
                                 <td>{{$new->slug}}</td>
                                 <td>{{$new->body}}</td>
+                                @if($new->image)
                                 @if(str_contains(mime_content_type($new->image),'image'))
                                 <td><img style="width: 70px;height: 70px" src="{{get_file($new->image)}}" alt="user" onclick="window.open(this.src)"/></td>
                                 @endif
@@ -88,6 +89,7 @@
                                     <td>
                                     <iframe width="75" height="75" src="{{ get_file($new->image) }}" frameborder="0" allowfullscreen></iframe>
                                     </td>
+                                @endif
                                 @endif
                                     <td >
                                     <a href="{{ url('admin/news',$new->id)}}">

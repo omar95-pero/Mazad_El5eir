@@ -48,13 +48,13 @@
                     <div class="row">
                         <div class="form-group col-sm-6">
                             <label for="body">الموضوع:</label>
-                            <textarea class="form-control" name="body" type="text" id="slug" placeholder="الموضوع..."  data-validation="required" >{{$find->body}}</textarea>
+                            <textarea class="form-control" rows="9" name="body" type="text" id="slug" placeholder="الموضوع..."  data-validation="required" >{{$find->body}}</textarea>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-sm-6">
                             <label for="image">الصوره</label>
                             <input type="file" name="image"  id="input-file-now-custom-1"   class="dropify" style="border-radius: 20px"
-                                   value="{{$find->image}}" >
+                                   data-default-file="{{get_file($find->image)}}" >
                         </div>
                     </div>
                     <input class="btn btn-primary" type="submit" value="تعديل">
